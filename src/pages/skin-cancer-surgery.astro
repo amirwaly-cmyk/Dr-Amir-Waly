@@ -1,0 +1,289 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const services = [
+  {
+    title: 'Full skin examinations',
+    body: 'A structured head-to-toe skin check, supported by dermoscopy — a magnified, polarised examination of individual lesions of concern.',
+  },
+  {
+    title: 'Assessment of lesions of concern',
+    body: 'Clinical and dermoscopic evaluation of moles, spots, or skin changes that you, your GP, or another clinician has identified.',
+  },
+  {
+    title: 'Skin biopsy',
+    body: 'Punch, shave, or incisional biopsy under local anaesthetic when histopathological diagnosis is required.',
+  },
+  {
+    title: 'Surgical excision of skin cancers',
+    body: 'Excision of basal cell carcinoma, squamous cell carcinoma, and selected melanomas under local anaesthetic, with closure appropriate to the site.',
+  },
+  {
+    title: 'Cryotherapy',
+    body: 'Liquid-nitrogen treatment for selected superficial lesions such as solar keratoses, where clinically appropriate.',
+  },
+  {
+    title: 'Surveillance for higher-risk patients',
+    body: 'Scheduled review and monitoring for patients with a personal or family history of skin cancer, significant sun exposure, or multiple atypical naevi.',
+  },
+  {
+    title: 'Onward referral',
+    body: 'Where indicated, timely referral to dermatology, plastic surgery, or oncology — with coordination of investigations and correspondence to your GP.',
+  },
+];
+---
+<BaseLayout
+  title={`Skin Cancer Medicine & Surgery in ${site.address.suburb} — Dr Amir Waly`}
+  description={`Skin checks, dermoscopy, biopsy, surgical excision of skin cancers, cryotherapy, and surveillance for higher-risk patients in ${site.address.suburb}, Perth. Independent specialist GP — ${site.doctorName}.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Skin Cancer Surgery', href: '/skin-cancer-surgery' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Area of practice</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Skin cancer medicine and surgery.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Skin examinations, dermoscopic assessment, biopsy, and surgical
+          management of skin lesions &mdash; provided by {site.doctorName} as
+          part of his independent specialist GP practice at {site.clinicName}.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- About -->
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-7 md:col-start-2">
+        <div class="prose-clinic max-w-2xl text-ink-700">
+          <p class="text-lg">
+            Skin cancer is the most commonly diagnosed cancer in Australia. Early
+            detection improves treatment options and outcomes for most types of
+            skin cancer.
+          </p>
+          <p>
+            A skin examination involves a structured review of all areas of skin,
+            supported by dermoscopy &mdash; the magnified examination of individual
+            lesions. Where a lesion warrants further assessment, the next step
+            may be photographic monitoring, biopsy, or surgical removal.
+          </p>
+          <p>
+            Most procedures are performed in the clinic under local anaesthetic.
+            Histopathology results are typically available within one to two
+            weeks, and you will be contacted regardless of the result.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Services -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20 sm:py-24">
+    <Container>
+      <p class="eyebrow">What is offered</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl max-w-2xl">
+        Services within this area of practice.
+      </h2>
+
+      <ul class="mt-14 grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
+        {services.map((s, i) => (
+          <li class="bg-white p-8 sm:p-10">
+            <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-4 font-serif text-xl text-ink-900 leading-snug">{s.title}</h3>
+            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600">{s.body}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <!-- What to expect -->
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-7 md:col-start-2">
+        <p class="eyebrow">What to expect at your appointment</p>
+        <h2 class="display mt-5 text-3xl sm:text-4xl">
+          A thorough check, an unhurried plan.
+        </h2>
+
+        <ol class="mt-12 space-y-10">
+          <li class="grid grid-cols-12 gap-6">
+            <span class="numeral col-span-2 text-2xl">01</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Discussion and history</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                We will discuss your reason for attending, personal and family
+                history of skin cancer, sun exposure, and any specific spots you are
+                concerned about.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">02</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Examination</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                A structured examination of the skin, supported by dermoscopy.
+                Chaperone is available on request.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">03</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Plan</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                If a lesion needs further attention, you will be given a clear
+                written plan &mdash; whether that is monitoring, biopsy, excision, or
+                referral &mdash; together with information about the procedure, recovery,
+                and cost.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">04</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Follow-up</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                Histopathology results are reviewed and communicated to you, and a
+                written summary is sent to your GP. Recommended surveillance
+                intervals are individualised based on risk.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Practice policy -->
+  <section class="border-t border-ink-100 bg-paper py-20 sm:py-24">
+    <Container size="narrow">
+      <p class="eyebrow">Practice policy</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl">
+        How skin cancer assessment and surgery are provided.
+      </h2>
+      <p class="mt-6 text-ink-600 leading-relaxed">
+        The standing policies below apply to every skin examination, biopsy,
+        and surgical procedure offered within this area of practice.
+      </p>
+
+      <dl class="mt-12 border-t border-ink-200/70">
+        {[
+          {
+            t: 'Clinical assessment first',
+            d: 'Not every skin lesion requires biopsy or removal. The decision is based on clinical assessment supported by dermoscopy.',
+          },
+          {
+            t: 'Informed consent',
+            d: 'Written informed consent is obtained before any biopsy, excision, or other procedure. You may withdraw consent at any time.',
+          },
+          {
+            t: 'Risks of skin surgery',
+            d: 'All skin procedures carry risks, including bleeding, bruising, infection, scarring, nerve injury, and the possibility of incomplete excision. These risks will be discussed with you before any procedure.',
+          },
+          {
+            t: 'Histopathology results',
+            d: 'You will be contacted with the result of any biopsy regardless of the finding. Urgent or unexpected findings are communicated by phone on the day.',
+          },
+          {
+            t: 'Referral when appropriate',
+            d: 'Lesions on cosmetically sensitive sites, lesions requiring wider margins, or complex cases may be referred to a dermatologist, plastic surgeon, or other appropriately qualified colleague.',
+          },
+          {
+            t: 'Surveillance',
+            d: 'Recommended review intervals are individualised based on personal risk factors, including history of skin cancer, family history, and cumulative sun exposure.',
+          },
+          {
+            t: 'Costs and Medicare',
+            d: 'Standard consultation fees apply. Medicare rebates apply where eligible. Fees for any procedure are discussed and agreed before it is performed.',
+          },
+          {
+            t: 'When to seek earlier review',
+            d: 'If a lesion is new, changing, painful, bleeding, or rapidly growing, please contact the clinic to arrange an earlier appointment. In a medical emergency call 000.',
+          },
+        ].map((p, i) => (
+          <div class="grid grid-cols-12 gap-4 sm:gap-8 border-b border-ink-100 py-7">
+            <dt class="col-span-12 md:col-span-5">
+              <span class="numeral text-xs tabular-nums text-ink-500">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="mt-2 block font-serif text-lg text-ink-900 leading-snug">
+                {p.t}
+              </span>
+            </dt>
+            <dd class="col-span-12 md:col-span-7 text-[15.5px] leading-relaxed text-ink-700">
+              {p.d}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </Container>
+  </section>
+
+  <!-- Patient documents -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20">
+    <Container size="narrow">
+      <p class="eyebrow">Patient documents</p>
+      <h2 class="display mt-5 text-2xl sm:text-3xl">
+        Information to read before your appointment.
+      </h2>
+      <p class="mt-5 text-ink-600 leading-relaxed">
+        We encourage you to read the patient information leaflet before your
+        consultation. A printed copy is also available at reception.
+      </p>
+
+      <a
+        href="/documents/skin-cancer-surgery-information.pdf"
+        download
+        class="group mt-9 flex items-start gap-5 border border-ink-200/70 bg-white p-6 transition-colors hover:border-clinic-700"
+      >
+        <span
+          aria-hidden="true"
+          class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center border border-ink-200/70 text-clinic-700 group-hover:border-clinic-700"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-5z" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="flex-1">
+          <span class="block font-serif text-lg text-ink-900">
+            Skin cancer surgery &mdash; patient information
+          </span>
+          <span class="mt-1 block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+            PDF &middot; 1 page
+          </span>
+        </span>
+        <span aria-hidden="true" class="mt-2 text-ink-400 transition-transform group-hover:translate-y-0.5 group-hover:text-clinic-700">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 4v14m0 0l-5-5m5 5l5-5M5 20h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-ink-100 bg-white py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href={site.bookingUrl}
+        class="inline-flex items-center rounded-sm bg-clinic-800 px-6 py-3.5 text-[0.85rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+      >
+        Book a skin check
+      </a>
+      <p class="mt-5 text-[14px] text-ink-500">
+        Or call reception on
+        <a class="link-quiet text-ink-700 tabular-nums" href={site.phoneHref}>{site.phone}</a>.
+      </p>
+    </Container>
+  </section>
+</BaseLayout>

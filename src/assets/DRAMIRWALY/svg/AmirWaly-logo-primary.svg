@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" width="760" height="240" role="img" aria-label="Dr Amir Waly — Consultant Specialist General Practitioner">
+  <defs></defs>
+  <rect width="760" height="240" fill="none"></rect>
+  <text x="380" y="118" text-anchor="middle" fill="#23262b" style="font-family:&#39;Spectral&#39;,serif;font-weight:500;text-transform:uppercase;" font-size="58" letter-spacing="11.6">Dr Amir Waly</text>
+  <g stroke="#23262b" stroke-opacity="0.34"><line x1="280" y1="150" x2="334" y2="150" stroke-width="1.4"></line><line x1="426" y1="150" x2="480" y2="150" stroke-width="1.4"></line></g>
+  <circle cx="380" cy="150" r="3.4" fill="#4d72a6"></circle>
+  <text x="380" y="186" text-anchor="middle" fill="#4a4f57" style="font-family:&#39;Work Sans&#39;,sans-serif;font-weight:500;text-transform:uppercase;" font-size="16" letter-spacing="5.4">Consultant Specialist General Practitioner</text>
+</svg>

@@ -1,0 +1,100 @@
+---
+import Container from './Container.astro';
+import { site } from '@/config/site';
+
+const year = new Date().getFullYear();
+const quals = site.qualifications.split(',').map(s => s.trim()).join('  ·  ');
+const hasEmail = !site.email.startsWith('[');
+---
+<footer class="mt-28 border-t border-ink-100 bg-paper-soft">
+  <Container class="py-16">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <p class="font-serif text-2xl font-medium tracking-tight text-clinic-800">
+          {site.doctorName}
+        </p>
+        <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+          {quals}
+        </p>
+        <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-ink-600">
+          {site.practiceDescriptor}, providing consultancy services to
+          medical centres (including {site.clinicName} in {site.address.suburb})
+          and urgent care clinics, national telehealth services such as
+          Healthdirect, on-site care to residents of selected residential
+          aged-care facilities, advisory roles with medical technology
+          startups, and involvement in Level 3 supervision of International
+          Medical Graduates.
+        </p>
+        <dl class="mt-6 max-w-sm grid grid-cols-12 gap-x-4 gap-y-1.5 text-[13px] text-ink-500">
+          <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">Operator</dt>
+          <dd class="col-span-9 text-ink-700">{site.business.name}</dd>
+          <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">ABN</dt>
+          <dd class="col-span-9 text-ink-700 tabular-nums">{site.abn}</dd>
+          <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">AHPRA</dt>
+          <dd class="col-span-9 text-ink-700 tabular-nums">{site.ahpraNumber}</dd>
+          <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">Office</dt>
+          <dd class="col-span-9 text-ink-700">
+            {site.business.address.line1}, {site.business.address.line2},<br/>
+            {site.business.address.suburb} {site.business.address.state} {site.business.address.postcode}
+          </dd>
+        </dl>
+        <p class="mt-2 text-[11px] text-ink-400 max-w-sm">
+          Registered business office &mdash; not a patient-visit location.
+        </p>
+      </div>
+
+      <div class="md:col-span-3 md:border-l md:border-ink-200/70 md:pl-8">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">Clinic</p>
+        <address class="not-italic mt-4 text-[15px] leading-relaxed text-ink-700">
+          <div class="font-medium text-ink-900">{site.clinicName}</div>
+          <div>{site.address.line1}</div>
+          {site.address.line2 && <div>{site.address.line2}</div>}
+          <div>{site.address.suburb}, {site.address.state} {site.address.postcode}</div>
+        </address>
+      </div>
+
+      <div class="md:col-span-4 md:border-l md:border-ink-200/70 md:pl-8">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+          Reception &mdash; {site.address.suburb}
+        </p>
+        <p class="mt-2 text-[12px] leading-relaxed text-ink-500 max-w-xs">
+          For Dr Waly&rsquo;s consulting sessions at {site.clinicName} only.
+        </p>
+        <ul class="mt-4 space-y-1.5 text-[15px] text-ink-700">
+          <li>
+            <span class="text-ink-500 tabular-nums">P</span>
+            <a class="link-quiet ml-2" href={site.phoneHref}>{site.phone}</a>
+          </li>
+          <li>
+            <span class="text-ink-500">F</span>
+            <span class="ml-2 tabular-nums">{site.fax}</span>
+          </li>
+          {hasEmail && (
+            <li>
+              <span class="text-ink-500">E</span>
+              <a class="link-quiet ml-2" href={site.emailHref}>{site.email}</a>
+            </li>
+          )}
+        </ul>
+        <p class="mt-4 text-[12px] leading-relaxed text-ink-500 max-w-xs">
+          Other engagements (aged-care visits, Healthdirect telehealth,
+          urgent care clinics, medtech advisory) are arranged through those
+          services directly. See the <a class="link-quiet text-ink-700" href="/about">About page</a>.
+        </p>
+        <ul class="mt-5 flex flex-wrap gap-x-5 gap-y-1">
+          <li><a class="link-quiet text-[13px]" href="/private-gp-explained">Private GP, explained</a></li>
+          <li><a class="link-quiet text-[13px]" href="/faqs">FAQs</a></li>
+          <li><a class="link-quiet text-[13px]" href="/policies">Practice policies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-3 border-t border-ink-200/70 pt-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} {site.doctorName}. All rights reserved.</p>
+      <p class="max-w-xl sm:text-right">
+        This website provides general information only and is not a substitute for medical advice.
+        In an emergency call <strong class="text-ink-700 tabular-nums">000</strong>.
+      </p>
+    </div>
+  </Container>
+</footer>

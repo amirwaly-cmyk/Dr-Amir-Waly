@@ -1,0 +1,238 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { Image } from 'astro:assets';
+import { site } from '@/config/site';
+import portrait from '@/assets/dr-amir-waly-cutout.png';
+---
+<BaseLayout
+  title={`About Dr Amir Waly — Specialist GP in ${site.address.suburb}, Perth`}
+  description={`${site.doctorName} (${site.qualifications}) — independent Specialist GP in ${site.address.suburb}, Perth, with over 10 years as a registered medical practitioner and 15+ years across health. Special interests in skin cancer medicine and non-surgical cosmetic medicine.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-20">
+        <div class="lg:col-span-7 reveal">
+          <p class="eyebrow">About the practitioner</p>
+          <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-[12ch]">
+            {site.doctorName}
+          </h1>
+          <p class="mt-6 text-[13px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+            {site.qualifications}
+          </p>
+          <p class="mt-7 max-w-xl text-ink-600 text-lg leading-relaxed">
+            {site.qualificationsLong}.
+          </p>
+          <p class="mt-5 text-[15px] text-ink-500 max-w-xl">
+            Independent specialist GP practice providing consultancy services
+            to medical centres and urgent care clinics, national telehealth
+            services such as Healthdirect, on-site care to residents of
+            selected residential aged-care facilities, advisory roles with
+            medical technology startups, and involvement in Level 3
+            supervision of International Medical Graduates.
+          </p>
+        </div>
+        <div class="lg:col-span-5 reveal reveal-delay-1">
+          <figure class="mx-auto max-w-md lg:max-w-none" transition:name="dr-waly-portrait">
+            <Image
+              src={portrait}
+              alt={`Portrait of ${site.doctorName}`}
+              widths={[480, 640, 800, 1080]}
+              sizes="(min-width: 1024px) 460px, (min-width: 640px) 420px, 90vw"
+              quality={92}
+              format="webp"
+              loading="eager"
+              class="portrait-cutout"
+            />
+          </figure>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-8 md:col-start-2">
+        <div class="prose-clinic max-w-2xl text-ink-700">
+          <p class="text-lg">
+            {site.doctorName} is an independent Specialist Consultant General
+            Practitioner who runs his own practice. He provides consultancy
+            services to medical centres and urgent care clinics, national
+            telehealth services such as Healthdirect, on-site general practice
+            to residents of selected residential aged-care facilities,
+            advisory roles with medical technology startups, and involvement
+            in Level 3 supervision of International Medical Graduates &mdash;
+            with a focus on long-term, patient-centred care and the time and
+            rigour required for complex clinical problems.
+          </p>
+
+          <h2 class="text-2xl pt-8">About this practice</h2>
+          <p>
+            This is {site.doctorShortName}&rsquo;s independent specialist
+            general practice. He is personally responsible for his patients&rsquo;
+            care, his clinical decisions, and his correspondence with
+            referring practitioners. The practice is not tied to a single
+            brick-and-mortar location; it provides consultancy services across
+            a number of unrelated engagements:
+          </p>
+          <ul class="not-prose mt-4 mb-4 border-t border-ink-200/70 divide-y divide-ink-100">
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">Medical centres</span>
+              <span class="col-span-8 text-ink-800">
+                Consultancy services are provided to medical centres,
+                including consulting sessions at {site.clinicName} in
+                {site.address.suburb}. Under a standard services arrangement,
+                each centre provides reception, nursing, billing, and
+                facility support to the practice.
+              </span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">Urgent care</span>
+              <span class="col-span-8 text-ink-800">
+                Clinical services are provided to urgent care clinics for
+                walk-in patients presenting with non-emergency urgent issues.
+                Billing follows the funding arrangements of the urgent care
+                service.
+              </span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">Telehealth</span>
+              <span class="col-span-8 text-ink-800">
+                Telehealth consultations are provided to members of the public
+                through national telehealth services such as Healthdirect.
+              </span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">Aged care</span>
+              <span class="col-span-8 text-ink-800">
+                On-site general practice consultations for residents of
+                selected residential aged-care facilities, in collaboration
+                with facility nursing staff.
+              </span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">Medtech advisory</span>
+              <span class="col-span-8 text-ink-800">
+                Advisory roles with medical technology (medtech) startups,
+                contributing clinical and practitioner perspective to
+                product development and clinical safety.
+              </span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">IMG supervision</span>
+              <span class="col-span-8 text-ink-800">
+                Involvement in the supervision of International Medical
+                Graduates (IMGs) at <strong>Level 3</strong>, under the
+                Medical Board of Australia&rsquo;s supervision framework.
+                Level 3 supervision involves availability for clinical
+                consultation and periodic review of the supervised
+                practitioner&rsquo;s practice.
+              </span>
+            </li>
+          </ul>
+          <p>
+            Across all engagements, the professional, clinical, and ethical
+            responsibilities of the practice remain
+            {site.doctorShortName}&rsquo;s. He is not an employee of any
+            medical centre, urgent care clinic, telehealth service,
+            aged-care facility, technology company, or organisation hosting
+            an International Medical Graduate under his supervision.
+          </p>
+          <p>
+            Patients are welcome to request copies of their records and to
+            nominate where correspondence should be sent. Records are held
+            securely in accordance with the <em>Privacy Act 1988</em> (Cth) and
+            the Australian Privacy Principles applicable to medical practice.
+          </p>
+
+          <h2 class="text-2xl pt-8">Background</h2>
+          <p>
+            {site.doctorShortName}&rsquo;s path into medicine began in pharmacy.
+            He completed a Bachelor of Pharmacy at Curtin University and
+            practised as a pharmacist before studying medicine, earning his
+            Bachelor of Medicine and Bachelor of Surgery (MBBS) at the
+            University of Sydney. He has now practised as a registered
+            medical practitioner for more than ten years, with over fifteen
+            years of combined experience across health when his earlier
+            pharmacy career is included.
+          </p>
+          <p>
+            Returning to Western Australia, he completed his junior doctor
+            years primarily at Royal Perth Hospital before undertaking the
+            vocational training to qualify as a specialist general
+            practitioner. Alongside his general practice work, he has
+            completed additional training and developed a special interest in
+            skin cancer medicine &mdash; including skin checks and minor skin
+            surgery (excisions) &mdash; and in non-surgical cosmetic
+            procedures, including laser treatments.
+          </p>
+          <p>
+            {site.doctorShortName} has also worked extensively in regional
+            and remote Western Australia, spending several years across the
+            Pilbara in Karratha, Tom Price, and Paraburdoo. This experience
+            broadened his clinical range and reinforced his commitment to
+            accessible, practical patient care. He is now based in Perth,
+            where he provides general practice, skin cancer, and cosmetic
+            medicine services.
+          </p>
+
+          <h2 class="text-2xl pt-8">Qualifications &amp; Memberships</h2>
+          <ul class="not-prose mt-4 divide-y divide-ink-100 border-t border-ink-200/70">
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">BPharm</span>
+              <span class="col-span-8 text-ink-800">Bachelor of Pharmacy &mdash; Curtin University</span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">MBBS</span>
+              <span class="col-span-8 text-ink-800">Bachelor of Medicine, Bachelor of Surgery &mdash; University of Sydney</span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">FRACGP</span>
+              <span class="col-span-8 text-ink-800">Fellow of the Royal Australian College of General Practitioners</span>
+            </li>
+            <li class="grid grid-cols-12 gap-4 py-4">
+              <span class="col-span-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500">Member</span>
+              <span class="col-span-8 text-ink-800">Royal Australian College of General Practitioners (RACGP)</span>
+            </li>
+          </ul>
+
+          <h2 class="text-2xl pt-10">Areas of Clinical Interest</h2>
+          <ul class="list-disc pl-6 space-y-1.5">
+            <li>General medicine and chronic disease management</li>
+            <li>Men&rsquo;s health</li>
+            <li><a href="/skin-cancer-surgery">Skin cancer medicine, including skin checks and minor skin surgery</a></li>
+            <li><a href="/cosmetic-medicine">Non-surgical cosmetic medicine</a></li>
+            <li><a href="/laser-medicine">Laser medicine</a> &mdash; vascular, pigmentation, and skin rejuvenation</li>
+            <li>Joint injections for musculoskeletal conditions</li>
+            <li>Regional and rural general practice (prior experience)</li>
+          </ul>
+
+          <h2 class="text-2xl pt-10">Approach to Care</h2>
+          <p>
+            {site.doctorShortName} believes that good general practice starts
+            with time &mdash; time to listen carefully, to think clinically,
+            and to put a clear plan on paper that patients and their treating
+            clinicians can act on. His years working across the Pilbara
+            reinforced a commitment to accessible, practical, evidence-based
+            care, and to shared decision-making over directive advice.
+          </p>
+        </div>
+
+        <div class="mt-14 border-t border-ink-200/70 pt-10">
+          <p class="eyebrow">Next step</p>
+          <p class="mt-4 font-serif text-2xl text-ink-900 max-w-xl leading-snug">
+            Ready to make an appointment with {site.doctorShortName}?
+          </p>
+          <p class="mt-3 text-ink-600">
+            Call <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+            or visit the <a class="link-quiet text-ink-900" href="/contact">contact page</a>.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

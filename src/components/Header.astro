@@ -1,0 +1,281 @@
+---
+import Container from './Container.astro';
+import { site } from '@/config/site';
+import logoPrimary from '@/assets/DRAMIRWALY/svg/AmirWaly-logo-primary.svg';
+import logoAvatar from '@/assets/DRAMIRWALY/svg/AmirWaly-avatar-AW.svg';
+import { Image } from 'astro:assets';
+
+type NavLeaf = { href: string; label: string };
+type NavGroup = { label: string; children: { href: string; label: string; section: string }[] };
+type NavItem = NavLeaf | NavGroup;
+
+const nav: NavItem[] = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  {
+    label: 'Services',
+    children: [
+      { href: '/services', label: 'All services', section: 'General Practice' },
+      { href: '/skin-cancer-surgery', label: 'Skin cancer surgery', section: 'Areas of practice' },
+      { href: '/cosmetic-medicine', label: 'Cosmetic medicine', section: 'Areas of practice' },
+      { href: '/laser-medicine', label: 'Laser medicine', section: 'Areas of practice' },
+    ],
+  },
+  {
+    label: 'Information',
+    children: [
+      { href: '/private-gp-explained', label: 'Private GP, explained honestly', section: 'Insights' },
+      { href: '/faqs', label: 'Frequently asked questions', section: 'Insights' },
+      { href: '/fees-and-billing', label: 'Fees & billing', section: 'Policies' },
+      { href: '/policies', label: 'All practice policies', section: 'Policies' },
+    ],
+  },
+  { href: '/contact', label: 'Contact' },
+];
+
+const here = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const isActiveLeaf = (href: string) => here === href.replace(/\/$/, '');
+const isActiveGroup = (group: NavGroup) =>
+  group.children.some(c => isActiveLeaf(c.href));
+
+// Group children by section for rendering
+const groupSections = (children: NavGroup['children']) => {
+  const map = new Map<string, NavGroup['children']>();
+  for (const c of children) {
+    const arr = map.get(c.section) ?? [];
+    arr.push(c);
+    map.set(c.section, arr);
+  }
+  return Array.from(map.entries());
+};
+---
+<header
+  class="group sticky top-0 z-40 border-b border-ink-100/60 data-[scrolled=true]:border-ink-200 bg-white/80 data-[scrolled=true]:bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 supports-[backdrop-filter]:data-[scrolled=true]:bg-white/90 transition-[background-color,border-color] duration-300"
+  data-scrolled="false"
+  data-shrinkable-header
+  transition:persist
+>
+  <Container class="flex h-36 lg:h-44 group-data-[scrolled=true]:h-20 group-data-[scrolled=true]:lg:h-24 items-center justify-between transition-[height] duration-300 ease-out">
+    <a href="/" class="flex items-center" aria-label={`${site.doctorName} — home`}>
+      <Image
+        src={logoPrimary}
+        alt={`${site.doctorName} — ${site.role}`}
+        class="hidden sm:block h-24 lg:h-28 group-data-[scrolled=true]:h-14 group-data-[scrolled=true]:lg:h-16 w-auto transition-[height] duration-300 ease-out"
+        loading="eager"
+        decoding="sync"
+      />
+      <Image
+        src={logoAvatar}
+        alt={`${site.doctorName} monogram`}
+        class="block sm:hidden h-16 w-16 group-data-[scrolled=true]:h-10 group-data-[scrolled=true]:w-10 transition-[height,width] duration-300 ease-out"
+        loading="eager"
+        decoding="sync"
+      />
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-8 text-[0.92rem]">
+        {nav.slice(1).map(item => {
+          if ('children' in item) {
+            const active = isActiveGroup(item);
+            const sections = groupSections(item.children);
+            return (
+              <li class="relative group" data-dropdown>
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls={`nav-${item.label.toLowerCase()}`}
+                  class={`peer inline-flex items-center gap-1.5 transition-colors hover:text-clinic-800 ${active ? 'text-clinic-800' : 'text-ink-600'}`}
+                  data-menu-trigger
+                >
+                  <span class="relative">
+                    {item.label}
+                    {active && <span class="absolute -bottom-1.5 left-0 right-0 mx-auto h-px w-5 bg-accent"></span>}
+                  </span>
+                  <svg
+                    class="h-2.5 w-2.5 text-ink-400 transition-transform duration-200 peer-aria-expanded:rotate-180 group-hover:rotate-180"
+                    viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+
+                <div
+                  id={`nav-${item.label.toLowerCase()}`}
+                  class="
+                    absolute left-1/2 top-full -translate-x-1/2 pt-4 w-72
+                    invisible opacity-0 translate-y-1
+                    transition duration-150 ease-out
+                    peer-aria-expanded:visible peer-aria-expanded:opacity-100 peer-aria-expanded:translate-y-0
+                    group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                    hover:visible hover:opacity-100 hover:translate-y-0
+                    group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                  "
+                >
+                  <div class="bg-white border border-ink-200/70 shadow-xl shadow-clinic-900/[0.06]">
+                    {sections.map(([section, items], idx) => (
+                      <div class={idx > 0 ? 'border-t border-ink-100' : ''}>
+                        <p class="px-5 pt-5 pb-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+                          {section}
+                        </p>
+                        <ul class="px-2 py-2">
+                          {items.map(c => {
+                            const childActive = isActiveLeaf(c.href);
+                            return (
+                              <li>
+                                <a
+                                  href={c.href}
+                                  class={`block rounded-sm px-3 py-2.5 text-[0.95rem] transition-colors hover:bg-paper hover:text-clinic-800 ${childActive ? 'text-clinic-800' : 'text-ink-700'}`}
+                                  aria-current={childActive ? 'page' : undefined}
+                                >
+                                  {c.label}
+                                </a>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            );
+          }
+
+          const active = isActiveLeaf(item.href);
+          return (
+            <li>
+              <a
+                href={item.href}
+                class={`relative transition-colors hover:text-clinic-800 ${active ? 'text-clinic-800' : 'text-ink-600'}`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {item.label}
+                {active && <span class="absolute -bottom-1.5 left-0 right-0 mx-auto h-px w-5 bg-accent"></span>}
+              </a>
+            </li>
+          );
+        })}
+        <li>
+          <a
+            href="/contact"
+            class="inline-flex items-center rounded-sm bg-clinic-800 px-5 py-2.5 text-[0.82rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+          >
+            Book Consultation
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded text-ink-700 hover:bg-ink-50"
+      aria-label="Open menu"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      data-menu-toggle
+    >
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </Container>
+
+  <!-- Mobile menu -->
+  <div id="mobile-nav" class="hidden border-t border-ink-100 bg-white md:hidden" data-menu>
+    <Container class="py-4">
+      <ul class="flex flex-col gap-1 text-base">
+        {nav.map(item => {
+          if ('children' in item) {
+            const sections = groupSections(item.children);
+            return (
+              <li class="py-2">
+                <p class="px-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+                  {item.label}
+                </p>
+                <ul class="mt-1 space-y-0.5">
+                  {sections.map(([_section, items]) =>
+                    items.map(c => {
+                      const childActive = isActiveLeaf(c.href);
+                      return (
+                        <li>
+                          <a
+                            href={c.href}
+                            class={`block rounded px-3 py-2.5 transition-colors hover:bg-ink-50 ${childActive ? 'text-clinic-800 font-medium' : 'text-ink-700'}`}
+                            aria-current={childActive ? 'page' : undefined}
+                          >
+                            {c.label}
+                          </a>
+                        </li>
+                      );
+                    })
+                  )}
+                </ul>
+              </li>
+            );
+          }
+          const active = isActiveLeaf(item.href);
+          return (
+            <li>
+              <a
+                href={item.href}
+                class={`block rounded px-3 py-2.5 transition-colors hover:bg-ink-50 ${active ? 'text-clinic-800 font-medium' : 'text-ink-700'}`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+        <li class="pt-3">
+          <a
+            href="/contact"
+            class="block rounded-sm bg-clinic-800 px-3 py-2.5 text-center text-white text-sm tracking-wide"
+          >
+            Book Consultation
+          </a>
+        </li>
+      </ul>
+    </Container>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileBtn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const mobileMenu = document.querySelector<HTMLDivElement>('[data-menu]');
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      mobileBtn.setAttribute('aria-expanded', String(open));
+    });
+  }
+
+  // Desktop dropdown — click to toggle, outside-click / Escape to close
+  const triggers = document.querySelectorAll<HTMLButtonElement>('[data-menu-trigger]');
+  const closeAll = () => triggers.forEach(t => t.setAttribute('aria-expanded', 'false'));
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      closeAll();
+      trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element | null;
+    if (!target?.closest('[data-dropdown]')) closeAll();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAll();
+      (document.activeElement as HTMLElement | null)?.blur();
+    }
+  });
+</script>

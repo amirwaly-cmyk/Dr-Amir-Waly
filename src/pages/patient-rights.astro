@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+---
+<BaseLayout
+  title={`Patient Rights & Responsibilities — ${site.doctorName}`}
+  description={`Patient rights and responsibilities at ${site.doctorName}'s independent specialist GP practice, aligned with the Australian Charter of Healthcare Rights (2nd edition).`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Practice policies', href: '/policies' },
+    { name: 'Patient Rights & Responsibilities', href: '/patient-rights' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Practice policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Patient rights &amp; responsibilities.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          The practice is committed to upholding the rights set out in the
+          Australian Charter of Healthcare Rights (2nd edition, 2019), and to
+          the standards of professional conduct required by the Medical Board
+          of Australia&rsquo;s <em>Good Medical Practice: A Code of Conduct
+          for Doctors in Australia</em>.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">1. Your rights as a patient</h2>
+        <p>
+          When you attend an appointment with {site.doctorName}, you have the
+          right to:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Access</strong> &mdash; healthcare services that meet your needs.</li>
+          <li><strong>Safety</strong> &mdash; safe and high-quality care that meets recognised national standards.</li>
+          <li><strong>Respect</strong> &mdash; care provided with respect to your culture, beliefs, values, personal characteristics, and the views of those who care for you.</li>
+          <li><strong>Partnership</strong> &mdash; to be included in decisions and choices about your care.</li>
+          <li><strong>Information</strong> &mdash; clear, timely, and accurate information about your care and the costs you will incur.</li>
+          <li><strong>Privacy</strong> &mdash; confidentiality of your personal and health information, with access only by those involved in your care or as required by law.</li>
+          <li><strong>To give feedback</strong> &mdash; to comment on your care and have your concerns addressed.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">2. Your responsibilities</h2>
+        <p>
+          To enable safe and effective care, patients are asked to:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Provide accurate and complete information about your health, medications, allergies, and history.</li>
+          <li>Tell {site.doctorShortName} about any changes in your condition or response to treatment.</li>
+          <li>Ask questions when something is unclear, and confirm your understanding of any agreed plan.</li>
+          <li>Attend booked appointments, or give the practice at least 24 hours&rsquo; notice if you need to cancel or reschedule.</li>
+          <li>Treat the practitioner, reception, nursing, and any other staff with courtesy and respect.</li>
+          <li>Settle accounts in line with the practice&rsquo;s <a href="/fees-and-billing">Fees &amp; Billing Policy</a>.</li>
+          <li>Respect the privacy and confidentiality of other patients you may encounter.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">3. Decisions about your care</h2>
+        <p>
+          You have the right to participate in decisions about your care
+          through a process of informed consent. You may seek a second
+          opinion, decline a recommended investigation or treatment, or
+          withdraw your consent at any time without affecting your ongoing
+          care with the practice. Where you decline a recommended course of
+          action, this will be noted in your record together with the
+          discussion that took place.
+        </p>
+
+        <h2 class="text-2xl pt-6">4. Information and consent for procedures</h2>
+        <p>
+          Before any procedure (including a biopsy, excision, or cosmetic
+          treatment), {site.doctorShortName} will discuss with you the
+          clinical reason for the procedure, what is involved, the expected
+          outcome, the known risks and possible side effects, recovery and
+          aftercare, and the total cost. You will be asked to provide
+          written informed consent before the procedure is performed.
+          Additional safeguards apply for cosmetic procedures (see the
+          <a href="/cosmetic-medicine">Cosmetic medicine</a> page).
+        </p>
+
+        <h2 class="text-2xl pt-6">5. Access to your records</h2>
+        <p>
+          You may request access to, or correction of, the personal and health
+          information the practice holds about you. The process for doing so
+          is set out in section 7 of the <a href="/privacy">Privacy Policy</a>.
+          A reasonable fee may apply for time and materials. Records are
+          retained in line with Western Australian and Commonwealth
+          requirements (typically 7 years after the last consultation, or
+          until age 25 for minors, whichever is longer).
+        </p>
+
+        <h2 class="text-2xl pt-6">6. Equal treatment</h2>
+        <p>
+          The practice does not discriminate on the basis of race, ethnicity,
+          religion, gender, sexual orientation, gender identity, disability,
+          age, or socio-economic status. Where required, the practice will
+          arrange for an interpreter, an Aboriginal health worker, or a
+          chaperone &mdash; please advise reception when booking, or raise
+          this need at the start of your appointment.
+        </p>
+
+        <h2 class="text-2xl pt-6">7. Children and young people</h2>
+        <p>
+          For patients aged under 18, additional consent and safeguarding
+          considerations apply. Cosmetic procedures are generally not
+          appropriate for patients under 18 &mdash; the specific safeguards
+          required by the Medical Board of Australia are detailed on the
+          <a href="/cosmetic-medicine">Cosmetic medicine</a> page.
+        </p>
+
+        <h2 class="text-2xl pt-6">8. Raising a concern</h2>
+        <p>
+          If you have a concern about your care, please raise it with the
+          practice in the first instance &mdash; see the
+          <a href="/complaints">Complaints &amp; Feedback Policy</a>. External
+          avenues (HaDSCO in Western Australia, AHPRA, the OAIC for privacy)
+          are also listed there. You will not be disadvantaged for raising a
+          concern.
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+---
+<BaseLayout
+  title="Enquiry received"
+  description="Thank you — your enquiry has been received."
+  noindex
+>
+  <Container class="py-32 text-center">
+    <p class="eyebrow eyebrow-center justify-center">Enquiry received</p>
+    <h1 class="display mt-6 text-4xl sm:text-5xl">Thank you.</h1>
+    <p class="mx-auto mt-6 max-w-md text-ink-600 leading-relaxed">
+      Your message has been received. We aim to respond within two business
+      days. For urgent matters please call reception on
+      <a class="link-quiet text-ink-700 tabular-nums" href={site.phoneHref}>{site.phone}</a>.
+    </p>
+    <p class="mx-auto mt-4 max-w-md text-[14px] text-ink-500">
+      In a medical emergency, call <strong class="text-ink-700 tabular-nums">000</strong>.
+    </p>
+    <a
+      href="/"
+      class="mt-10 inline-flex items-center rounded-sm bg-clinic-800 px-6 py-3.5 text-[0.85rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+    >
+      Return home
+    </a>
+  </Container>
+</BaseLayout>

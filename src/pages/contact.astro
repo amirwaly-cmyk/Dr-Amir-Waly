@@ -1,0 +1,304 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const mapQuery = encodeURIComponent(
+  `${site.clinicName}, ${site.address.line1}, ${site.address.suburb} ${site.address.state} ${site.address.postcode}`
+);
+const mapEmbed = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+const hasEmail = !site.email.startsWith('[');
+---
+<BaseLayout
+  title={`Contact & Appointments — Dr Amir Waly, ${site.address.suburb} GP`}
+  description={`Book an appointment with ${site.doctorName} at ${site.clinicName}, ${site.address.suburb}, Perth. Call ${site.phone} or book online via HotDoc. The contact form is for non-clinical enquiries only.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Contact', href: '/contact' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Contact &amp; appointments</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-3xl">
+          Get in touch.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          For appointments and enquiries please contact reception. In a medical
+          emergency call <strong class="text-ink-800 tabular-nums">000</strong>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-6 space-y-12">
+        <article>
+          <p class="eyebrow">Appointments &mdash; {site.address.suburb}</p>
+          <h2 class="font-serif text-2xl text-ink-900 mt-4 leading-snug">
+            New patients welcome.
+          </h2>
+          <p class="mt-4 text-[16px] leading-relaxed text-ink-600">
+            The contact details on this page are for booking Dr Waly&rsquo;s
+            consulting sessions at {site.clinicName} in {site.address.suburb}.
+            Call reception or book online &mdash; reception will confirm the
+            appointment length most suited to your concern.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a
+              href={site.phoneHref}
+              class="inline-flex items-center rounded-sm bg-clinic-800 px-5 py-3 text-[0.85rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+            >
+              Call reception {site.phone}
+            </a>
+            <a
+              href={site.bookingUrl}
+              class="inline-flex items-center rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.85rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
+            >
+              Book online via HotDoc
+            </a>
+          </div>
+          <p class="mt-5 text-[13px] leading-relaxed text-ink-500">
+            For other engagements &mdash; residential aged-care visits,
+            telehealth via national services such as Healthdirect, urgent
+            care clinics, and medtech advisory &mdash; see the
+            <a class="link-quiet text-ink-700" href="/about">About page</a>.
+            Those services are arranged through their own channels, not
+            through this reception.
+          </p>
+        </article>
+
+        <article class="border-t border-ink-200/70 pt-10">
+          <p class="eyebrow">Clinic</p>
+          <address class="not-italic mt-4 text-[16px] leading-relaxed text-ink-700">
+            <div class="font-serif text-xl text-ink-900">{site.clinicName}</div>
+            <div class="mt-2">{site.address.line1}</div>
+            {site.address.line2 && <div>{site.address.line2}</div>}
+            <div>{site.address.suburb}, {site.address.state} {site.address.postcode}</div>
+          </address>
+        </article>
+
+        <article class="border-t border-ink-200/70 pt-10">
+          <p class="eyebrow">Reception &mdash; {site.clinicName}</p>
+          <p class="mt-4 text-[14px] leading-relaxed text-ink-500">
+            For bookings at Dr Waly&rsquo;s {site.address.suburb} consulting
+            sessions only.
+          </p>
+          <dl class="mt-4 divide-y divide-ink-100 text-[15.5px]">
+            <div class="grid grid-cols-12 gap-4 py-3">
+              <dt class="col-span-3 text-ink-500">Phone</dt>
+              <dd class="col-span-9"><a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a></dd>
+            </div>
+            <div class="grid grid-cols-12 gap-4 py-3">
+              <dt class="col-span-3 text-ink-500">Fax</dt>
+              <dd class="col-span-9 text-ink-800 tabular-nums">{site.fax}</dd>
+            </div>
+            {hasEmail && (
+              <div class="grid grid-cols-12 gap-4 py-3">
+                <dt class="col-span-3 text-ink-500">Email</dt>
+                <dd class="col-span-9"><a class="link-quiet text-ink-900" href={site.emailHref}>{site.email}</a></dd>
+              </div>
+            )}
+          </dl>
+        </article>
+
+        <article class="border-t border-ink-200/70 pt-10">
+          <p class="eyebrow">Consulting sessions &mdash; {site.address.suburb}</p>
+          <ul class="mt-4 divide-y divide-ink-100 text-[15.5px]">
+            {site.hours.map(h => (
+              <li class="flex items-baseline justify-between gap-6 py-3">
+                <span class="text-ink-700">{h.day}</span>
+                <span class="text-ink-500 tabular-nums text-right">{h.time}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-4 text-[13.5px] leading-relaxed text-ink-500">
+            Residential aged-care visits are arranged separately through
+            facility nursing staff.
+          </p>
+        </article>
+      </div>
+
+      <div class="md:col-span-6">
+        <div class="overflow-hidden border border-ink-200/70">
+          <iframe
+            title={`Map showing ${site.clinicName}`}
+            src={mapEmbed}
+            class="h-[460px] w-full"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <p class="mt-5 text-[14px] leading-relaxed text-ink-500">
+          Parking and public-transport information: [Placeholder &mdash; describe
+          parking, station/tram stop, accessibility access.]
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Non-clinical enquiry form -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20 sm:py-24">
+    <Container size="narrow">
+      <p class="eyebrow">Send a message</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl">
+        For non-clinical enquiries only.
+      </h2>
+      <p class="mt-6 text-ink-600 leading-relaxed">
+        The form on this page is for general and administrative enquiries
+        only. It is not a way of contacting {site.doctorShortName} for
+        medical consultations, clinical advice, results, prescriptions, or
+        appointment changes.
+      </p>
+
+      <!-- Prominent clinical-use warning -->
+      <aside class="mt-10 border-2 border-clinic-800 bg-white p-7 sm:p-9">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-clinic-800">Important</p>
+        <h3 class="mt-4 font-serif text-2xl text-ink-900 leading-snug">
+          Do not use this form to seek medical advice.
+        </h3>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink-700">
+          {site.doctorShortName} does not provide clinical advice through
+          this website. For anything clinical &mdash; including new symptoms,
+          test results, prescription requests, or follow-up questions
+          &mdash; please book an appointment.
+        </p>
+
+        <dl class="mt-6 divide-y divide-ink-100 border-t border-ink-200/70 text-[14.5px]">
+          <div class="grid grid-cols-12 gap-4 py-4">
+            <dt class="col-span-4 sm:col-span-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">Appointments</dt>
+            <dd class="col-span-8 sm:col-span-9 text-ink-800">
+              Call <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+              or <a class="link-quiet text-ink-900" href={site.bookingUrl}>book online</a>.
+            </dd>
+          </div>
+          <div class="grid grid-cols-12 gap-4 py-4">
+            <dt class="col-span-4 sm:col-span-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">Clinical advice</dt>
+            <dd class="col-span-8 sm:col-span-9 text-ink-800">Please book a consultation.</dd>
+          </div>
+          <div class="grid grid-cols-12 gap-4 py-4">
+            <dt class="col-span-4 sm:col-span-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">After-hours</dt>
+            <dd class="col-span-8 sm:col-span-9 text-ink-800">
+              Call Healthdirect on <span class="tabular-nums">1800 022 222</span>
+              for free national health advice 24 hours a day.
+            </dd>
+          </div>
+          <div class="grid grid-cols-12 gap-4 py-4">
+            <dt class="col-span-4 sm:col-span-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">Emergency</dt>
+            <dd class="col-span-8 sm:col-span-9 text-ink-800">
+              In a medical emergency, call <strong class="text-ink-900 tabular-nums">000</strong>.
+            </dd>
+          </div>
+        </dl>
+      </aside>
+
+      <p class="mt-10 text-[14px] text-ink-500">
+        Messages submitted through the form below are received by email and
+        are not encrypted patient correspondence. Please do not include
+        sensitive clinical, identity, or financial information.
+      </p>
+
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/contact/thanks"
+        class="mt-12 space-y-6"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden" aria-hidden="true">
+          <label>
+            Leave this field blank:
+            <input name="bot-field" tabindex="-1" autocomplete="off" />
+          </label>
+        </p>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <label class="block">
+            <span class="block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+              Name <span class="text-accent" aria-hidden="true">*</span>
+            </span>
+            <input
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              class="mt-2 block w-full border border-ink-200/80 bg-white px-4 py-3 text-[15px] text-ink-800 transition-colors focus:border-clinic-700 focus:outline-none"
+            />
+          </label>
+          <label class="block">
+            <span class="block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+              Email <span class="text-accent" aria-hidden="true">*</span>
+            </span>
+            <input
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="mt-2 block w-full border border-ink-200/80 bg-white px-4 py-3 text-[15px] text-ink-800 transition-colors focus:border-clinic-700 focus:outline-none"
+            />
+          </label>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <label class="block">
+            <span class="block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+              Phone <span class="text-ink-400 normal-case tracking-normal">(optional)</span>
+            </span>
+            <input
+              type="tel"
+              name="phone"
+              autocomplete="tel"
+              class="mt-2 block w-full border border-ink-200/80 bg-white px-4 py-3 text-[15px] text-ink-800 tabular-nums transition-colors focus:border-clinic-700 focus:outline-none"
+            />
+          </label>
+          <label class="block">
+            <span class="block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+              Subject
+            </span>
+            <select
+              name="subject"
+              class="mt-2 block w-full border border-ink-200/80 bg-white px-4 py-3 text-[15px] text-ink-800 transition-colors focus:border-clinic-700 focus:outline-none"
+            >
+              <option>General enquiry</option>
+              <option>Account &amp; billing</option>
+              <option>Practice feedback</option>
+              <option>Referrer enquiry</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+            Message <span class="text-accent" aria-hidden="true">*</span>
+          </span>
+          <textarea
+            name="message"
+            required
+            rows="6"
+            class="mt-2 block w-full resize-y border border-ink-200/80 bg-white px-4 py-3 text-[15px] leading-relaxed text-ink-800 transition-colors focus:border-clinic-700 focus:outline-none"
+          ></textarea>
+        </label>
+
+        <div class="flex flex-col gap-5 border-t border-ink-200/70 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-[13px] leading-relaxed text-ink-500 max-w-md">
+            By submitting, you confirm you have read the notice above and
+            our <a class="link-quiet text-ink-700" href="/privacy">privacy policy</a>.
+            Your information is used only to respond to your enquiry and is
+            handled in line with the Privacy Act 1988 (Cth).
+          </p>
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-sm bg-clinic-800 px-7 py-3.5 text-[0.85rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+          >
+            Send enquiry
+          </button>
+        </div>
+      </form>
+    </Container>
+  </section>
+</BaseLayout>

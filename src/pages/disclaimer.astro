@@ -1,0 +1,145 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+---
+<BaseLayout
+  title={`Website & Medical Information Disclaimer — ${site.doctorName}`}
+  description={`Disclaimer governing use of dramirwaly.com.au — the website provides general information only and is not personalised medical advice. No doctor-patient relationship is created by visiting this site.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Practice policies', href: '/policies' },
+    { name: 'Disclaimer', href: '/disclaimer' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Practice policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Website &amp; medical information disclaimer.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Please read this disclaimer carefully before relying on any of the
+          information published on dramirwaly.com.au. The website is operated
+          by {site.business.name} on behalf of {site.doctorName}&rsquo;s
+          independent specialist GP practice.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">1. This website is general information only</h2>
+        <p>
+          Content published on dramirwaly.com.au is provided for general
+          information about the services offered by {site.doctorName} and
+          about the practice itself. It is not, and should not be relied on
+          as, personalised medical advice, diagnosis, or treatment.
+        </p>
+
+        <h2 class="text-2xl pt-6">2. Not a substitute for professional advice</h2>
+        <p>
+          Information on this website is not a substitute for a consultation
+          with a qualified medical practitioner who has assessed your
+          individual circumstances. Do not act on information from this
+          website without first obtaining personalised advice from
+          {site.doctorShortName} or another suitably qualified clinician.
+          Never delay seeking, or disregard, medical advice because of
+          something you have read on this site.
+        </p>
+
+        <h2 class="text-2xl pt-6">3. No doctor-patient relationship is created</h2>
+        <p>
+          Visiting this website, reading its content, downloading a patient
+          information leaflet, or sending an enquiry through the contact form
+          does <strong>not</strong> create a doctor-patient relationship with
+          {site.doctorName}. A clinical relationship begins only when you
+          attend a booked consultation in the practice&rsquo;s normal way.
+        </p>
+
+        <h2 class="text-2xl pt-6">4. Information accuracy and currency</h2>
+        <p>
+          Reasonable care is taken to ensure that information on the website
+          is accurate at the time of publication. However, clinical knowledge
+          and guidance evolve, and information may become outdated.
+          {site.doctorName} makes no warranty that the information is
+          complete, error-free, or current at the time you access it.
+        </p>
+
+        <h2 class="text-2xl pt-6">5. External links</h2>
+        <p>
+          The website may link to external resources such as government
+          health services, regulators, professional bodies, or third-party
+          booking platforms. These links are provided for convenience.
+          {site.doctorName} does not endorse, control, or take responsibility
+          for the content, accuracy, or availability of external websites.
+        </p>
+
+        <h2 class="text-2xl pt-6">6. In a medical emergency</h2>
+        <p>
+          The website is not monitored in real time. If you are experiencing
+          a medical emergency, do not rely on this website &mdash; call
+          <strong class="text-ink-900 tabular-nums">000</strong> immediately.
+          For non-emergency after-hours health advice, Healthdirect is
+          available 24 hours a day on
+          <span class="tabular-nums">1800 022 222</span>.
+        </p>
+
+        <h2 class="text-2xl pt-6">7. Cosmetic procedures</h2>
+        <p>
+          Information about cosmetic procedures published on this website is
+          general in nature. The Medical Board of Australia&rsquo;s
+          guidelines require that decisions about cosmetic procedures be
+          made only after an in-person consultation and a seven-day cooling-off
+          period &mdash; see the <a href="/cosmetic-medicine">Cosmetic
+          medicine</a> page for full information.
+        </p>
+
+        <h2 class="text-2xl pt-6">8. Liability</h2>
+        <p>
+          To the maximum extent permitted by law, {site.business.name} and
+          {site.doctorName} exclude all liability for loss, damage, or
+          expense arising from reliance on the information published on this
+          website. Nothing in this disclaimer excludes any liability that
+          cannot lawfully be excluded under the <em>Competition and Consumer
+          Act 2010</em> (Cth), the <em>Australian Consumer Law</em>, or the
+          equivalent Western Australian legislation.
+        </p>
+
+        <h2 class="text-2xl pt-6">9. Use of the contact form</h2>
+        <p>
+          The contact form on this website is for non-clinical enquiries
+          only. It is not a secure clinical communication channel. Please
+          do not include sensitive clinical information, identity documents,
+          or financial details. For anything clinical &mdash; including
+          symptoms, results, or prescriptions &mdash; please book a
+          consultation.
+        </p>
+
+        <h2 class="text-2xl pt-6">10. Changes to this disclaimer</h2>
+        <p>
+          This disclaimer may be updated from time to time. The current
+          version, and the date it was last updated, will always appear at
+          the top of this page.
+        </p>
+
+        <h2 class="text-2xl pt-6">11. Contact</h2>
+        <p>
+          Questions about this disclaimer can be directed to reception at
+          {site.clinicName} on
+          <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>,
+          or via the <a href="/contact">contact page</a>.
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

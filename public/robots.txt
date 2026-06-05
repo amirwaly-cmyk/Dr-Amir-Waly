@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow internal/utility pages from crawl
+Disallow: /contact/thanks
+Disallow: /404
+
+# Sitemap index
+Sitemap: https://dramirwaly.com.au/sitemap-index.xml

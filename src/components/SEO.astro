@@ -1,0 +1,231 @@
+---
+import { site } from '@/config/site';
+
+interface BreadcrumbItem {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article' | 'profile';
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const {
+  title,
+  description,
+  path = Astro.url.pathname,
+  image,
+  noindex = false,
+  type = 'website',
+  breadcrumbs = [],
+} = Astro.props;
+
+const canonical = new URL(path, site.url).toString();
+const ogImage = new URL(image ?? site.ogImage, site.url).toString();
+
+const fullTitle = title.includes(site.doctorName) || title === site.doctorName
+  ? title
+  : `${title} — ${site.doctorName}`;
+
+const ogImageAlt =
+  `${site.doctorName} — ${site.role}, ${site.address.suburb}, ${site.address.state}`;
+
+const isHome = path === '/' || path === '';
+
+// Schema graph — combines Physician (the doctor) + Organization (his business)
+// + WebSite + (optional) BreadcrumbList
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': `${site.url}#business`,
+    name: site.business.name,
+    legalName: site.business.name,
+    url: site.url,
+    taxID: site.abn.replace(/\s+/g, ''),
+    identifier: [
+      {
+        '@type': 'PropertyValue',
+        propertyID: 'Australian Business Number',
+        value: site.abn.replace(/\s+/g, ''),
+      },
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: [site.business.address.line1, site.business.address.line2].filter(Boolean).join(', '),
+      addressLocality: site.business.address.suburb,
+      addressRegion: site.business.address.state,
+      postalCode: site.business.address.postcode,
+      addressCountry: 'AU',
+    },
+  },
+  {
+    '@type': 'Physician',
+    '@id': `${site.url}#practitioner`,
+    name: site.doctorName,
+    medicalSpecialty: 'GeneralPractice',
+    url: site.url,
+    image: new URL(site.ogImage, site.url).toString(),
+    telephone: site.phone,
+    worksFor: { '@id': `${site.url}#business` },
+    description:
+      `${site.doctorName} (${site.qualifications}) — independent specialist general ` +
+      `practice. Consultancy services to medical centres including ${site.clinicName}, ` +
+      `${site.address.suburb}, ${site.address.state}; national telehealth services ` +
+      `such as Healthdirect; on-site care to residents of selected residential ` +
+      `aged-care facilities; and advisory roles with medical technology startups.`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: [site.address.line1, site.address.line2].filter(Boolean).join(', '),
+      addressLocality: site.address.suburb,
+      addressRegion: site.address.state,
+      postalCode: site.address.postcode,
+      addressCountry: 'AU',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: site.geo.latitude,
+      longitude: site.geo.longitude,
+    },
+    areaServed: [
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Perth Metropolitan Area',
+      },
+      {
+        '@type': 'Country',
+        name: 'Australia',
+        description: 'Telehealth services via national platforms such as Healthdirect',
+      },
+    ],
+    openingHoursSpecification: site.hours
+      .filter(h => /am|pm/i.test(h.time))
+      .map(h => {
+        const dayPart = h.day.split(/–|-/)[0].trim();
+        const dayMap: Record<string, string> = {
+          Monday: 'Monday',
+          Tuesday: 'Tuesday',
+          Wednesday: 'Wednesday',
+          Thursday: 'Thursday',
+          Friday: 'Friday',
+          Saturday: 'Saturday',
+          Sunday: 'Sunday',
+        };
+        const [openStr, closeStr] = h.time.split('–').map(s => s.trim());
+        const to24 = (s: string) => {
+          const m = s.match(/(\d+)(?::(\d+))?\s*(am|pm)/i);
+          if (!m) return s;
+          let hh = parseInt(m[1], 10);
+          const mm = m[2] ? parseInt(m[2], 10) : 0;
+          const isPm = m[3].toLowerCase() === 'pm';
+          if (isPm && hh !== 12) hh += 12;
+          if (!isPm && hh === 12) hh = 0;
+          return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+        };
+        return {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: dayMap[dayPart] ? `https://schema.org/${dayMap[dayPart]}` : dayPart,
+          opens: to24(openStr),
+          closes: to24(closeStr),
+        };
+      }),
+    identifier: [
+      {
+        '@type': 'PropertyValue',
+        propertyID: 'AHPRA Registration Number',
+        value: site.ahpraNumber,
+      },
+      {
+        '@type': 'PropertyValue',
+        propertyID: 'Australian Business Number',
+        value: site.abn.replace(/\s+/g, ''),
+      },
+    ],
+    alumniOf: site.education.map(e => ({
+      '@type': 'EducationalOrganization',
+      name: e.name,
+    })),
+    sameAs: site.sameAs,
+    availableService: [
+      { '@type': 'MedicalProcedure', name: 'General medicine consultations' },
+      { '@type': 'MedicalProcedure', name: 'Skin cancer checks (skin examination with dermoscopy)' },
+      { '@type': 'MedicalProcedure', name: 'Skin cancer surgery (biopsy and excision)' },
+      { '@type': 'MedicalProcedure', name: 'Non-surgical cosmetic medicine' },
+      { '@type': 'MedicalProcedure', name: 'Laser medicine (vascular, pigmentation, skin rejuvenation)' },
+      { '@type': 'MedicalProcedure', name: 'Joint injections' },
+    ],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${site.url}#website`,
+    url: site.url,
+    name: site.doctorName,
+    publisher: { '@id': `${site.url}#practitioner` },
+    inLanguage: 'en-AU',
+  },
+];
+
+if (breadcrumbs.length > 0) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.name,
+      item: new URL(b.href, site.url).toString(),
+    })),
+  });
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': graph,
+};
+---
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+{!noindex && <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />}
+
+<meta name="author" content={site.doctorName} />
+<meta name="geo.region" content="AU-WA" />
+<meta name="geo.placename" content={`${site.address.suburb}, Western Australia`} />
+<meta name="geo.position" content={`${site.geo.latitude};${site.geo.longitude}`} />
+<meta name="ICBM" content={`${site.geo.latitude}, ${site.geo.longitude}`} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.doctorName} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content="en_AU" />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:secure_url" content={ogImage} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={ogImageAlt} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
+
+<!-- Resource hints (only on the home page to avoid bloat elsewhere) -->
+{isHome && <link rel="preconnect" href="https://www.hotdoc.com.au" crossorigin />}
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(jsonLd)}
+/>

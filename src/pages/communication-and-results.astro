@@ -1,0 +1,141 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+---
+<BaseLayout
+  title={`Communication & Results Policy — ${site.doctorName}`}
+  description={`How ${site.doctorName} communicates investigation results, manages recalls and reminders, handles repeat prescriptions, and corresponds with referring practitioners.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Practice policies', href: '/policies' },
+    { name: 'Communication & Results', href: '/communication-and-results' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Practice policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Communication, results &amp; recall.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          How the practice communicates with patients about investigation
+          results, recalls and reminders, repeat prescriptions, and
+          correspondence with treating colleagues.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">1. Investigation results</h2>
+        <p>
+          Wherever possible, results of investigations (pathology, imaging,
+          biopsy histology) are reviewed and discussed with you at a
+          follow-up consultation. This allows {site.doctorShortName} to
+          interpret the result in the context of your clinical picture and
+          to agree on a plan.
+        </p>
+        <p>
+          For <strong>significant or unexpected results</strong>, you will be
+          contacted directly &mdash; usually by phone &mdash; on the day the
+          result is reviewed. If you cannot be reached, a recall will be
+          arranged through reception. For <strong>routine results</strong>,
+          you will be informed at your next consultation or by SMS if the
+          result is normal and no action is needed.
+        </p>
+        <p>
+          As a general rule, please assume <em>no news is not good news</em>
+          &mdash; if you have not heard within the expected timeframe for
+          your test, please contact reception to check.
+        </p>
+
+        <h2 class="text-2xl pt-6">2. Recalls and reminders</h2>
+        <p>
+          A recall is a follow-up that is clinically required &mdash; for
+          example, repeating a blood test, reviewing an abnormal result, or
+          monitoring a skin lesion. Recalls are tracked in the practice
+          recall system. If a recall is required, reception will contact you
+          to arrange the appointment; if you cannot be reached, a written
+          reminder is sent. Reminders for routine preventive care (e.g.
+          annual reviews, immunisations) are also issued from time to time.
+          You may opt out of reminders by notifying reception.
+        </p>
+
+        <h2 class="text-2xl pt-6">3. Repeat prescriptions</h2>
+        <p>
+          Prescription requests are managed through a consultation in most
+          cases. {site.doctorShortName} will not provide repeat prescriptions
+          by email, SMS, or through the website&rsquo;s contact form.
+        </p>
+        <p>
+          For ongoing medicines, you may request repeats by telephone
+          through reception if it has been less than three months since your
+          last in-person consultation and the medicine does not require a
+          review. Otherwise, a brief consultation will be required. This
+          policy reflects the Medical Board of Australia&rsquo;s
+          requirements around good prescribing practice.
+        </p>
+
+        <h2 class="text-2xl pt-6">4. Specialist referrals and correspondence</h2>
+        <p>
+          When a referral is generated, a written referral letter is sent
+          electronically (via secure messaging or fax) to the receiving
+          specialist or service, with a copy added to your record. Where you
+          prefer the referral to go to a particular practitioner, please let
+          {site.doctorShortName} know during the consultation.
+        </p>
+        <p>
+          Correspondence received from a specialist or other treating
+          clinician is reviewed, actioned where required, and added to your
+          record. Important findings are communicated to you through the
+          process described in section 1 above.
+        </p>
+
+        <h2 class="text-2xl pt-6">5. SMS and electronic communication</h2>
+        <p>
+          SMS may be used by the practice for appointment confirmations,
+          reminders, recalls, and to notify you that a normal result is
+          available for discussion. SMS is not used for clinical advice or
+          to convey significant results. Standard mobile-network privacy
+          applies; if you would prefer not to receive SMS communication,
+          please advise reception.
+        </p>
+
+        <h2 class="text-2xl pt-6">6. Email and the website contact form</h2>
+        <p>
+          The website&rsquo;s contact form and any email correspondence are
+          for non-clinical enquiries only &mdash; see the
+          <a href="/disclaimer">Disclaimer</a> and the
+          <a href="/contact">Contact</a> page. Clinical matters cannot be
+          managed by email.
+        </p>
+
+        <h2 class="text-2xl pt-6">7. After-hours and emergencies</h2>
+        <p>
+          Outside of consulting hours, please contact your nearest emergency
+          department or call <strong class="text-ink-900 tabular-nums">000</strong>
+          for an emergency. For non-emergency after-hours health advice,
+          Healthdirect is available 24 hours a day on
+          <span class="tabular-nums">1800 022 222</span>.
+        </p>
+
+        <h2 class="text-2xl pt-6">8. Records and the Privacy Act</h2>
+        <p>
+          All written and electronic communication is recorded in your
+          medical record and handled in line with the
+          <a href="/privacy">Privacy Policy</a>.
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

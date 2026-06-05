@@ -1,0 +1,312 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const services = [
+  {
+    title: 'Cosmetic consultation',
+    body: 'An initial consultation to discuss your concerns, your medical history, the options available (and reasonable alternatives), expected outcomes, possible risks, recovery, and cost.',
+  },
+  {
+    title: 'Anti-wrinkle injection treatments',
+    body: 'Consultation and, where clinically appropriate, treatment for the cosmetic management of facial expression lines using injectable prescription medicines.',
+  },
+  {
+    title: 'Dermal filler treatments',
+    body: 'Consultation and, where clinically appropriate, treatment using dermal fillers for facial volume restoration and contouring.',
+  },
+  {
+    title: 'Laser treatments',
+    body: 'Selected non-surgical laser-based treatments are offered as a separate area of practice &mdash; see the <a class="link-quiet text-ink-900" href="/laser-medicine">laser medicine</a> page for the full scope, what to expect, and the relevant practice policy.',
+  },
+  {
+    title: 'Minor procedures',
+    body: 'Removal of selected benign skin lesions where cosmetically indicated, under local anaesthetic.',
+  },
+  {
+    title: 'Onward referral',
+    body: 'Referral to appropriately qualified colleagues for procedures outside the scope of this practice, including specialist dermatology and surgical procedures.',
+  },
+];
+---
+<BaseLayout
+  title={`Cosmetic Medicine in ${site.address.suburb} — Dr Amir Waly`}
+  description={`Considered, consultation-based non-surgical cosmetic medicine for adult patients in ${site.address.suburb}, Perth — anti-wrinkle injections, dermal fillers, laser treatments. 7-day cooling-off period. ${site.doctorName}.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Cosmetic Medicine', href: '/cosmetic-medicine' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Area of practice</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-3xl">
+          Cosmetic medicine.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          A considered, consultation-based approach to non-surgical cosmetic
+          medicine for adult patients. Every treatment is preceded by an
+          assessment of clinical suitability, expected outcomes, costs, and risks.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- About -->
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-7 md:col-start-2">
+        <div class="prose-clinic max-w-2xl text-ink-700">
+          <p class="text-lg">
+            Cosmetic medicine consultations begin with conversation. Before any
+            treatment is recommended, {site.doctorShortName} will take time to
+            understand what you would like to address, your relevant medical and
+            medication history, and what is realistic to achieve.
+          </p>
+          <p>
+            All cosmetic procedures carry risks, and results vary between
+            individuals. Where a procedure is clinically appropriate, you will
+            be provided with clear written information about what is involved,
+            what to expect during recovery, the possible risks and side effects,
+            and the total cost. You will have an opportunity to consider this
+            information before proceeding.
+          </p>
+          <p>
+            Where a cosmetic concern is better addressed by another practitioner,
+            or where surgical or specialist input is required, {site.doctorShortName}
+            will refer you to an appropriately qualified colleague.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Services offered -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20 sm:py-24">
+    <Container>
+      <p class="eyebrow">What is offered</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl max-w-2xl">
+        Services within this area of practice.
+      </h2>
+      <p class="mt-6 max-w-2xl text-ink-600 leading-relaxed">
+        Treatments are described by category rather than by product. Specific
+        prescription medicines used in any individual treatment will be
+        discussed with you privately during your consultation, in accordance
+        with the Therapeutic Goods Administration&rsquo;s rules on the
+        advertising of prescription medicines.
+      </p>
+
+      <ul class="mt-14 grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
+        {services.map((s, i) => (
+          <li class="bg-white p-8 sm:p-10">
+            <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-4 font-serif text-xl text-ink-900 leading-snug">{s.title}</h3>
+            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600">{s.body}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <!-- What to expect -->
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-7 md:col-start-2">
+        <p class="eyebrow">What to expect</p>
+        <h2 class="display mt-5 text-3xl sm:text-4xl">
+          Consultation first, then a written plan.
+        </h2>
+
+        <ol class="mt-12 space-y-10">
+          <li class="grid grid-cols-12 gap-6">
+            <span class="numeral col-span-2 text-2xl">01</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Consultation</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                A separate consultation is required before any cosmetic
+                procedure. We will discuss your concerns, your medical history,
+                relevant medications, your goals, and whether the proposed
+                treatment is clinically suitable for you.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">02</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Written information &amp; cooling-off period</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                You will be given written information about the proposed
+                treatment, its benefits, risks, side effects, recovery, and the
+                total cost. In line with current Medical Board of Australia
+                guidelines, a minimum cooling-off period of seven days applies
+                between the consultation and any non-surgical cosmetic
+                treatment.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">03</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Treatment</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                If you choose to proceed and remain clinically suitable, the
+                treatment is performed in the clinic. Informed consent is
+                confirmed in writing before any procedure.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">04</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Review</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                A review appointment is offered to assess response to treatment
+                and to discuss any concerns. You will be given clear instructions
+                about how to seek help if you experience an unexpected reaction
+                after a procedure.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Practice policy -->
+  <section class="border-t border-ink-100 bg-paper py-20 sm:py-24">
+    <Container size="narrow">
+      <p class="eyebrow">Practice policy</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl">
+        How cosmetic procedures are provided.
+      </h2>
+      <p class="mt-6 text-ink-600 leading-relaxed">
+        The following standing policies apply to every cosmetic consultation
+        and procedure offered. They reflect the practitioner&rsquo;s
+        professional obligations under the Medical Board of Australia&rsquo;s
+        <em>Guidelines for registered medical practitioners who perform
+        cosmetic medical and surgical procedures</em> and the
+        Therapeutic Goods Administration&rsquo;s advertising rules.
+      </p>
+
+      <dl class="mt-12 border-t border-ink-200/70">
+        {[
+          {
+            t: 'Consultation first',
+            d: 'No cosmetic procedure is performed at the first visit. A separate consultation is required to assess clinical suitability, discuss risks and expected outcomes, and provide written information.',
+          },
+          {
+            t: 'Cooling-off period',
+            d: 'A minimum cooling-off period of seven days applies between the consultation and any non-surgical cosmetic procedure, in line with current Medical Board of Australia guidelines.',
+          },
+          {
+            t: 'Informed consent',
+            d: 'Written informed consent is required before any procedure. Consent is freely given, and may be withdrawn at any time without affecting your ongoing care.',
+          },
+          {
+            t: 'Suitability and right to decline',
+            d: 'Treatment will not be offered where it is not in your clinical interest. If the practice declines to perform a procedure, the reasons will be explained, and reasonable alternatives discussed.',
+          },
+          {
+            t: 'Risks and variation in outcomes',
+            d: 'All cosmetic procedures carry risks. Results vary between individuals, and no particular outcome can be guaranteed.',
+          },
+          {
+            t: 'Costs and Medicare',
+            d: 'Cosmetic procedures performed for purely cosmetic indications are not eligible for a Medicare rebate, and are not bulk-billed. Fees are discussed and agreed in writing before any treatment.',
+          },
+          {
+            t: 'Patients under 18',
+            d: 'Cosmetic injectables are generally not appropriate for patients under 18 years of age. Where any consideration of treatment for a young person arises, additional safeguards apply in line with current Medical Board of Australia guidelines — including a minimum seven-day cooling-off period, a separate evaluation by a registered psychologist, general practitioner, or psychiatrist independent of this practice, and full parental involvement throughout consent.',
+          },
+          {
+            t: 'Aftercare and adverse events',
+            d: 'A review appointment is offered after every cosmetic procedure. Clear written instructions are provided about how to seek help if you experience an unexpected reaction. In a medical emergency call 000.',
+          },
+          {
+            t: 'Advertising and confidentiality',
+            d: 'In line with AHPRA and TGA requirements, this practice does not name prescription medicines used in cosmetic treatments in any public advertising, does not publish patient testimonials, and does not use before-and-after imagery for cosmetic services. Your privacy is protected at all times.',
+          },
+          {
+            t: 'No financial inducements',
+            d: 'Fees reflect clinical complexity and time. Bundled packages, time-limited offers, and other financial inducements to undergo cosmetic procedures are not used.',
+          },
+        ].map((p, i) => (
+          <div class="grid grid-cols-12 gap-4 sm:gap-8 border-b border-ink-100 py-7">
+            <dt class="col-span-12 md:col-span-5">
+              <span class="numeral text-xs tabular-nums text-ink-500">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="mt-2 block font-serif text-lg text-ink-900 leading-snug">
+                {p.t}
+              </span>
+            </dt>
+            <dd class="col-span-12 md:col-span-7 text-[15.5px] leading-relaxed text-ink-700">
+              {p.d}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </Container>
+  </section>
+
+  <!-- Patient documents -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20">
+    <Container size="narrow">
+      <p class="eyebrow">Patient documents</p>
+      <h2 class="display mt-5 text-2xl sm:text-3xl">
+        Information to read before your appointment.
+      </h2>
+      <p class="mt-5 text-ink-600 leading-relaxed">
+        We encourage you to read the patient information leaflet before your
+        consultation. A printed copy is also available at reception.
+      </p>
+
+      <a
+        href="/documents/cosmetic-medicine-information.pdf"
+        download
+        class="group mt-9 flex items-start gap-5 border border-ink-200/70 bg-white p-6 transition-colors hover:border-clinic-700"
+      >
+        <span
+          aria-hidden="true"
+          class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center border border-ink-200/70 text-clinic-700 group-hover:border-clinic-700"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-5z" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="flex-1">
+          <span class="block font-serif text-lg text-ink-900">
+            Cosmetic medicine &mdash; patient information
+          </span>
+          <span class="mt-1 block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+            PDF &middot; 1 page
+          </span>
+        </span>
+        <span aria-hidden="true" class="mt-2 text-ink-400 transition-transform group-hover:translate-y-0.5 group-hover:text-clinic-700">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 4v14m0 0l-5-5m5 5l5-5M5 20h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-ink-100 bg-white py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href={site.bookingUrl}
+        class="inline-flex items-center rounded-sm bg-clinic-800 px-6 py-3.5 text-[0.85rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+      >
+        Book a cosmetic consultation
+      </a>
+      <p class="mt-5 text-[14px] text-ink-500">
+        Or call reception on
+        <a class="link-quiet text-ink-700 tabular-nums" href={site.phoneHref}>{site.phone}</a>.
+      </p>
+    </Container>
+  </section>
+</BaseLayout>

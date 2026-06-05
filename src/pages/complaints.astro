@@ -1,0 +1,152 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+---
+<BaseLayout
+  title={`Complaints & Feedback Policy — ${site.doctorName}`}
+  description={`How to raise a concern, give feedback, or make a formal complaint about ${site.doctorName}'s independent specialist GP practice. External avenues (HaDSCO WA, AHPRA, OAIC) are listed.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Practice policies', href: '/policies' },
+    { name: 'Complaints & Feedback', href: '/complaints' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Practice policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Complaints &amp; feedback.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          The practice welcomes feedback. If something has gone wrong, or you
+          believe it could be done better, please tell us. Concerns are taken
+          seriously, dealt with promptly, and used to improve care.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">1. Your right to raise a concern</h2>
+        <p>
+          Every patient has the right to raise a concern about any aspect of
+          their care. You will not be disadvantaged in any way for doing so,
+          and your right to receive future care from {site.doctorShortName}
+          is not affected by raising a concern.
+        </p>
+
+        <h2 class="text-2xl pt-6">2. Step 1 &mdash; Raising it with the practice</h2>
+        <p>
+          In most cases the quickest resolution comes from raising the concern
+          directly with the practice. You can do this by:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Speaking with {site.doctorShortName} at the time of the issue, or at your next consultation.</li>
+          <li>Asking reception at {site.clinicName} to pass a written message to {site.doctorShortName}.</li>
+          <li>Sending a written letter to the practice&rsquo;s registered office: {site.business.name}, {site.business.address.line1}, {site.business.address.line2}, {site.business.address.suburb} {site.business.address.state} {site.business.address.postcode}.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">3. Step 2 &mdash; A formal complaint to {site.doctorShortName}</h2>
+        <p>
+          If your concern is not resolved through everyday discussion, you may
+          submit a formal written complaint. Please include:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Your full name and contact details.</li>
+          <li>The date(s) of the events you are concerned about.</li>
+          <li>A clear description of what happened.</li>
+          <li>What outcome or response you are seeking.</li>
+        </ul>
+        <p>
+          {site.doctorShortName} will acknowledge receipt within five (5)
+          business days, investigate the matter, and provide a written
+          response within twenty (20) business days. Where a matter is
+          complex and a full response will take longer, you will be informed
+          of the expected timeframe and the reason for the delay.
+        </p>
+
+        <h2 class="text-2xl pt-6">4. Step 3 &mdash; External avenues</h2>
+        <p>
+          You are entitled to raise your concern with an independent body at
+          any time, including in parallel with the steps above. The bodies
+          listed below are the standard external avenues for medical-care
+          complaints in Western Australia:
+        </p>
+
+        <h3 class="text-xl pt-4">Health and Disability Services Complaints Office (HaDSCO) &mdash; Western Australia</h3>
+        <p>
+          HaDSCO is the independent statutory body that resolves complaints
+          relating to health and disability services in Western Australia.
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Website: <a href="https://www.hadsco.wa.gov.au" rel="noopener noreferrer" target="_blank">www.hadsco.wa.gov.au</a></li>
+          <li>Phone: <span class="tabular-nums">(08) 6551 7600</span> or freecall <span class="tabular-nums">1800 813 583</span></li>
+        </ul>
+
+        <h3 class="text-xl pt-4">Australian Health Practitioner Regulation Agency (AHPRA)</h3>
+        <p>
+          AHPRA, in conjunction with the Medical Board of Australia, manages
+          notifications (concerns) about the conduct, health, or performance
+          of registered medical practitioners.
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Website: <a href="https://www.ahpra.gov.au" rel="noopener noreferrer" target="_blank">www.ahpra.gov.au</a></li>
+          <li>Phone: <span class="tabular-nums">1300 419 495</span></li>
+        </ul>
+
+        <h3 class="text-xl pt-4">Office of the Australian Information Commissioner (OAIC) &mdash; privacy concerns</h3>
+        <p>
+          For concerns about how your personal or health information has been
+          handled, contact the OAIC after first raising the matter with the
+          practice (see the <a href="/privacy">Privacy Policy</a>).
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Website: <a href="https://www.oaic.gov.au" rel="noopener noreferrer" target="_blank">www.oaic.gov.au</a></li>
+          <li>Phone: <span class="tabular-nums">1300 363 992</span></li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">5. Concerns about specific engagements</h2>
+        <p>
+          {site.doctorShortName}&rsquo;s practice provides services across
+          several engagements. Where your concern relates specifically to a
+          venue or service, the relevant operator should also be made aware:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Rudloc Road Medical &amp; Dental Centre</strong> &mdash; for facility or reception-related matters at the Morley premises, the centre may also be contacted.</li>
+          <li><strong>Urgent care clinics</strong> &mdash; concerns about the clinic environment, billing, or non-clinical matters should be raised with the relevant clinic operator.</li>
+          <li><strong>Healthdirect (telehealth)</strong> &mdash; for concerns about the telehealth call itself, contact Healthdirect on <span class="tabular-nums">1800 022 222</span> or via <a href="https://www.healthdirect.gov.au" rel="noopener noreferrer" target="_blank">www.healthdirect.gov.au</a>.</li>
+          <li><strong>Residential aged-care facilities</strong> &mdash; concerns about care provided in an aged-care setting may also be raised with the facility, or with the Aged Care Quality and Safety Commission (<span class="tabular-nums">1800 951 822</span>, <a href="https://www.agedcarequality.gov.au" rel="noopener noreferrer" target="_blank">www.agedcarequality.gov.au</a>).</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">6. Confidentiality and protection</h2>
+        <p>
+          Your complaint will be handled confidentially. Information will be
+          shared only with those directly involved in investigating and
+          responding to it. Raising a complaint does not affect your eligibility
+          for care now or in the future.
+        </p>
+
+        <h2 class="text-2xl pt-6">7. Positive feedback</h2>
+        <p>
+          Compliments and constructive suggestions are also welcomed and
+          shared with the practitioner. Please feel free to leave feedback
+          with reception or via the <a href="/contact">contact page</a>.
+          Please note the practice does not publish patient testimonials in
+          line with section 133 of the Health Practitioner Regulation
+          National Law (which prohibits testimonials about regulated health
+          services).
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

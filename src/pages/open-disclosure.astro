@@ -1,0 +1,137 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+---
+<BaseLayout
+  title={`Open Disclosure Policy — ${site.doctorName}`}
+  description={`${site.doctorName}'s open disclosure policy — the practice's commitment to honest, timely communication with patients and families following any adverse event in healthcare.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Practice policies', href: '/policies' },
+    { name: 'Open Disclosure', href: '/open-disclosure' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Practice policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Open disclosure.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          When something goes wrong in healthcare, patients and their
+          families have a right to be told. This policy sets out the
+          practice&rsquo;s commitment to open disclosure, consistent with
+          the Australian Open Disclosure Framework (Australian Commission
+          on Safety and Quality in Health Care, 2013) and the standards
+          required by the Medical Board of Australia.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">1. Commitment</h2>
+        <p>
+          {site.doctorName} is committed to open, honest, and timely
+          communication with patients and their families when something has
+          gone wrong in their healthcare &mdash; including events that
+          caused harm, events that could have caused harm, and unexpected
+          outcomes that were not the intended result of care.
+        </p>
+
+        <h2 class="text-2xl pt-6">2. What open disclosure means</h2>
+        <p>
+          Open disclosure is a structured process of communication that
+          includes:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>An apology or expression of regret &mdash; including the word &ldquo;sorry&rdquo;.</li>
+          <li>A factual explanation of what happened, in language you can understand.</li>
+          <li>An opportunity for you to share your experience and ask questions.</li>
+          <li>A discussion of what will be done to address any consequences for you.</li>
+          <li>A discussion of what steps will be taken to prevent the event recurring.</li>
+        </ul>
+        <p>
+          An apology and an expression of regret are not, by themselves, an
+          admission of legal liability. They reflect compassion and respect
+          for the person affected.
+        </p>
+
+        <h2 class="text-2xl pt-6">3. When open disclosure applies</h2>
+        <p>
+          Open disclosure applies whenever:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>You have experienced an adverse event &mdash; an unintended outcome of healthcare that caused or could have caused harm.</li>
+          <li>A &ldquo;near miss&rdquo; has occurred &mdash; an event that, by chance or intervention, did not cause harm but could have.</li>
+          <li>You have been affected by an error in clinical care or in the administration of the practice.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">4. The process</h2>
+        <p>
+          Where an adverse event or near miss is identified, the practice
+          will:
+        </p>
+        <ol class="list-decimal pl-6 space-y-1.5">
+          <li>Provide immediate clinical care to address any urgent need.</li>
+          <li>Acknowledge the event with you as soon as practicable, normally within 24 hours.</li>
+          <li>Arrange a discussion at a time and place that suits you, including the option to have a support person or advocate present.</li>
+          <li>Provide a factual explanation of what occurred (or what is known at that time).</li>
+          <li>Express an apology or regret, listen to your concerns, and answer your questions.</li>
+          <li>Document the event and the open-disclosure discussion in your record.</li>
+          <li>Identify and act on any system or practice changes needed to reduce the chance of the event recurring.</li>
+          <li>Provide ongoing communication as further information becomes available.</li>
+        </ol>
+
+        <h2 class="text-2xl pt-6">5. Your right to support</h2>
+        <p>
+          You may bring a family member, friend, advocate, interpreter, or
+          other support person to any open-disclosure discussion. You may
+          also seek independent advice at any stage, including legal advice.
+        </p>
+
+        <h2 class="text-2xl pt-6">6. Multi-venue events</h2>
+        <p>
+          {site.doctorShortName}&rsquo;s practice operates across more than
+          one engagement (medical centres, urgent care clinics, telehealth
+          services, residential aged-care facilities). Where an adverse event
+          occurs in a specific setting, the practice will also work with the
+          relevant venue or service so that any required incident reporting
+          (for example, to an aged-care facility&rsquo;s clinical governance
+          process, or to a hospital&rsquo;s safety system) takes place
+          alongside the open-disclosure conversation with you.
+        </p>
+
+        <h2 class="text-2xl pt-6">7. Confidentiality and protection</h2>
+        <p>
+          Participating in open disclosure does not affect your right to
+          make a formal complaint (see the
+          <a href="/complaints">Complaints &amp; Feedback Policy</a>), to
+          pursue any other remedy available to you, or to seek a second
+          opinion. Information shared in the open-disclosure process is
+          handled in line with the <a href="/privacy">Privacy Policy</a>.
+        </p>
+
+        <h2 class="text-2xl pt-6">8. Learning from events</h2>
+        <p>
+          Every adverse event or near miss is reviewed by
+          {site.doctorShortName} to identify what can be learned and what
+          changes should be made to practice. Where appropriate, the matter
+          is also discussed with peers (for example, through Continuing
+          Professional Development activity or peer review) so that the
+          learning is broader than this practice alone.
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

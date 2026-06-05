@@ -1,0 +1,249 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+
+const policy = [
+  {
+    id: 'private-practice',
+    t: 'Private practice',
+    d: 'This is a fully private-billing practice. Bulk billing is not offered for any service. All consultations and procedures are paid for at the time of the appointment.',
+  },
+  {
+    id: 'medicare-rebates',
+    t: 'Medicare rebates where eligible',
+    d: 'Where your consultation or procedure is eligible under the Medicare Benefits Schedule (MBS), a rebate can be claimed. Reception can process the rebate directly to your nominated bank account at the end of your visit. The out-of-pocket cost (the “gap”) is the difference between the practice fee and the Medicare rebate.',
+  },
+  {
+    id: 'informed-financial-consent',
+    t: 'Informed financial consent',
+    d: 'You are entitled to know what you will be charged before agreeing to any consultation or procedure. An estimated fee is provided by reception at the time of booking, and is reconfirmed during your appointment before any additional service (such as a procedure) is performed. You may decline or seek a second opinion at any time without affecting your ongoing care.',
+  },
+  {
+    id: 'fees-not-published',
+    t: 'Fees are not published on this website',
+    d: 'Specific fee amounts are not published on this website. The practice sets fees with reference to professional fee guidance that is not intended for public distribution, and the appropriate fee for any individual consultation depends on the time required, the clinical complexity of the issues raised, and the Medicare items applicable. For these reasons, an accurate fee can only be communicated to you in the context of your specific booking.',
+  },
+  {
+    id: 'fee-estimate',
+    t: 'How to obtain a fee estimate',
+    d: 'Please contact reception when booking your appointment and state the reason for the visit. Reception can then give you a current fee estimate, the relevant Medicare rebate (if any), and the expected out-of-pocket gap. For procedures, a written estimate is provided before the procedure is performed.',
+  },
+  {
+    id: 'payment-at-service',
+    t: 'Payment at the time of service',
+    d: 'Payment is required at the conclusion of your consultation or procedure. EFTPOS and major credit cards are accepted. Where you have provided current Medicare details, your rebate can be processed at the same time.',
+  },
+  {
+    id: 'cosmetic-procedures',
+    t: 'Cosmetic procedures',
+    d: 'Cosmetic procedures performed for purely cosmetic indications are not eligible for a Medicare rebate. A written fee quote is provided before any cosmetic treatment is agreed, and a minimum seven-day cooling-off period applies between the consultation and any non-surgical cosmetic procedure. In line with the Medical Board of Australia\'s Guidelines for registered medical practitioners who perform cosmetic medical and surgical procedures, the practice does not use time-limited offers, bundled packages, or other financial inducements to undergo cosmetic procedures.',
+  },
+  {
+    id: 'skin-cancer-procedures',
+    t: 'Skin cancer procedures',
+    d: 'Standard consultation fees apply to skin examinations. Where biopsy, excision, or other procedures are clinically indicated, the procedure fee is discussed and agreed before the procedure is performed. Medicare rebates apply where eligible under the relevant MBS items.',
+  },
+  {
+    id: 'other-engagements',
+    t: 'Other engagements',
+    d: 'The fees and rebate information above apply to consultations booked through this practice\'s medical-centre sessions. Visits at urgent care clinics, telehealth consultations through national services such as Healthdirect, and on-site consultations in residential aged-care settings follow the funding and billing arrangements set by those services, and are not within the scope of this policy.',
+  },
+  {
+    id: 'cancellations',
+    t: 'Cancellations and missed appointments',
+    d: 'Appointments must be cancelled or rescheduled with at least 24 hours\' notice. Appointments cancelled with less than 24 hours\' notice, or not attended (no-show), are charged the full consultation fee. The cancellation fee is not Medicare-rebatable.',
+  },
+  {
+    id: 'outstanding-accounts',
+    t: 'Outstanding accounts',
+    d: 'Accounts not paid at the time of service will be issued an invoice with payment terms. Outstanding accounts may be referred to a debt-recovery service after reasonable attempts to resolve the matter. Recovery fees, where they apply, are at the patient\'s cost.',
+  },
+  {
+    id: 'questions',
+    t: 'Questions or concerns about fees',
+    d: 'You are welcome to raise any concern about fees with reception at the time of booking, or with the practitioner during your consultation. Concerns that cannot be resolved with the practice may be referred to the Australian Medical Association (AMA), the Health and Disability Services Complaints Office (HaDSCO) in Western Australia, or AHPRA, as appropriate.',
+  },
+];
+---
+<BaseLayout
+  title={`Fees & Billing Policy — ${site.doctorName}`}
+  description={`Fees and billing policy for ${site.doctorName}'s independent specialist GP practice in ${site.address.suburb}, Perth. Private practice with Medicare rebates where eligible; informed financial consent; 24-hour cancellation policy; fee estimates from reception.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Fees & Billing', href: '/fees-and-billing' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Fees &amp; billing policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Transparent fees, communicated before you commit.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          This is the full fees and billing policy of {site.doctorName}&rsquo;s
+          independent specialist GP practice. It explains how fees are set,
+          why specific amounts are not published on this website, and how to
+          find out what you will pay before you book.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+        <p class="mt-7 max-w-2xl text-ink-600 leading-relaxed">
+          For a plain-spoken explanation of <em>why</em> the practice bills
+          this way &mdash; what private GP care actually buys, and why
+          bulk-billing economics are collapsing &mdash; see
+          <a class="link-quiet text-ink-900" href="/private-gp-explained">Private
+          GP, explained honestly</a>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Why specific fees aren't published -->
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-7 md:col-start-2">
+        <div class="prose-clinic max-w-2xl text-ink-700">
+          <p class="text-lg">
+            The practice is committed to <strong class="text-ink-900">informed
+            financial consent</strong> &mdash; you should know what you will be
+            charged before agreeing to a consultation or procedure. At the same
+            time, specific fee amounts are not published on this website.
+          </p>
+          <p>
+            There are three reasons. First, the practice sets fees with
+            reference to professional fee guidance (such as the AMA&rsquo;s
+            list of medical services and fees) which is not intended for public
+            distribution. Second, an appropriate fee for any individual
+            consultation depends on the time required, the clinical complexity
+            of the issues raised, and the Medicare items that apply &mdash;
+            none of which can be reliably summarised in advance. Third, for
+            cosmetic procedures, advertising of pricing in a way that could
+            create pressure to undergo treatment is restricted under the
+            Medical Board of Australia&rsquo;s 2023 cosmetic procedures
+            guidelines.
+          </p>
+          <p>
+            What this means in practice: when you contact reception to book,
+            you will be given a current fee estimate, the applicable Medicare
+            rebate (if any), and the expected out-of-pocket gap. For
+            procedures, a written estimate is provided before the procedure is
+            performed. You may decline at any point.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Policy -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20 sm:py-24">
+    <Container class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <aside class="lg:col-span-3 lg:col-start-10 lg:order-2">
+        <TableOfContents
+          sections={policy.map(p => ({ id: p.id, title: p.t }))}
+          heading="The twelve policies"
+        />
+      </aside>
+
+      <div class="lg:col-span-8 lg:order-1">
+        <p class="eyebrow">The policy in full</p>
+        <h2 class="display mt-5 text-3xl sm:text-4xl">
+          Twelve standing policies.
+        </h2>
+        <p class="mt-6 text-ink-600 leading-relaxed">
+          The items below are the practice&rsquo;s standing fees and billing
+          policies. They apply to every consultation and procedure booked
+          through the practice&rsquo;s medical-centre sessions, in addition to
+          the specific guidance for cosmetic and skin cancer procedures noted on
+          their respective pages.
+        </p>
+
+        <dl class="mt-12 border-t border-ink-200/70">
+          {policy.map((p, i) => (
+            <div id={p.id} class="grid grid-cols-12 gap-4 sm:gap-8 border-b border-ink-100 py-7 scroll-mt-32">
+              <dt class="col-span-12 md:col-span-5">
+                <span class="numeral text-xs tabular-nums text-ink-500">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span class="mt-2 block font-serif text-lg text-ink-900 leading-snug">
+                  {p.t}
+                </span>
+              </dt>
+              <dd class="col-span-12 md:col-span-7 text-[15.5px] leading-relaxed text-ink-700">
+                {p.d}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How to obtain a fee estimate -->
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <p class="eyebrow">How to obtain a fee estimate</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl">
+        Three steps, before you book.
+      </h2>
+
+      <ol class="mt-12 space-y-10">
+        <li class="grid grid-cols-12 gap-6">
+          <span class="numeral col-span-2 text-2xl">01</span>
+          <div class="col-span-10">
+            <h3 class="font-serif text-lg text-ink-900">Call reception</h3>
+            <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+              Call <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+              and ask for a fee estimate, stating the reason for your visit and
+              whether you are a new or existing patient.
+            </p>
+          </div>
+        </li>
+        <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+          <span class="numeral col-span-2 text-2xl">02</span>
+          <div class="col-span-10">
+            <h3 class="font-serif text-lg text-ink-900">Receive your estimate</h3>
+            <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+              Reception will quote the expected fee, the relevant Medicare
+              rebate (if any), and the out-of-pocket gap. For procedures, a
+              written estimate is provided before any procedure is agreed.
+            </p>
+          </div>
+        </li>
+        <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+          <span class="numeral col-span-2 text-2xl">03</span>
+          <div class="col-span-10">
+            <h3 class="font-serif text-lg text-ink-900">Confirm your booking</h3>
+            <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+              If you are happy to proceed, reception will confirm your
+              appointment. You may also discuss costs with {site.doctorShortName}
+              at the time of your consultation; if anything is unclear or your
+              circumstances have changed, please raise it before any procedure
+              is performed.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-ink-100 bg-paper py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href={site.phoneHref}
+        class="inline-flex items-center rounded-sm bg-clinic-800 px-6 py-3.5 text-[0.85rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+      >
+        Call reception for a fee estimate
+      </a>
+      <p class="mt-5 text-[14px] text-ink-500">
+        <span class="tabular-nums">{site.phone}</span>
+      </p>
+    </Container>
+  </section>
+</BaseLayout>

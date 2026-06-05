@@ -1,0 +1,113 @@
+---
+// In-page Table of Contents — sticky right-rail on lg+, expandable on mobile.
+// Pass an array of { id, title } matching the IDs you set on the page's h2s.
+interface Props {
+  sections: Array<{ id: string; title: string }>;
+  heading?: string;
+}
+const { sections, heading = 'On this page' } = Astro.props;
+---
+
+<!-- Mobile / tablet: collapsible disclosure -->
+<details class="lg:hidden mb-10 border border-ink-200/70 bg-paper-soft" data-toc-mobile>
+  <summary class="cursor-pointer list-none px-5 py-3.5 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+    <span>{heading}</span>
+    <svg class="h-3 w-3 text-ink-400 transition-transform group-open:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </summary>
+  <ol class="border-t border-ink-200/70 px-5 py-4 space-y-1.5 text-[14.5px]">
+    {sections.map((s, i) => (
+      <li>
+        <a
+          href={`#${s.id}`}
+          class="group flex items-baseline gap-3 py-1 text-ink-700 hover:text-clinic-700 transition-colors"
+          data-toc-link={s.id}
+        >
+          <span class="numeral text-[12px] text-ink-400 tabular-nums shrink-0">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <span>{s.title}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</details>
+
+<!-- Desktop: sticky right-rail nav -->
+<nav aria-label={heading} class="hidden lg:block sticky top-36">
+  <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500 mb-5">
+    {heading}
+  </p>
+  <ol class="space-y-1 border-l border-ink-200/70">
+    {sections.map((s, i) => (
+      <li>
+        <a
+          href={`#${s.id}`}
+          class="
+            relative block py-1.5 pl-5 -ml-px text-[13.5px] leading-snug text-ink-500
+            border-l border-transparent
+            hover:text-clinic-700
+            data-[active=true]:text-clinic-800 data-[active=true]:border-clinic-700 data-[active=true]:font-medium
+            transition-colors
+          "
+          data-toc-link={s.id}
+        >
+          <span class="numeral text-[11px] text-ink-400 tabular-nums mr-2">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          {s.title}
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script>
+  function initToc() {
+    const links = document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
+    if (!links.length) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Smooth-scroll handler — offsets for the shrunken sticky header (~6rem = 96px)
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const target = document.getElementById(href.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        const y = target.getBoundingClientRect().top + window.scrollY - 110;
+        window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
+        history.replaceState(null, '', href);
+      });
+    });
+
+    // Active-section tracking
+    const setActive = (id: string) => {
+      links.forEach(l => l.dataset.active = String(l.dataset.tocLink === id));
+    };
+
+    const observer = new IntersectionObserver(
+      entries => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .map(e => e.target as HTMLElement)
+          .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        if (visible.length) setActive(visible[0].id);
+      },
+      { rootMargin: '-25% 0px -60% 0px', threshold: 0 }
+    );
+
+    links.forEach(link => {
+      const id = link.dataset.tocLink;
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  }
+
+  initToc();
+  document.addEventListener('astro:page-load', initToc);
+</script>

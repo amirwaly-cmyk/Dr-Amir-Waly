@@ -1,0 +1,239 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+---
+<BaseLayout
+  title={`Private GP, Explained Honestly — Dr Amir Waly`}
+  description={`A plain-spoken explanation of private general practice in Australia — why bulk-billing economics are collapsing, what a longer consultation actually enables clinically, and what private billing buys you. Dr Amir Waly, ${site.address.suburb}, Perth.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Practice policies', href: '/policies' },
+    { name: 'Private GP, explained honestly', href: '/private-gp-explained' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">On the practice</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Private GP, explained honestly.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Most Australians have grown up with bulk-billing as the default,
+          and the system has changed under us without much explanation. This
+          page is my attempt at the honest version &mdash; what private
+          general practice actually is, why bulk-billing economics are
+          collapsing, and what a longer consultation enables clinically.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Written by {site.doctorName}. Last updated: <span class="tabular-nums">{lastUpdated}</span>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">The system, in plain language</h2>
+        <p>
+          When you see a GP in Australia, Medicare contributes a fixed
+          amount towards the consultation. This is called a <strong>rebate</strong>.
+          The size of the rebate depends mostly on how long the consultation
+          is and what is involved.
+        </p>
+        <p>
+          A short consultation (under 20 minutes, listed as a &ldquo;Level
+          B&rdquo; item on the Medicare Benefits Schedule) attracts a rebate
+          currently in the order of forty dollars. A longer consultation
+          (20 to 40 minutes, a &ldquo;Level C&rdquo;) is around twice that;
+          an extra-long consultation (40 minutes or more, a &ldquo;Level
+          D&rdquo;) is around three times. The current dollar figures are
+          publicly listed on the Medicare Benefits Schedule and are indexed
+          each November; reception can give you the exact applicable rebate
+          at the time of booking.
+        </p>
+        <p>
+          There are two ways a doctor can charge:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Bulk-billing</strong>. The doctor accepts the Medicare rebate as the full fee. You pay nothing on the day.</li>
+          <li><strong>Private billing</strong>. The doctor sets their own fee. You pay it in full, Medicare reimburses you the rebate, and your out-of-pocket cost is the difference &mdash; the &ldquo;gap&rdquo;.</li>
+        </ul>
+        <p>
+          Many practices are mixed: they bulk-bill some patients (often
+          children, concession-card holders, and pensioners) and privately
+          bill others. A pure private practice, like this one, charges every
+          patient the same way and processes the Medicare rebate at the end
+          of the visit.
+        </p>
+
+        <h2 class="text-2xl pt-6">Why bulk-billing economics are collapsing</h2>
+        <p>
+          Running a GP practice has a real cost &mdash; rent, reception and
+          nursing staff, software, indemnity insurance, equipment, sterilising,
+          electricity, ongoing education. None of that scales down with the
+          Medicare rebate, and none of it has been frozen for a decade.
+        </p>
+        <p>
+          The rebates themselves were essentially frozen from 2013 to 2017,
+          and have been indexed since at rates well below the actual cost
+          inflation of running a clinic. The federal government&rsquo;s
+          November 2023 reforms tripled the bulk-billing incentive for
+          children under 16 and for concession-card holders, which helps
+          those patients, but the underlying rebate for everyone else has
+          not kept pace with what a consultation actually costs to deliver.
+        </p>
+        <p>
+          The arithmetic is unforgiving. If a bulk-billing-only practice
+          earns roughly $42 per short consultation and needs to cover all
+          the costs above plus pay the doctor a reasonable wage, it has to
+          see a patient roughly every ten to fifteen minutes &mdash; six,
+          sometimes more, an hour. The medical community has a name for this:
+          <em>six-minute medicine</em>. It is not a slur on the doctors
+          working in that model. It is a description of the only way the
+          economics close.
+        </p>
+        <p>
+          That kind of pace can work for a sore throat, a script repeat, or
+          a follow-up of a known issue. It does not work as well for the
+          complicated, the undifferentiated, the multi-morbid, or the
+          quietly anxious person who has waited weeks to say what they
+          actually came in to say.
+        </p>
+
+        <h2 class="text-2xl pt-6">What private billing actually buys</h2>
+        <p>
+          A private consultation in this practice is usually substantially
+          longer than a typical bulk-billed consultation &mdash; long
+          enough to allow more than one issue to be addressed without being
+          rushed. That extra time is not a luxury &mdash; it is what
+          allows a different kind of care to happen.
+        </p>
+        <p>
+          Specifically, private billing buys:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Time to listen properly.</strong> Patients often have more than one concern, and the most important one is rarely the first one mentioned. There needs to be room for the second and third things to come out.</li>
+          <li><strong>Time to think.</strong> Considered medicine is slower than reflex medicine. Working out what is going on with an unwell person frequently requires the doctor to stop, think, and sometimes look something up &mdash; not just pattern-match against the last similar presentation.</li>
+          <li><strong>Continuity.</strong> You see the same doctor next time. Your story is in one head, not split across whichever GP happens to be on shift. This matters enormously for chronic disease, for mental health, and for trust.</li>
+          <li><strong>A written plan.</strong> Verbal advice evaporates within hours. Care plans that go on paper &mdash; or into letters back to your other treating practitioners &mdash; survive.</li>
+          <li><strong>Procedures done unhurried.</strong> Skin checks, biopsies, joint injections, minor surgery: these are time-dependent, not consultation-dependent. They get done in the same visit when there is enough time.</li>
+          <li><strong>Ongoing professional development.</strong> Rebates fund consultations only. Reading, training, peer review, conference attendance, and the cost of doing skin cancer or cosmetic medicine training to a high standard come out of the practice fee, not the rebate.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">What a longer consultation actually enables clinically</h2>
+        <p>
+          There are specific situations where a longer consultation is not
+          a nicety but the actual clinical requirement:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Multiple problems at once.</strong> The arthritis, the new medication, the strange chest pain last week, and the recent sleep issues are often connected. In ten minutes you can address one. In thirty you can address how they hang together.</li>
+          <li><strong>Undifferentiated symptoms.</strong> &ldquo;Tired all the time,&rdquo; &ldquo;something is not right,&rdquo; &ldquo;keep losing weight&rdquo; &mdash; these are presentations where the wrong shortcut leads to a missed diagnosis. They reward thinking, history, and examination, not reflexive ordering of every blood test on the form.</li>
+          <li><strong>Mental health.</strong> People do not open up about depression, anxiety, trauma, alcohol, or family violence in the first five minutes of a hurried consultation. Frequently, it takes the whole consultation just to get to the point.</li>
+          <li><strong>Chronic disease management.</strong> Hypertension, diabetes, cardiovascular risk, COPD &mdash; these are managed across years and conversations, not in single visits.</li>
+          <li><strong>Complex skin cancer surveillance.</strong> A person with a history of skin cancers, multiple atypical naevi, and a fair amount of sun damage needs a structured examination and a documented plan, not a six-minute glance.</li>
+          <li><strong>Considered prescribing.</strong> The medicine that is most appropriate is sometimes not the most familiar one, and that decision needs time.</li>
+        </ul>
+        <p>
+          None of this is exotic. It is the everyday work of careful general
+          practice. The only thing being charged for is the time and the
+          thinking required to do it properly.
+        </p>
+
+        <h2 class="text-2xl pt-6">The cost, in principle</h2>
+        <p>
+          For practical reasons explained in the <a href="/fees-and-billing">Fees
+          &amp; Billing Policy</a>, specific dollar amounts are not
+          published on this website. The shape of it is straightforward:
+          the practice fee is set with reference to professional fee
+          guidance and the time required for the consultation; Medicare
+          contributes the rebate listed above; and you pay the difference.
+        </p>
+        <p>
+          Reception will quote the expected fee, the relevant Medicare
+          rebate, and the expected out-of-pocket gap before you book. For
+          any procedure, a written estimate is given before the procedure
+          is agreed. There are no surprise fees in this practice. There are
+          no time-limited offers, packages, or financial inducements
+          either &mdash; not least because the
+          <a href="/cosmetic-medicine">Medical Board&rsquo;s 2023 cosmetic
+          procedures guidelines</a> prohibit them for cosmetic medicine,
+          and as a matter of principle the same applies to everything
+          else.
+        </p>
+
+        <h2 class="text-2xl pt-6">This is a genuine choice, not a moral one</h2>
+        <p>
+          Bulk-billed general practice has a legitimate and important role
+          in the Australian health system. For people who cannot afford a
+          private fee &mdash; full stop &mdash; it is what stands between
+          them and going without medical care. The doctors providing
+          bulk-billed care are working as hard as anyone in the system,
+          inside the model that the Medicare rebate has forced.
+        </p>
+        <p>
+          This practice operates under a different model. It is one option
+          among many. Choosing private GP care is a trade-off: you accept
+          an out-of-pocket cost in exchange for a longer, more considered
+          consultation, a continuous relationship, and the ability for the
+          practitioner to think rather than react. It is the right trade
+          for some patients and the wrong trade for others.
+        </p>
+        <p>
+          If cost is a real barrier for you and bulk-billing is essential,
+          the right thing is to find a bulk-billing practice &mdash; not to
+          stretch to a private fee that doesn&rsquo;t fit. I will help with
+          a referral to a colleague in that situation if it is useful.
+        </p>
+
+        <h2 class="text-2xl pt-6">How to think about whether this is right for you</h2>
+        <p>
+          A few honest questions to ask yourself:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Is the health issue I am trying to address straightforward, or is it the kind of problem that benefits from time and thought?</li>
+          <li>Do I value seeing the same doctor across time, or am I happy to see whoever is available?</li>
+          <li>Do I have multiple things I would like to address in one visit?</li>
+          <li>Am I able to budget for the out-of-pocket cost, or would that itself become a stressor?</li>
+          <li>Is the specific service I need (skin cancer surgery, cosmetic medicine, joint injection) one that this practice provides &mdash; and do the practice&rsquo;s policies and approach fit what I am looking for?</li>
+        </ul>
+        <p>
+          If the answers point you toward this practice, you are welcome
+          here. If they point you elsewhere, I would rather you go
+          elsewhere with clarity than commit to a model that doesn&rsquo;t
+          suit you.
+        </p>
+        <p>
+          Either way, the information on the <a href="/fees-and-billing">Fees
+          &amp; Billing Policy</a> page and on the
+          <a href="/services">Services</a> page should help. Reception is
+          on <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+          for any specific question about fees, suitability, or how an
+          appointment would run.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-ink-100 bg-paper py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href="/fees-and-billing"
+        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
+      >
+        <span>Read the Fees &amp; Billing Policy</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+      <p class="mt-5 text-[14px] text-ink-500">
+        Or call reception on
+        <a class="link-quiet text-ink-700 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+        for a fee estimate.
+      </p>
+    </Container>
+  </section>
+</BaseLayout>

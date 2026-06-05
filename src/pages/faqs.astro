@@ -1,0 +1,169 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+// Plain-text answer used in the FAQPage schema (no HTML tags allowed there).
+// The displayed answer below may contain links to relevant pages.
+const faqs = [
+  {
+    q: 'How do I book an appointment with Dr Waly?',
+    schemaA:
+      `Appointments at Dr Waly's Morley consulting sessions can be booked online via his HotDoc profile, or by calling reception at Rudloc Road Medical & Dental Centre on ${site.phone}.`,
+    a: `Appointments at Dr Waly's Morley consulting sessions can be booked online via his <a href="${site.bookingUrl}" rel="noopener noreferrer">HotDoc profile</a>, or by calling reception at ${site.clinicName} on <a class="link-quiet text-ink-900 tabular-nums" href="${site.phoneHref}">${site.phone}</a>.`,
+  },
+  {
+    q: 'Are you accepting new patients?',
+    schemaA:
+      `Yes. Dr Waly's practice welcomes new patients for general practice consultations, skin cancer medicine, and cosmetic medicine. Please book through HotDoc or call reception.`,
+    a: `Yes. The practice welcomes new patients for general practice consultations, <a href="/skin-cancer-surgery">skin cancer medicine</a>, and <a href="/cosmetic-medicine">cosmetic medicine</a>. Please book through HotDoc or call reception.`,
+  },
+  {
+    q: 'When does Dr Waly consult?',
+    schemaA: `Dr Waly consults at Rudloc Road Medical & Dental Centre in Morley on Mondays and Tuesdays, 8:00am to 3:00pm. Aged-care visits, telehealth via Healthdirect, and urgent care clinic shifts are arranged separately.`,
+    a: `Dr Waly consults at ${site.clinicName} in ${site.address.suburb} on <strong>Mondays and Tuesdays, 8:00am to 3:00pm</strong>. Residential aged-care visits, telehealth via Healthdirect, and urgent care clinic shifts are arranged separately &mdash; see the <a href="/about">About</a> page.`,
+  },
+  {
+    q: 'Do you bulk-bill?',
+    schemaA: `No. Dr Waly's practice is fully private-billing. Where the consultation or procedure is eligible under the Medicare Benefits Schedule, a rebate can be claimed and reception can process it to your nominated bank account at the end of your visit. For a plain-spoken explanation of why the practice bills this way and what private GP care actually buys, see Private GP, Explained Honestly.`,
+    a: `No. The practice is fully private-billing. Where the consultation or procedure is eligible under the Medicare Benefits Schedule, a rebate can be claimed and reception can process it to your nominated bank account at the end of your visit. See the <a href="/fees-and-billing">Fees &amp; Billing Policy</a> for the full details, or read <a href="/private-gp-explained">Private GP, explained honestly</a> for an honest account of why the practice bills this way.`,
+  },
+  {
+    q: 'What does an appointment cost?',
+    schemaA: `Specific fees are not published on this website. Fees depend on appointment length and clinical complexity, and the appropriate fee can only be quoted in the context of a specific booking. Please contact reception for a current fee estimate and the applicable Medicare rebate before booking.`,
+    a: `Specific fees are not published on this website. Fees depend on appointment length and clinical complexity, and the appropriate fee can only be quoted in the context of a specific booking. Please contact reception for a current fee estimate, the applicable Medicare rebate, and the expected out-of-pocket gap before booking. See the <a href="/fees-and-billing">Fees &amp; Billing Policy</a>.`,
+  },
+  {
+    q: 'Do you offer telehealth consultations?',
+    schemaA: `Yes. Dr Waly provides telehealth consultations through national telehealth services such as Healthdirect. Telehealth appointments for established patients of the practice can also be arranged where clinically suitable.`,
+    a: `Yes. Dr Waly provides telehealth consultations through national telehealth services such as Healthdirect. Telehealth appointments for established patients of the practice can also be arranged where clinically suitable.`,
+  },
+  {
+    q: 'Do you do skin cancer checks and skin surgery?',
+    schemaA: `Yes. Dr Waly has a special interest in skin cancer medicine, including full skin examinations supported by dermoscopy, biopsy, and surgical excision of skin cancers under local anaesthetic. Complex cases are referred to a dermatologist or plastic surgeon as appropriate.`,
+    a: `Yes. Dr Waly has a special interest in skin cancer medicine, including full skin examinations supported by dermoscopy, biopsy, and surgical excision of skin cancers under local anaesthetic. Complex cases are referred to a dermatologist or plastic surgeon as appropriate. See the <a href="/skin-cancer-surgery">skin cancer medicine and surgery</a> page.`,
+  },
+  {
+    q: 'Do you do joint injections?',
+    schemaA: `Yes. Dr Waly provides corticosteroid injections for common musculoskeletal conditions such as shoulder, knee, hip, and other peripheral joint pain. Suitability and expected benefit, alongside the relevant risks and reasonable alternatives, are discussed in detail before any injection is agreed.`,
+    a: `Yes. Dr Waly provides corticosteroid injections for common musculoskeletal conditions such as shoulder, knee, hip, and other peripheral joint pain &mdash; performed in the clinic under local anaesthetic where appropriate. Suitability and expected benefit, alongside the relevant risks and reasonable alternatives, are discussed in detail before any injection is agreed.`,
+  },
+  {
+    q: 'Do you offer cosmetic medicine?',
+    schemaA: `Yes. Dr Waly provides non-surgical cosmetic medicine for adult patients, including anti-wrinkle injection treatments, dermal fillers, and laser treatments. A separate consultation and a minimum seven-day cooling-off period are required before any treatment.`,
+    a: `Yes. Dr Waly provides non-surgical cosmetic medicine for adult patients, including anti-wrinkle injection treatments, dermal fillers, and laser treatments. A separate consultation and a minimum seven-day cooling-off period are required before any treatment. See the <a href="/cosmetic-medicine">cosmetic medicine</a> page for the full practice policy.`,
+  },
+  {
+    q: 'Do you write workers compensation, insurance, or medico-legal reports?',
+    schemaA: `No. Dr Waly's practice does not provide workers compensation reports, third-party insurance reports, or medico-legal reports. Standard short-term medical certificates for absence from work or study are provided where clinically appropriate. Please ask reception for a referral to an appropriately qualified colleague for any of the excluded reports.`,
+    a: `No. The practice does not provide workers compensation reports, third-party insurance reports, or medico-legal reports. Standard short-term medical certificates for absence from work or study are provided where clinically appropriate. Please ask reception for a referral to an appropriately qualified colleague for any of the excluded reports.`,
+  },
+  {
+    q: 'Can I get a repeat prescription without coming in?',
+    schemaA: `Generally no. Repeat prescriptions are managed through a consultation. For ongoing medicines that don't require review, a repeat may be requested by phone through reception if it has been less than three months since the last in-person consultation. Otherwise a brief appointment will be needed.`,
+    a: `Generally no. Repeat prescriptions are managed through a consultation. For ongoing medicines that don&rsquo;t require review, a repeat may be requested by phone through reception if it has been less than three months since the last in-person consultation. Otherwise a brief appointment will be needed. See the <a href="/communication-and-results">Communication &amp; Results Policy</a>.`,
+  },
+  {
+    q: 'How are test results communicated?',
+    schemaA: `Wherever possible, results are reviewed and discussed at a follow-up consultation. Significant or unexpected results are communicated directly by phone on the day they are reviewed. As a general rule, please assume "no news is not good news" and contact reception if you have not heard within the expected timeframe.`,
+    a: `Wherever possible, results are reviewed and discussed at a follow-up consultation. Significant or unexpected results are communicated directly by phone on the day they are reviewed. As a general rule, please assume <em>no news is not good news</em> and contact reception if you have not heard within the expected timeframe. See the <a href="/communication-and-results">Communication &amp; Results Policy</a>.`,
+  },
+  {
+    q: 'What is your cancellation policy?',
+    schemaA: `Appointments must be cancelled or rescheduled with at least 24 hours' notice. Appointments cancelled with less than 24 hours' notice, or not attended (no-show), are charged the full consultation fee. The cancellation fee is not Medicare-rebatable.`,
+    a: `Appointments must be cancelled or rescheduled with at least <strong>24 hours&rsquo; notice</strong>. Appointments cancelled with less than 24 hours&rsquo; notice, or not attended (no-show), are charged the full consultation fee. The cancellation fee is not Medicare-rebatable. See the <a href="/fees-and-billing">Fees &amp; Billing Policy</a>.`,
+  },
+  {
+    q: 'Can I contact Dr Waly through the website for medical advice?',
+    schemaA: `No. The contact form on this website is for non-clinical enquiries only. Dr Waly does not provide clinical advice, prescriptions, or test-result interpretation through email or web form. For any clinical matter, please book an appointment.`,
+    a: `No. The contact form on this website is for non-clinical enquiries only. Dr Waly does not provide clinical advice, prescriptions, or test-result interpretation through email or web form. For any clinical matter, please <a href="${site.bookingUrl}" rel="noopener noreferrer">book an appointment</a>.`,
+  },
+  {
+    q: 'Are you involved in International Medical Graduate (IMG) supervision?',
+    schemaA: `Yes. Dr Waly is involved in the Level 3 supervision of International Medical Graduates, under the Medical Board of Australia's supervision framework. Level 3 supervision involves availability for clinical consultation and periodic review of the supervised practitioner's practice. Enquiries from prospective IMGs or hosting practices can be sent through the contact page.`,
+    a: `Yes. Dr Waly is involved in the <strong>Level 3</strong> supervision of International Medical Graduates, under the Medical Board of Australia&rsquo;s supervision framework. Level 3 supervision involves availability for clinical consultation and periodic review of the supervised practitioner&rsquo;s practice. Enquiries from prospective IMGs or hosting practices can be sent through the <a href="/contact">contact page</a>.`,
+  },
+  {
+    q: 'How do I get a copy of my medical records?',
+    schemaA: `You can request access to or a copy of your records by contacting reception in writing. Reasonable steps will be taken to confirm your identity before access is granted. A fee may apply for the time and materials involved in producing copies. Details are in the Privacy Policy.`,
+    a: `You can request access to or a copy of your records by contacting reception in writing, or via the <a href="/contact">contact page</a>. Reasonable steps will be taken to confirm your identity before access is granted. A fee may apply for the time and materials involved in producing copies. Full details are in section 7 of the <a href="/privacy">Privacy Policy</a>.`,
+  },
+  {
+    q: 'Where is the consulting room located?',
+    schemaA: `Dr Waly consults at Rudloc Road Medical & Dental Centre, 40 Rudloc Road, Morley WA 6062. The registered business address of the practice's company (Draw Group Pty Ltd) is at Bayswater and is not a patient-visit location.`,
+    a: `Dr Waly consults at <strong>${site.clinicName}, ${site.address.line1}, ${site.address.suburb} ${site.address.state} ${site.address.postcode}</strong>. The registered business address of the practice&rsquo;s company (${site.business.name}) is in Bayswater and is not a patient-visit location. See the <a href="/contact">Contact</a> page for the map and full details.`,
+  },
+  {
+    q: 'What should I do in a medical emergency?',
+    schemaA: `In a medical emergency, call 000. For non-emergency after-hours health advice, Healthdirect is available 24 hours a day on 1800 022 222.`,
+    a: `In a medical emergency, call <strong class="text-ink-900 tabular-nums">000</strong>. For non-emergency after-hours health advice, Healthdirect is available 24 hours a day on <strong class="tabular-nums">1800 022 222</strong>.`,
+  },
+];
+
+// FAQPage structured data for rich snippets / voice search
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.schemaA,
+    },
+  })),
+};
+---
+<BaseLayout
+  title={`FAQs — Dr Amir Waly | Specialist GP ${site.address.suburb}, Perth`}
+  description={`Frequently asked questions about ${site.doctorName}'s independent specialist GP practice in ${site.address.suburb}, Perth — booking, fees, telehealth, skin cancer, cosmetic medicine, prescriptions, results, and cancellations.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'FAQs', href: '/faqs' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Frequently asked questions</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Common questions, answered.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          The questions reception is most often asked &mdash; about booking,
+          fees, what {site.doctorShortName} does and doesn&rsquo;t offer, and
+          how the practice works.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <dl class="divide-y divide-ink-200/70 border-y border-ink-200/70">
+        {faqs.map((f) => (
+          <div class="py-7">
+            <dt class="font-serif text-xl text-ink-900 leading-snug">{f.q}</dt>
+            <dd class="mt-3 text-[16px] leading-relaxed text-ink-700 prose-clinic" set:html={f.a} />
+          </div>
+        ))}
+      </dl>
+
+      <div class="mt-14 border-t border-ink-200/70 pt-10 text-center">
+        <p class="eyebrow eyebrow-center justify-center">Still have a question?</p>
+        <p class="mt-5 text-ink-600">
+          Call reception on
+          <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+          or use the <a class="link-quiet text-ink-900" href="/contact">contact page</a>
+          for a non-clinical enquiry.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+</BaseLayout>

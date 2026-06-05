@@ -1,0 +1,290 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { Image } from 'astro:assets';
+import { site } from '@/config/site';
+import portrait from '@/assets/dr-amir-waly-cutout.png';
+
+const principles = [
+  {
+    n: '01',
+    label: 'Continuity',
+    title: 'A lasting clinical relationship.',
+    body: 'Long-term general practice for adults and families — preventive health, chronic disease management, and the small problems that turn out to matter.',
+  },
+  {
+    n: '02',
+    label: 'Complexity',
+    title: 'Time for the difficult problems.',
+    body: 'Specialist-level consultations with the depth required for multi-morbidity, polypharmacy, undifferentiated presentations, and considered second opinions.',
+  },
+  {
+    n: '03',
+    label: 'Communication',
+    title: 'Clear plans, on paper.',
+    body: 'Plain-language explanations, written care plans, and timely correspondence back to the referring practitioner.',
+  },
+];
+
+const credentials = site.qualifications.split(',').map(s => s.trim());
+---
+<BaseLayout
+  title={`${site.doctorName} — Specialist GP, Skin Cancer & Cosmetic Medicine | ${site.address.suburb}, Perth`}
+  description={`Independent specialist general practice with ${site.doctorName} (${site.qualifications}) in ${site.address.suburb}, Perth. General medicine, skin cancer checks and surgery, non-surgical cosmetic medicine, and joint injections. Also provides telehealth via Healthdirect, residential aged-care visits, medtech advisory, and involvement in Level 3 supervision of International Medical Graduates. Book via HotDoc.`}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-paper">
+    <Container class="pt-24 pb-24 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
+      <div class="grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+        <div class="lg:col-span-7">
+          <p class="eyebrow hero-reveal hero-reveal-1">
+            Independent specialist GP &middot; {site.address.suburb}
+          </p>
+
+          <h1 class="display-xl mt-8 text-[2.8rem] sm:text-6xl lg:text-[5.25rem] xl:text-[5.75rem] max-w-[14ch] hero-reveal hero-reveal-2">
+            Considered care, taken seriously.
+          </h1>
+
+          <p class="lead mt-10 max-w-xl text-[1.15rem] sm:text-[1.3rem] hero-reveal hero-reveal-3">
+            {site.doctorName} runs an independent specialist general practice,
+            providing consultancy services to medical centres and urgent care
+            clinics, national telehealth services such as Healthdirect,
+            on-site care to residents of selected residential aged-care
+            facilities, advisory roles with medical technology startups, and
+            involvement in Level 3 supervision of International Medical
+            Graduates &mdash; unhurried, evidence-based, and built around the
+            long-term relationship between doctor and patient.
+          </p>
+
+          <div class="mt-12 flex flex-wrap items-center gap-x-7 gap-y-4 hero-reveal hero-reveal-4">
+            <a
+              href={site.bookingUrl}
+              class="group inline-flex items-center gap-3 rounded-sm bg-clinic-800 px-7 py-4 text-[0.88rem] font-medium tracking-wide text-white transition-all hover:bg-clinic-900 hover:translate-y-[-1px]"
+            >
+              Book to see {site.doctorShortName}
+              <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+            </a>
+            <a
+              href="/about"
+              class="group inline-flex items-center gap-2 text-[0.95rem] font-medium text-ink-700 transition-colors hover:text-clinic-700"
+            >
+              <span class="border-b border-ink-300 group-hover:border-clinic-700 transition-colors">
+                About {site.doctorShortName}
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 hero-reveal hero-reveal-portrait">
+          <figure class="mx-auto max-w-md lg:max-w-none" transition:name="dr-waly-portrait">
+            <Image
+              src={portrait}
+              alt={`Portrait of ${site.doctorName}`}
+              widths={[480, 640, 800, 1080]}
+              sizes="(min-width: 1024px) 460px, (min-width: 640px) 420px, 90vw"
+              quality={92}
+              format="webp"
+              loading="eager"
+              class="portrait-cutout"
+            />
+          </figure>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Credentials band -->
+  <section aria-label="Qualifications" class="border-y border-ink-100 bg-white">
+    <Container class="py-8">
+      <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-500 reveal">
+        {credentials.map((c, i) => (
+          <>
+            <li>{c}</li>
+            {i < credentials.length - 1 && (
+              <li aria-hidden="true" class="text-accent">&middot;</li>
+            )}
+          </>
+        ))}
+        <li aria-hidden="true" class="text-accent">&middot;</li>
+        <li>Member, RACGP</li>
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Principles -->
+  <section class="py-28 sm:py-40">
+    <Container>
+      <div class="max-w-3xl reveal">
+        <p class="eyebrow">Principles of the practice</p>
+        <h2 class="display-xl mt-7 text-3xl sm:text-5xl lg:text-[3.5rem]">
+          Continuity, complexity, communication.
+        </h2>
+        <p class="mt-7 max-w-2xl text-ink-600 text-lg leading-relaxed">
+          A general practice that takes the time to think. Each consultation is
+          built around the same three commitments &mdash; in long-term care, in
+          difficult cases, and in everything written down for you and your
+          treating team.
+        </p>
+      </div>
+
+      <ol class="mt-20 grid gap-12 md:grid-cols-3 md:gap-14">
+        {principles.map((p, i) => (
+          <li class={`relative border-t border-ink-200/80 pt-9 reveal reveal-delay-${i + 1}`}>
+            <span class="absolute -top-px left-0 h-px w-12 bg-accent" aria-hidden="true"></span>
+            <div class="flex items-baseline gap-4">
+              <span class="numeral text-lg">{p.n}</span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+                {p.label}
+              </span>
+            </div>
+            <h3 class="mt-6 font-serif text-2xl text-ink-800 leading-snug">{p.title}</h3>
+            <p class="mt-5 text-[15.5px] leading-relaxed text-ink-600">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+    </Container>
+  </section>
+
+  <!-- Areas of practice -->
+  <section class="bg-blue-tint py-28 sm:py-40">
+    <Container>
+      <div class="max-w-3xl reveal">
+        <p class="eyebrow">Areas of practice</p>
+        <h2 class="display-xl mt-7 text-3xl sm:text-5xl lg:text-[3.5rem]">
+          Two focused services within the practice.
+        </h2>
+        <p class="mt-7 max-w-2xl text-ink-600 text-lg leading-relaxed">
+          Alongside general practice consultations, {site.doctorShortName}
+          offers two further areas of clinical interest. Each has its own
+          dedicated information page, including what to expect, important
+          information, and how to book.
+        </p>
+      </div>
+
+      <div class="mt-20 grid gap-px bg-ink-200/70 border border-ink-200/70 md:grid-cols-3">
+        <a
+          href="/skin-cancer-surgery"
+          class="group block bg-white p-8 sm:p-10 transition-colors hover:bg-paper-soft reveal reveal-delay-1"
+        >
+          <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-400">01</p>
+          <h3 class="mt-5 font-serif text-2xl text-ink-800 leading-tight">
+            Skin cancer<br/>medicine &amp; surgery
+          </h3>
+          <p class="mt-5 text-[15px] leading-relaxed text-ink-600">
+            Full skin examinations supported by dermoscopy, biopsy, surgical
+            excision of skin cancers, cryotherapy, and surveillance for
+            higher-risk patients.
+          </p>
+          <span class="mt-7 inline-flex items-center gap-2 text-[0.92rem] font-medium text-clinic-700">
+            <span class="border-b border-clinic-300 group-hover:border-clinic-700 transition-colors">
+              About skin cancer surgery
+            </span>
+            <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+          </span>
+        </a>
+
+        <a
+          href="/cosmetic-medicine"
+          class="group block bg-white p-8 sm:p-10 transition-colors hover:bg-paper-soft reveal reveal-delay-2"
+        >
+          <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-400">02</p>
+          <h3 class="mt-5 font-serif text-2xl text-ink-800 leading-tight">
+            Cosmetic<br/>medicine
+          </h3>
+          <p class="mt-5 text-[15px] leading-relaxed text-ink-600">
+            A considered, consultation-based approach to non-surgical cosmetic
+            medicine for adult patients &mdash; anti-wrinkle injection
+            treatments and dermal fillers.
+          </p>
+          <span class="mt-7 inline-flex items-center gap-2 text-[0.92rem] font-medium text-clinic-700">
+            <span class="border-b border-clinic-300 group-hover:border-clinic-700 transition-colors">
+              About cosmetic medicine
+            </span>
+            <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+          </span>
+        </a>
+
+        <a
+          href="/laser-medicine"
+          class="group block bg-white p-8 sm:p-10 transition-colors hover:bg-paper-soft reveal reveal-delay-3"
+        >
+          <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-400">03</p>
+          <h3 class="mt-5 font-serif text-2xl text-ink-800 leading-tight">
+            Laser<br/>medicine
+          </h3>
+          <p class="mt-5 text-[15px] leading-relaxed text-ink-600">
+            Consultation-based laser treatments for selected vascular,
+            pigmentary, and skin-rejuvenation concerns &mdash; preceded by
+            assessment of clinical suitability.
+          </p>
+          <span class="mt-7 inline-flex items-center gap-2 text-[0.92rem] font-medium text-clinic-700">
+            <span class="border-b border-clinic-300 group-hover:border-clinic-700 transition-colors">
+              About laser medicine
+            </span>
+            <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+          </span>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <!-- About + Hours -->
+  <section class="bg-paper py-28 sm:py-40">
+    <Container class="grid gap-16 md:grid-cols-12 md:items-start lg:gap-20">
+      <div class="md:col-span-7 reveal">
+        <p class="eyebrow">About the practice</p>
+        <h2 class="display-xl mt-7 text-3xl sm:text-5xl lg:text-[3.25rem] max-w-xl leading-tight">
+          A consultant&rsquo;s approach &mdash; for your family.
+        </h2>
+        <div class="prose-clinic mt-8 max-w-xl text-[17px]">
+          <p>
+            {site.doctorShortName} runs his own independent specialist GP
+            practice. He sees patients with complex, chronic, or undifferentiated
+            presentations &mdash; and coordinates investigations, referrals, and
+            follow-up with the broader care team.
+          </p>
+          <p>
+            Every consultation begins with listening. From there, the work is to
+            think carefully, explain clearly, and put a plan on paper that
+            patients &mdash; and their other treating clinicians &mdash; can act on.
+          </p>
+        </div>
+        <a
+          href="/about"
+          class="group mt-9 inline-flex items-center gap-2 text-[0.95rem] font-medium text-clinic-700"
+        >
+          <span class="border-b border-clinic-300 group-hover:border-clinic-700 transition-colors">
+            About {site.doctorShortName}
+          </span>
+          <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="md:col-span-5 reveal reveal-delay-1">
+        <div class="border border-ink-200/70 bg-white p-8 sm:p-10">
+          <p class="eyebrow">Consulting sessions &mdash; {site.address.suburb}</p>
+          <ul class="mt-7 divide-y divide-ink-100 text-[15px]">
+            {site.hours.map(h => (
+              <li class="flex items-baseline justify-between gap-6 py-3.5">
+                <span class="text-ink-700">{h.day}</span>
+                <span class="text-ink-500 tabular-nums text-right">{h.time}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-7 border-t border-ink-200/70 pt-6 space-y-3">
+            <p class="text-[14px] leading-relaxed text-ink-600">
+              Appointments by booking only. Call
+              <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+              or visit the
+              <a class="link-quiet text-ink-900" href="/contact">contact page</a>.
+            </p>
+            <p class="text-[13px] leading-relaxed text-ink-500">
+              Residential aged-care visits are arranged separately through
+              facility nursing staff.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

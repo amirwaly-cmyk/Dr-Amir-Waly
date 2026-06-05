@@ -1,0 +1,143 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+---
+<BaseLayout
+  title={`Clinical Photography & Imaging Policy — ${site.doctorName}`}
+  description={`How and when clinical photography is used by ${site.doctorName} — particularly in skin cancer medicine and cosmetic medicine. Consent, storage, access, and the strict exclusion of marketing use.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Practice policies', href: '/policies' },
+    { name: 'Clinical Photography', href: '/clinical-photography' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Practice policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Clinical photography &amp; imaging.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Clinical photographs and dermoscopic images are sometimes a useful
+          part of medical care &mdash; particularly in skin cancer medicine
+          and in cosmetic medicine. This policy sets out when images are
+          taken, how consent is obtained, how images are stored, and the
+          strict exclusion of any marketing or advertising use.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">1. When clinical photography is used</h2>
+        <p>
+          {site.doctorName} may take clinical photographs or dermoscopic
+          images as part of your care where they serve a clear clinical
+          purpose. Common examples include:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Dermoscopic images of skin lesions for diagnosis, follow-up, and comparison over time.</li>
+          <li>Clinical photographs of a lesion or area of concern prior to biopsy or excision, so the site can be reliably located later.</li>
+          <li>Photographs of a cosmetic area of concern at the consultation stage, for clinical reference and informed-consent discussion.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">2. Purpose</h2>
+        <p>
+          Images are taken solely for the purposes of your clinical care
+          &mdash; including diagnosis, treatment planning, monitoring of
+          change, surgical site identification, and continuity of care with
+          other treating practitioners. Images form part of your medical
+          record.
+        </p>
+
+        <h2 class="text-2xl pt-6">3. Consent</h2>
+        <p>
+          Verbal consent is obtained before any clinical photograph is
+          taken. You may decline at any time and your care will not be
+          affected. For photographs that will be shared outside the practice
+          (for example, included with a specialist referral or sent for
+          expert opinion), written consent is obtained.
+        </p>
+        <p>
+          For images of intimate areas, a chaperone is offered as a matter
+          of course. You may also request a chaperone for any other clinical
+          examination or photograph.
+        </p>
+
+        <h2 class="text-2xl pt-6">4. Storage and security</h2>
+        <p>
+          Clinical images are stored within the secure electronic medical
+          record system that holds your other clinical information. Access
+          is restricted to {site.doctorShortName} and authorised practice
+          staff who are involved in your care, on a need-to-know basis.
+          Images are not stored on mobile devices except temporarily during
+          transfer to the medical record, after which they are deleted from
+          the device.
+        </p>
+        <p>
+          Image retention follows the same rules as other clinical records
+          &mdash; typically 7 years after the last consultation, or until
+          age 25 for minors, whichever is longer (see the
+          <a href="/privacy">Privacy Policy</a>, section 6).
+        </p>
+
+        <h2 class="text-2xl pt-6">5. Access</h2>
+        <p>
+          You may request access to, or a copy of, any clinical images held
+          on your record at any time, following the process set out in
+          section 7 of the <a href="/privacy">Privacy Policy</a>.
+        </p>
+
+        <h2 class="text-2xl pt-6">6. No marketing or advertising use</h2>
+        <p>
+          Clinical photographs are <strong>never</strong> used by this
+          practice for marketing, advertising, social media, before-and-after
+          galleries, or any other promotional purpose. This is a deliberate
+          policy choice consistent with section 133 of the Health Practitioner
+          Regulation National Law and the Medical Board of Australia&rsquo;s
+          2023 cosmetic procedures guidelines, which restrict the use of
+          patient imagery in the advertising of regulated health services
+          (and specifically in cosmetic medicine).
+        </p>
+
+        <h2 class="text-2xl pt-6">7. Sharing with other clinicians</h2>
+        <p>
+          With your written consent, an image may be shared with another
+          treating clinician (for example, a dermatologist, plastic surgeon,
+          or pathologist) where doing so will assist your care. Sharing is
+          done by secure clinical channels and the image is added to the
+          receiving clinician&rsquo;s record.
+        </p>
+
+        <h2 class="text-2xl pt-6">8. Withdrawal of consent and deletion</h2>
+        <p>
+          You may withdraw your consent for the retention of clinical
+          images at any time. Where you ask for an image to be removed
+          from your record, {site.doctorShortName} will discuss with you
+          whether retention is required for ongoing clinical safety (for
+          example, identifying a biopsy site for a future review). Where
+          retention is not clinically required, the image will be removed
+          and a note made in your record.
+        </p>
+
+        <h2 class="text-2xl pt-6">9. Photographs by patients</h2>
+        <p>
+          You are welcome to take photographs of your own skin, lesion, or
+          area of concern before your appointment if you find this useful.
+          Please do not photograph other patients, staff, or the consulting
+          rooms without explicit permission.
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

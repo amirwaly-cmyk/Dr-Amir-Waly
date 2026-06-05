@@ -1,0 +1,227 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '5 June 2026';
+
+const sections = [
+  { id: 'about-this-practice', title: 'About this practice' },
+  { id: 'what-information', title: 'What information we collect' },
+  { id: 'how-we-collect', title: 'How we collect information' },
+  { id: 'why-we-collect', title: 'Why we collect it' },
+  { id: 'who-we-share', title: 'Who we share information with' },
+  { id: 'storage-security', title: 'Storage and security' },
+  { id: 'access-correction', title: 'Accessing and correcting your information' },
+  { id: 'contact-form', title: 'Website contact form' },
+  { id: 'analytics', title: 'Website analytics' },
+  { id: 'overseas', title: 'Overseas disclosure' },
+  { id: 'complaints', title: 'Making a complaint' },
+  { id: 'updates', title: 'Updates' },
+  { id: 'contact', title: 'Contact' },
+];
+---
+<BaseLayout
+  title={`Privacy Policy — ${site.doctorName}`}
+  description={`Privacy policy for ${site.doctorName}'s independent specialist GP practice — how personal and health information is collected, held, used, and disclosed under the Privacy Act 1988 (Cth) and the Australian Privacy Principles.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Privacy Policy', href: '/privacy' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Privacy policy</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-3xl">
+          How we handle your information.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          This privacy policy describes how {site.doctorName} collects, holds,
+          uses, and discloses personal and health information. It is published
+          in accordance with the <em>Privacy Act 1988</em> (Cth) and the
+          Australian Privacy Principles (APPs).
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Last updated: <span class="tabular-nums">{lastUpdated}</span>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <aside class="lg:col-span-3 lg:col-start-10 lg:order-2">
+        <TableOfContents sections={sections} />
+      </aside>
+
+      <div class="lg:col-span-8 lg:order-1">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 id="about-this-practice" class="text-2xl scroll-mt-32">1. About this practice</h2>
+        <p>
+          This website and practice are operated by {site.doctorName}
+          ({site.qualifications}), an independent specialist general
+          practitioner, through <strong>{site.business.name}</strong> (ABN
+          <span class="tabular-nums">{site.abn}</span>), the practice&rsquo;s
+          registered business entity. The registered office is at
+          {site.business.address.line1}, {site.business.address.line2},
+          {site.business.address.suburb}&nbsp;{site.business.address.state}
+          {site.business.address.postcode}. {site.doctorShortName}&rsquo;s
+          AHPRA registration is <span class="tabular-nums">{site.ahpraNumber}</span>.
+        </p>
+        <p>
+          Patient-facing consulting takes place at {site.clinicName} in
+          {site.address.suburb}, and at the other engagements described on
+          the <a href="/about">About</a> page. Written correspondence about
+          this practice can be sent to either the registered business office
+          above or to reception at {site.clinicName}.
+        </p>
+        <p>
+          Throughout this policy, &ldquo;the practice&rdquo; refers to
+          {site.doctorName}&rsquo;s independent specialist GP practice.
+          {site.clinicName} provides reception, nursing, billing, and
+          facility services to the practice under a standard services
+          arrangement; however, clinical records and the patient relationship
+          remain the responsibility of {site.doctorShortName}.
+        </p>
+
+        <h2 id="what-information" class="text-2xl pt-6 scroll-mt-32">2. What information we collect</h2>
+        <p>
+          The practice collects personal and health information that is
+          reasonably necessary to provide medical care. This typically includes:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>identifying information (name, date of birth, address, contact details, Medicare and concession card numbers);</li>
+          <li>health information (medical history, current concerns, medications, allergies, family history);</li>
+          <li>consultation records, investigation results, imaging, and correspondence with other treating practitioners;</li>
+          <li>information you provide via the website contact form (name, email, phone, message);</li>
+          <li>limited technical information your browser sends when you visit this website (e.g. IP address, browser type) — see &ldquo;Website analytics&rdquo; below.</li>
+        </ul>
+
+        <h2 id="how-we-collect" class="text-2xl pt-6 scroll-mt-32">3. How we collect information</h2>
+        <p>
+          Personal and health information is generally collected directly from
+          you &mdash; in writing, in conversation, or through forms (paper or
+          electronic). It may also be collected from a person you authorise to
+          act on your behalf, from referring practitioners, or from health
+          services involved in your care.
+        </p>
+
+        <h2 id="why-we-collect" class="text-2xl pt-6 scroll-mt-32">4. Why we collect it</h2>
+        <p>
+          The practice collects, holds, and uses your information for the
+          purposes of:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>providing you with clinical care, including consultations, procedures, investigations, and follow-up;</li>
+          <li>communicating with other practitioners involved in your care (with your consent);</li>
+          <li>billing, Medicare and health-fund claiming, and managing accounts;</li>
+          <li>responding to your enquiries;</li>
+          <li>meeting legal and professional obligations (including AHPRA, Medical Board of Australia, and notifiable disease reporting where required by law).</li>
+        </ul>
+
+        <h2 id="who-we-share" class="text-2xl pt-6 scroll-mt-32">5. Who we share information with</h2>
+        <p>
+          Your information may be shared with:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>other treating practitioners and health services involved in your care, with your consent;</li>
+          <li>administrative and clinical staff of {site.clinicName} who support the practice (under appropriate confidentiality obligations);</li>
+          <li>pathology, radiology, and other diagnostic providers, where required for your investigations;</li>
+          <li>Medicare, private health insurers, and the Department of Veterans&rsquo; Affairs, for billing where applicable;</li>
+          <li>government bodies, regulators, and courts where disclosure is required or authorised by law (for example, mandatory notification or response to a subpoena).</li>
+        </ul>
+        <p>
+          The practice does not disclose your information for direct marketing,
+          and does not sell or rent your information.
+        </p>
+
+        <h2 id="storage-security" class="text-2xl pt-6 scroll-mt-32">6. Storage and security</h2>
+        <p>
+          Clinical records are stored in a secure electronic medical record
+          system maintained on the practice&rsquo;s behalf at {site.clinicName}.
+          Reasonable steps are taken to protect your information from misuse,
+          loss, unauthorised access, modification, and disclosure &mdash;
+          including access controls, audit logging, secure backups, and
+          confidentiality agreements with all personnel.
+        </p>
+        <p>
+          Records are retained in accordance with Western Australian and
+          Commonwealth requirements for medical records (typically 7 years
+          after the last consultation, or until age 25 for minors, whichever
+          is longer).
+        </p>
+
+        <h2 id="access-correction" class="text-2xl pt-6 scroll-mt-32">7. Accessing and correcting your information</h2>
+        <p>
+          You may request access to, or correction of, the personal and health
+          information the practice holds about you. Requests should be made
+          in writing to reception at {site.clinicName}, or via the
+          <a href="/contact">contact page</a>. Reasonable steps will be taken
+          to confirm your identity before granting access. A fee may apply for
+          the time and materials involved in providing copies of records.
+        </p>
+
+        <h2 id="contact-form" class="text-2xl pt-6 scroll-mt-32">8. Website contact form</h2>
+        <p>
+          The contact form on this website transmits the information you
+          provide (name, email, phone, subject, message) to the practice by
+          email via Netlify Forms (form-processing infrastructure used by this
+          website). Please do not include sensitive clinical, financial, or
+          identity information in the contact form. Use the form only for
+          non-clinical enquiries.
+        </p>
+
+        <h2 id="analytics" class="text-2xl pt-6 scroll-mt-32">9. Website analytics</h2>
+        <p>
+          [Placeholder: state whether any analytics tools are used. If none
+          are in use, the recommended wording is: &ldquo;This website does not
+          currently use analytics, advertising, or third-party tracking
+          cookies. Limited technical information (such as IP address and
+          browser type) may be retained briefly by the website&rsquo;s
+          hosting provider for security and operational purposes.&rdquo;]
+        </p>
+
+        <h2 id="overseas" class="text-2xl pt-6 scroll-mt-32">10. Overseas disclosure</h2>
+        <p>
+          The website&rsquo;s hosting and form-processing infrastructure
+          (Netlify) may store technical data on servers located outside
+          Australia. No clinical or health information is sent overseas in the
+          ordinary course of providing care.
+        </p>
+
+        <h2 id="complaints" class="text-2xl pt-6 scroll-mt-32">11. Making a complaint</h2>
+        <p>
+          If you believe your privacy has been breached, please contact
+          reception at {site.clinicName} in the first instance and ask for
+          your concern to be referred to {site.doctorShortName}. Complaints
+          are taken seriously and responded to promptly.
+        </p>
+        <p>
+          If you are not satisfied with the response, you may contact the
+          Office of the Australian Information Commissioner (OAIC) at
+          <a href="https://www.oaic.gov.au" rel="noopener noreferrer" target="_blank">www.oaic.gov.au</a>,
+          or by phone on <span class="tabular-nums">1300 363 992</span>.
+        </p>
+
+        <h2 id="updates" class="text-2xl pt-6 scroll-mt-32">12. Updates</h2>
+        <p>
+          This policy may be updated from time to time. The current version,
+          and the date it was last updated, will always appear at the top of
+          this page.
+        </p>
+
+        <h2 id="contact" class="text-2xl pt-6 scroll-mt-32">13. Contact</h2>
+        <p>
+          For any privacy-related question, please contact reception on
+          <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>
+          and ask to speak with {site.doctorShortName}, or use the
+          <a class="link-quiet text-ink-900" href="/contact">contact page</a>.
+        </p>
+      </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

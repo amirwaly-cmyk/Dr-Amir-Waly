@@ -1,0 +1,307 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const services = [
+  {
+    title: 'Laser consultation',
+    body: 'An initial consultation to assess the area of concern, review your medical and medication history, discuss whether laser is the most appropriate treatment, and outline expected outcomes, the number of sessions likely required, recovery, and cost.',
+  },
+  {
+    title: 'Vascular laser treatments',
+    body: 'Treatment of visible vascular concerns &mdash; broken capillaries, facial redness, and selected other vascular skin lesions &mdash; using vascular-targeted laser, where clinically appropriate.',
+  },
+  {
+    title: 'Pigmentation treatments',
+    body: 'Treatment of sun-related pigmentation such as solar lentigines and other selected benign pigmentary concerns, following assessment of suitability.',
+  },
+  {
+    title: 'Skin rejuvenation',
+    body: 'Photorejuvenation and selected resurfacing treatments for the management of sun-damaged skin and the visible signs of photoageing.',
+  },
+  {
+    title: 'Onward referral',
+    body: 'Referral to a dermatologist, plastic surgeon, or other appropriately qualified colleague where the proposed treatment is outside the scope of this practice or a different modality is preferable.',
+  },
+];
+---
+<BaseLayout
+  title={`Laser Medicine in ${site.address.suburb} — Dr Amir Waly`}
+  description={`Consultation-based laser medicine in ${site.address.suburb}, Perth — vascular laser, pigmentation treatments, and skin rejuvenation. 7-day cooling-off period for cosmetic indications. ${site.doctorName}.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Laser Medicine', href: '/laser-medicine' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Area of practice</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-3xl">
+          Laser medicine.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Consultation-based laser treatments for selected vascular,
+          pigmentary, and skin-rejuvenation concerns. Every treatment is
+          preceded by an assessment of clinical suitability, expected
+          outcomes, costs, and risks.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- About -->
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-7 md:col-start-2">
+        <div class="prose-clinic max-w-2xl text-ink-700">
+          <p class="text-lg">
+            Laser treatments can address a range of skin concerns &mdash;
+            some of them cosmetic, some of them medical. Before any
+            treatment is recommended, {site.doctorShortName} will take time
+            to assess the area of concern, review your medical and medication
+            history, and discuss whether laser is the most appropriate
+            option for you.
+          </p>
+          <p>
+            Laser results vary between individuals and typically depend on
+            skin type, the nature of the concern, the number of sessions,
+            and post-treatment care. Where a procedure is clinically
+            appropriate, you will be provided with clear written information
+            covering what is involved, expected outcomes, possible risks and
+            side effects, recovery time, and the total cost.
+          </p>
+          <p>
+            Where laser is not the most appropriate option &mdash; or where
+            the concern is better addressed by a dermatologist, plastic
+            surgeon, or other specialist &mdash; {site.doctorShortName}
+            will refer you to an appropriately qualified colleague.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Services offered -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20 sm:py-24">
+    <Container>
+      <p class="eyebrow">What is offered</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl max-w-2xl">
+        Services within this area of practice.
+      </h2>
+
+      <ul class="mt-14 grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
+        {services.map((s, i) => (
+          <li class="bg-white p-8 sm:p-10">
+            <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-4 font-serif text-xl text-ink-900 leading-snug">{s.title}</h3>
+            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600">{s.body}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <!-- What to expect -->
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-7 md:col-start-2">
+        <p class="eyebrow">What to expect</p>
+        <h2 class="display mt-5 text-3xl sm:text-4xl">
+          Consultation first, then a written plan.
+        </h2>
+
+        <ol class="mt-12 space-y-10">
+          <li class="grid grid-cols-12 gap-6">
+            <span class="numeral col-span-2 text-2xl">01</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Consultation</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                A separate consultation is required before any laser
+                treatment. We will discuss your concerns, your medical
+                history, relevant medications and skin type, your goals,
+                and whether the proposed treatment is clinically suitable.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">02</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Written information &amp; cooling-off period</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                You will be given written information about the proposed
+                treatment, its benefits, risks, side effects, recovery, and
+                total cost. For cosmetic indications, a minimum seven-day
+                cooling-off period applies between the consultation and any
+                treatment, in line with current Medical Board of Australia
+                guidelines.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">03</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Treatment</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                If you choose to proceed and remain clinically suitable, the
+                treatment is performed in the clinic. Informed consent is
+                confirmed in writing before any procedure. Most laser
+                treatments require more than one session for the intended
+                result.
+              </p>
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-6 border-t border-ink-100 pt-10">
+            <span class="numeral col-span-2 text-2xl">04</span>
+            <div class="col-span-10">
+              <h3 class="font-serif text-lg text-ink-900">Review</h3>
+              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-600">
+                A review appointment is offered to assess response to
+                treatment and plan further sessions where indicated. You
+                will be given clear instructions for post-treatment skin
+                care, sun protection, and how to seek help if you
+                experience an unexpected reaction.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Practice policy -->
+  <section class="border-t border-ink-100 bg-paper py-20 sm:py-24">
+    <Container size="narrow">
+      <p class="eyebrow">Practice policy</p>
+      <h2 class="display mt-5 text-3xl sm:text-4xl">
+        How laser treatments are provided.
+      </h2>
+      <p class="mt-6 text-ink-600 leading-relaxed">
+        The standing policies below apply to every laser consultation and
+        procedure offered. Where the indication is cosmetic, the policies
+        also reflect the Medical Board of Australia&rsquo;s
+        <em>Guidelines for registered medical practitioners who perform
+        cosmetic medical and surgical procedures</em>.
+      </p>
+
+      <dl class="mt-12 border-t border-ink-200/70">
+        {[
+          {
+            t: 'Consultation first',
+            d: 'No laser treatment is performed at the first visit. A separate consultation is required to assess clinical suitability, discuss risks and expected outcomes, and provide written information.',
+          },
+          {
+            t: 'Cooling-off period (cosmetic indications)',
+            d: 'A minimum cooling-off period of seven days applies between the consultation and any laser procedure performed for cosmetic indications, in line with current Medical Board of Australia guidelines.',
+          },
+          {
+            t: 'Informed consent',
+            d: 'Written informed consent is required before any laser procedure. Consent is freely given, and may be withdrawn at any time without affecting your ongoing care.',
+          },
+          {
+            t: 'Suitability and right to decline',
+            d: 'Treatment will not be offered where it is not in your clinical interest. If the practice declines to perform a procedure, the reasons will be explained, and reasonable alternatives discussed.',
+          },
+          {
+            t: 'Risks and variation in outcomes',
+            d: 'All laser procedures carry risks, including pain, redness, swelling, blistering, pigment change, scarring, and incomplete response. Results vary between individuals; no particular outcome can be guaranteed.',
+          },
+          {
+            t: 'Number of sessions',
+            d: 'Most laser treatments require more than one session for the intended result. The expected number of sessions, the interval between them, and the total expected cost are discussed before any treatment is agreed.',
+          },
+          {
+            t: 'Costs and Medicare',
+            d: 'Laser treatments performed for purely cosmetic indications are not eligible for a Medicare rebate. For selected medical indications (for example, certain vascular birthmarks), a Medicare rebate may apply &mdash; reception can advise. Fees are discussed and agreed in writing before any treatment.',
+          },
+          {
+            t: 'Patients under 18',
+            d: 'Laser treatments performed for cosmetic indications are generally not appropriate for patients under 18 years of age. Where any consideration of treatment for a young person arises, additional safeguards apply &mdash; including a minimum seven-day cooling-off period, a separate evaluation by a registered psychologist, general practitioner, or psychiatrist independent of this practice, and full parental involvement.',
+          },
+          {
+            t: 'Aftercare and adverse events',
+            d: 'Clear written aftercare instructions are provided after every laser treatment, including sun protection requirements. You will be told how to seek help if you experience an unexpected reaction. In a medical emergency call 000.',
+          },
+          {
+            t: 'Advertising and confidentiality',
+            d: 'In line with AHPRA and TGA requirements, this practice does not publish patient testimonials, before-and-after imagery, or branded product names in the advertising of regulated health services. Your privacy is protected at all times.',
+          },
+        ].map((p, i) => (
+          <div class="grid grid-cols-12 gap-4 sm:gap-8 border-b border-ink-100 py-7">
+            <dt class="col-span-12 md:col-span-5">
+              <span class="numeral text-xs tabular-nums text-ink-500">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="mt-2 block font-serif text-lg text-ink-900 leading-snug">
+                {p.t}
+              </span>
+            </dt>
+            <dd class="col-span-12 md:col-span-7 text-[15.5px] leading-relaxed text-ink-700">
+              {p.d}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </Container>
+  </section>
+
+  <!-- Patient documents -->
+  <section class="border-t border-ink-100 bg-paper-soft py-20">
+    <Container size="narrow">
+      <p class="eyebrow">Patient documents</p>
+      <h2 class="display mt-5 text-2xl sm:text-3xl">
+        Information to read before your appointment.
+      </h2>
+      <p class="mt-5 text-ink-600 leading-relaxed">
+        We encourage you to read the patient information leaflet before
+        your consultation. A printed copy is also available at reception.
+      </p>
+
+      <a
+        href="/documents/laser-medicine-information.pdf"
+        download
+        class="group mt-9 flex items-start gap-5 border border-ink-200/70 bg-white p-6 transition-colors hover:border-clinic-700"
+      >
+        <span
+          aria-hidden="true"
+          class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center border border-ink-200/70 text-clinic-700 group-hover:border-clinic-700"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-5z" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="flex-1">
+          <span class="block font-serif text-lg text-ink-900">
+            Laser medicine &mdash; patient information
+          </span>
+          <span class="mt-1 block text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+            PDF &middot; 1 page
+          </span>
+        </span>
+        <span aria-hidden="true" class="mt-2 text-ink-400 transition-transform group-hover:translate-y-0.5 group-hover:text-clinic-700">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 4v14m0 0l-5-5m5 5l5-5M5 20h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-ink-100 bg-white py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href={site.bookingUrl}
+        class="inline-flex items-center rounded-sm bg-clinic-800 px-6 py-3.5 text-[0.85rem] font-medium tracking-wide text-white transition-colors hover:bg-clinic-900"
+      >
+        Book a laser consultation
+      </a>
+      <p class="mt-5 text-[14px] text-ink-500">
+        Or call reception on
+        <a class="link-quiet text-ink-700 tabular-nums" href={site.phoneHref}>{site.phone}</a>.
+      </p>
+    </Container>
+  </section>
+</BaseLayout>
