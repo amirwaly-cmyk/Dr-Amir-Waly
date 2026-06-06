@@ -69,13 +69,15 @@ const hasEmail = !site.email.startsWith('[');
             <span class="text-ink-500">F</span>
             <span class="ml-2 tabular-nums">{site.fax}</span>
           </li>
-          {hasEmail && (
-            <li>
-              <span class="text-ink-500">E</span>
-              <a class="link-quiet ml-2" href={site.emailHref}>{site.email}</a>
-            </li>
-          )}
         </ul>
+        {hasEmail && (
+          <p class="mt-4 text-[12px] leading-relaxed text-ink-500 max-w-xs">
+            For administrative or non-clinical correspondence (not patient
+            consultations), email
+            <a class="link-quiet text-ink-700 break-all" href={site.emailHref}>{site.email}</a>
+            &mdash; the office address of {site.business.name}.
+          </p>
+        )}
         <p class="mt-4 text-[12px] leading-relaxed text-ink-500 max-w-xs">
           Other engagements (aged-care visits, Healthdirect telehealth,
           urgent care clinics, medtech advisory) are arranged through those

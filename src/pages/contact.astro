@@ -95,14 +95,37 @@ const hasEmail = !site.email.startsWith('[');
               <dt class="col-span-3 text-ink-500">Fax</dt>
               <dd class="col-span-9 text-ink-800 tabular-nums">{site.fax}</dd>
             </div>
-            {hasEmail && (
+          </dl>
+        </article>
+
+        {hasEmail && (
+          <article class="border-t border-ink-200/70 pt-10">
+            <p class="eyebrow">Business correspondence</p>
+            <p class="mt-4 text-[14px] leading-relaxed text-ink-500">
+              Administrative, legal, and other non-clinical correspondence
+              for the practice&rsquo;s registered business entity,
+              {site.business.name}.
+            </p>
+            <dl class="mt-4 divide-y divide-ink-100 text-[15.5px]">
               <div class="grid grid-cols-12 gap-4 py-3">
                 <dt class="col-span-3 text-ink-500">Email</dt>
                 <dd class="col-span-9"><a class="link-quiet text-ink-900" href={site.emailHref}>{site.email}</a></dd>
               </div>
-            )}
-          </dl>
-        </article>
+              <div class="grid grid-cols-12 gap-4 py-3">
+                <dt class="col-span-3 text-ink-500">Office</dt>
+                <dd class="col-span-9 text-ink-800">
+                  {site.business.address.line1}, {site.business.address.line2}<br/>
+                  {site.business.address.suburb} {site.business.address.state} {site.business.address.postcode}
+                </dd>
+              </div>
+            </dl>
+            <p class="mt-4 text-[13px] leading-relaxed text-ink-500">
+              Please do not use this email for clinical matters, appointments,
+              prescriptions, or test results &mdash; see the appointment
+              channels above instead.
+            </p>
+          </article>
+        )}
 
         <article class="border-t border-ink-200/70 pt-10">
           <p class="eyebrow">Consulting sessions &mdash; {site.address.suburb}</p>
