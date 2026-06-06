@@ -9,8 +9,15 @@ const hasEmail = !site.email.startsWith('[');
 <footer class="mt-28 border-t border-ink-100 bg-paper-soft">
   <Container class="py-16">
     <div class="grid gap-12 md:grid-cols-12">
+
+      <!-- ============================================================ -->
+      <!-- COLUMN 1 — The practitioner                                  -->
+      <!-- ============================================================ -->
       <div class="md:col-span-5">
-        <p class="font-serif text-2xl font-medium tracking-tight text-clinic-800">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+          The practitioner
+        </p>
+        <p class="mt-4 font-serif text-2xl font-medium tracking-tight text-clinic-800">
           {site.doctorName}
         </p>
         <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
@@ -18,76 +25,89 @@ const hasEmail = !site.email.startsWith('[');
         </p>
         <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-ink-600">
           {site.practiceDescriptor}, providing consultancy services to
-          medical centres (including {site.clinicName} in {site.address.suburb})
-          and urgent care clinics, national telehealth services such as
-          Healthdirect, on-site care to residents of selected residential
-          aged-care facilities, advisory roles with medical technology
-          startups, and involvement in Level 3 supervision of International
-          Medical Graduates.
+          medical centres and urgent care clinics, national telehealth
+          services such as Healthdirect, on-site care to residents of
+          selected residential aged-care facilities, advisory roles with
+          medical technology startups, and involvement in Level 3
+          supervision of International Medical Graduates.
         </p>
-        <dl class="mt-6 max-w-sm grid grid-cols-12 gap-x-4 gap-y-1.5 text-[13px] text-ink-500">
-          <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">Operator</dt>
-          <dd class="col-span-9 text-ink-700">{site.business.name}</dd>
+        <ul class="mt-7 flex flex-wrap gap-x-5 gap-y-1">
+          <li><a class="link-quiet text-[13px]" href="/insights">Insights</a></li>
+          <li><a class="link-quiet text-[13px]" href="/faqs">FAQs</a></li>
+          <li><a class="link-quiet text-[13px]" href="/policies">Practice policies</a></li>
+        </ul>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- COLUMN 2 — Consulting venue (one of several)                 -->
+      <!-- ============================================================ -->
+      <div class="md:col-span-3 md:border-l md:border-ink-200/70 md:pl-8">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+          Consulting venue &mdash; {site.address.suburb}
+        </p>
+        <p class="mt-4 font-serif text-[17px] leading-snug text-ink-900">
+          {site.clinicName}
+        </p>
+        <address class="not-italic mt-2 text-[14.5px] leading-relaxed text-ink-700">
+          <div>{site.address.line1}</div>
+          {site.address.line2 && <div>{site.address.line2}</div>}
+          <div>{site.address.suburb}, {site.address.state} {site.address.postcode}</div>
+        </address>
+        <ul class="mt-4 space-y-1 text-[14.5px] text-ink-700">
+          <li>
+            <span class="text-[11px] uppercase tracking-[0.18em] text-ink-400 mr-2">Phone</span>
+            <a class="link-quiet tabular-nums" href={site.phoneHref}>{site.phone}</a>
+          </li>
+          <li>
+            <span class="text-[11px] uppercase tracking-[0.18em] text-ink-400 mr-2">Fax</span>
+            <span class="tabular-nums">{site.fax}</span>
+          </li>
+        </ul>
+        <p class="mt-4 text-[12px] leading-relaxed text-ink-500 max-w-xs">
+          One of {site.doctorShortName}&rsquo;s consulting venues.
+          Other engagements (telehealth via Healthdirect, urgent care
+          clinics, residential aged-care visits, medtech advisory) are
+          arranged through those services directly &mdash; see the
+          <a class="link-quiet text-ink-700" href="/about">About page</a>.
+        </p>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- COLUMN 3 — Registered business entity                        -->
+      <!-- ============================================================ -->
+      <div class="md:col-span-4 md:border-l md:border-ink-200/70 md:pl-8">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+          Registered business
+        </p>
+        <p class="mt-4 font-serif text-[17px] leading-snug text-ink-900">
+          {site.business.name}
+        </p>
+        <dl class="mt-3 grid grid-cols-12 gap-x-4 gap-y-1.5 text-[14px] text-ink-500 max-w-sm">
           <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">ABN</dt>
           <dd class="col-span-9 text-ink-700 tabular-nums">{site.abn}</dd>
           <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">AHPRA</dt>
           <dd class="col-span-9 text-ink-700 tabular-nums">{site.ahpraNumber}</dd>
           <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">Office</dt>
-          <dd class="col-span-9 text-ink-700">
+          <dd class="col-span-9 text-ink-700 leading-snug">
             {site.business.address.line1}, {site.business.address.line2},<br/>
             {site.business.address.suburb} {site.business.address.state} {site.business.address.postcode}
           </dd>
+          {hasEmail && (
+            <>
+              <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">Email</dt>
+              <dd class="col-span-9">
+                <a class="link-quiet text-ink-700 break-all" href={site.emailHref}>{site.email}</a>
+              </dd>
+            </>
+          )}
         </dl>
-        <p class="mt-2 text-[11px] text-ink-400 max-w-sm">
-          Registered business office &mdash; not a patient-visit location.
-        </p>
-      </div>
-
-      <div class="md:col-span-3 md:border-l md:border-ink-200/70 md:pl-8">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">Clinic</p>
-        <address class="not-italic mt-4 text-[15px] leading-relaxed text-ink-700">
-          <div class="font-medium text-ink-900">{site.clinicName}</div>
-          <div>{site.address.line1}</div>
-          {site.address.line2 && <div>{site.address.line2}</div>}
-          <div>{site.address.suburb}, {site.address.state} {site.address.postcode}</div>
-        </address>
-      </div>
-
-      <div class="md:col-span-4 md:border-l md:border-ink-200/70 md:pl-8">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">
-          Reception &mdash; {site.address.suburb}
-        </p>
-        <p class="mt-2 text-[12px] leading-relaxed text-ink-500 max-w-xs">
-          For Dr Waly&rsquo;s consulting sessions at {site.clinicName} only.
-        </p>
-        <ul class="mt-4 space-y-1.5 text-[15px] text-ink-700">
-          <li>
-            <span class="text-ink-500 tabular-nums">P</span>
-            <a class="link-quiet ml-2" href={site.phoneHref}>{site.phone}</a>
-          </li>
-          <li>
-            <span class="text-ink-500">F</span>
-            <span class="ml-2 tabular-nums">{site.fax}</span>
-          </li>
-        </ul>
-        {hasEmail && (
-          <p class="mt-4 text-[12px] leading-relaxed text-ink-500 max-w-xs">
-            For administrative or non-clinical correspondence (not patient
-            consultations), email
-            <a class="link-quiet text-ink-700 break-all" href={site.emailHref}>{site.email}</a>
-            &mdash; the office address of {site.business.name}.
-          </p>
-        )}
         <p class="mt-4 text-[12px] leading-relaxed text-ink-500 max-w-xs">
-          Other engagements (aged-care visits, Healthdirect telehealth,
-          urgent care clinics, medtech advisory) are arranged through those
-          services directly. See the <a class="link-quiet text-ink-700" href="/about">About page</a>.
+          Registered business entity through which the practice operates.
+          The office address is not a patient-visit location, and the
+          email is for administrative or non-clinical correspondence only
+          &mdash; not for appointments, clinical questions, prescriptions,
+          or results.
         </p>
-        <ul class="mt-5 flex flex-wrap gap-x-5 gap-y-1">
-          <li><a class="link-quiet text-[13px]" href="/insights">Insights</a></li>
-          <li><a class="link-quiet text-[13px]" href="/faqs">FAQs</a></li>
-          <li><a class="link-quiet text-[13px]" href="/policies">Practice policies</a></li>
-        </ul>
       </div>
     </div>
 
