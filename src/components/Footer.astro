@@ -92,6 +92,10 @@ const hasEmail = !site.email.startsWith('[');
             {site.business.address.line1}, {site.business.address.line2},<br/>
             {site.business.address.suburb} {site.business.address.state} {site.business.address.postcode}
           </dd>
+          <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">Phone</dt>
+          <dd class="col-span-9">
+            <a class="link-quiet text-ink-700 tabular-nums" href={site.business.phoneHref}>{site.business.phone}</a>
+          </dd>
           {hasEmail && (
             <>
               <dt class="col-span-3 uppercase tracking-[0.18em] text-[10px] font-semibold text-ink-400 pt-0.5">Email</dt>

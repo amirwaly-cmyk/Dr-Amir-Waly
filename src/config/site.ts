@@ -23,6 +23,8 @@ export const site = {
   // Patient consulting venues are listed separately (see `address` below).
   business: {
     name: 'Draw Group Pty Ltd',
+    phone: '(08) 6245 7975',
+    phoneHref: 'tel:+61862457975',
     address: {
       line1: 'Suite 413',
       line2: '85 Whatley Crescent',
