@@ -1,0 +1,16 @@
+# Security vulnerability disclosure for dramirwaly.com.au
+# Operated by Draw Group Pty Ltd (ABN 40 630 049 599)
+
+Contact: mailto:contact@drawgroup.com.au
+Expires: 2027-06-06T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://dramirwaly.com.au/.well-known/security.txt
+
+# If you believe you have found a security vulnerability affecting this
+# site, please report it to the contact address above. We will acknowledge
+# receipt within five business days and aim to provide a substantive
+# response within twenty business days.
+#
+# Please do not include patient information or other sensitive content
+# in your initial report. We will arrange a secure channel for any
+# follow-up that requires it.

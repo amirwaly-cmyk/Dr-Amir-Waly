@@ -5,15 +5,52 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# =============================================================================
+# Security headers — applied to every response
+# =============================================================================
 [[headers]]
   for = "/*"
   [headers.values]
+    # Force HTTPS for two years across all subdomains, eligible for the
+    # HSTS preload list (submit at https://hstspreload.org once deployed).
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+    # Content Security Policy — restricts what the browser is allowed to
+    # load. Allowlists below reflect the only third-parties this site uses:
+    #   - plausible.io           — analytics
+    #   - fonts.googleapis.com   — Google Fonts CSS
+    #   - fonts.gstatic.com      — Google Fonts files
+    #   - www.google.com         — Google Maps iframe on /contact
+    # 'unsafe-inline' is required for Astro's inlined JSON-LD scripts and
+    # Tailwind's component-injected styles. This is a pragmatic trade-off
+    # for a static site with no user-generated content.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://plausible.io; frame-src https://www.google.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none'; media-src 'none'; upgrade-insecure-requests"
+
+    # Defence-in-depth headers
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()"
 
+    # Cross-origin isolation — opens fewer doors for cross-origin attacks
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "cross-origin"
+
+# Long cache on hashed Astro assets
 [[headers]]
-  for = "/assets/*"
+  for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# OG image and other public images can be embedded by social platforms,
+# so allow cross-origin access explicitly
+[[headers]]
+  for = "/og-image.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# security.txt should be served as text/plain for clients that fetch it
+[[headers]]
+  for = "/.well-known/security.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"

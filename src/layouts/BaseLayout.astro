@@ -40,8 +40,18 @@ const plausibleEnabled = site.analytics.plausibleEnabled;
     <ClientRouter />
     {plausibleEnabled && (
       <>
-        {/* Privacy-friendly analytics by Plausible */}
-        <script async is:inline src="https://plausible.io/js/pa-DMhWriKclqnInTMr6YqgU.js"></script>
+        {/* Privacy-friendly analytics by Plausible.
+            SRI integrity hash pins the script content — if the served
+            file ever changes (e.g. CDN compromise), the browser will
+            refuse to execute it. Hash needs to be regenerated whenever
+            Plausible legitimately updates the tracker. */}
+        <script
+          async
+          is:inline
+          src="https://plausible.io/js/pa-DMhWriKclqnInTMr6YqgU.js"
+          integrity="sha384-YEXihzUZQR/E78WHG85+T8MgyoL1SQdAJqrMbxJyjsB3l50zeLIxs4yxh0G6muh5"
+          crossorigin="anonymous"
+        ></script>
         <script is:inline>
           window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
           plausible.init()
