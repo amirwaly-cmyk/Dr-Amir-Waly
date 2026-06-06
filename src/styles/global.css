@@ -83,6 +83,12 @@ dd {
 .prose-clinic {
   font-size: 1.0625rem;
   line-height: 1.78;
+  /* Oldstyle, proportional figures in body prose — the editorial touch.
+     Tabular contexts override locally via .tabular-nums. */
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  /* Hanging punctuation — quotes and dashes hang slightly into the
+     margin so the text edge is visually flush. */
+  hanging-punctuation: first last;
 }
 .prose-clinic p + p { margin-top: 1.1em; }
 .prose-clinic h2 {
@@ -90,6 +96,9 @@ dd {
   font-weight: 500;
   letter-spacing: -0.012em;
   color: var(--color-ink-800);
+  /* H2s keep lining figures so any numerals inside (e.g. policy item 5)
+     remain uniform-height. */
+  font-variant-numeric: lining-nums;
 }
 .prose-clinic a {
   color: var(--color-clinic-600);
@@ -99,6 +108,38 @@ dd {
   transition: color .15s ease;
 }
 .prose-clinic a:hover { color: var(--color-clinic-700); }
+/* Italic emphasis as editorial tool — Spectral's italic is genuinely
+   beautiful and pairs better with prose than bold. */
+.prose-clinic em {
+  font-style: italic;
+  font-feature-settings: "kern", "liga", "dlig";
+  color: var(--color-ink-800);
+}
+
+/* =====================================================================
+   Pull quote — lifted editorial sentence within long-form prose
+   ===================================================================== */
+.pull-quote {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  letter-spacing: -0.008em;
+  color: var(--color-ink-800);
+  margin: 2.5rem 0 2.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--color-accent);
+  max-width: 32rem;
+  hanging-punctuation: first;
+}
+@media (min-width: 640px) {
+  .pull-quote {
+    font-size: 1.8rem;
+    margin: 3rem 0 3rem -1.25rem;
+  }
+}
 
 /* =====================================================================
    Editorial utilities

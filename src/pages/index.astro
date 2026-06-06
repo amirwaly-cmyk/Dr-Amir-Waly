@@ -111,15 +111,18 @@ const credentials = site.qualifications.split(',').map(s => s.trim());
     </Container>
   </section>
 
-  <!-- Principles -->
-  <section class="py-28 sm:py-40">
+  <!-- Principles — dark "stage" section for visual rhythm and weight -->
+  <section class="bg-clinic-900 py-28 sm:py-40 text-paper">
     <Container>
       <div class="max-w-3xl reveal">
-        <p class="eyebrow">Principles of the practice</p>
-        <h2 class="display-xl mt-7 text-3xl sm:text-5xl lg:text-[3.5rem]">
+        <p class="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-paper/60">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent-soft" aria-hidden="true"></span>
+          Principles of the practice
+        </p>
+        <h2 class="display-xl mt-7 text-3xl sm:text-5xl lg:text-[3.5rem] text-paper">
           Continuity, complexity, communication.
         </h2>
-        <p class="mt-7 max-w-2xl text-ink-600 text-lg leading-relaxed">
+        <p class="mt-7 max-w-2xl text-paper/75 text-lg leading-relaxed">
           A general practice that takes the time to think. Each consultation is
           built around the same three commitments &mdash; in long-term care, in
           difficult cases, and in everything written down for you and your
@@ -129,16 +132,16 @@ const credentials = site.qualifications.split(',').map(s => s.trim());
 
       <ol class="mt-20 grid gap-12 md:grid-cols-3 md:gap-14">
         {principles.map((p, i) => (
-          <li class={`relative border-t border-ink-200/80 pt-9 reveal reveal-delay-${i + 1}`}>
-            <span class="absolute -top-px left-0 h-px w-12 bg-accent" aria-hidden="true"></span>
+          <li class={`relative border-t border-paper/20 pt-9 reveal reveal-delay-${i + 1}`}>
+            <span class="absolute -top-px left-0 h-px w-12 bg-accent-soft" aria-hidden="true"></span>
             <div class="flex items-baseline gap-4">
-              <span class="numeral text-lg">{p.n}</span>
-              <span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+              <span class="numeral text-lg text-accent-soft">{p.n}</span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-paper/60">
                 {p.label}
               </span>
             </div>
-            <h3 class="mt-6 font-serif text-2xl text-ink-800 leading-snug">{p.title}</h3>
-            <p class="mt-5 text-[15.5px] leading-relaxed text-ink-600">{p.body}</p>
+            <h3 class="mt-6 font-serif text-2xl text-paper leading-snug">{p.title}</h3>
+            <p class="mt-5 text-[15.5px] leading-relaxed text-paper/75">{p.body}</p>
           </li>
         ))}
       </ol>
