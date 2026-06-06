@@ -1,0 +1,97 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+// Articles ordered with the most generally-useful first.
+const articles = [
+  {
+    href: '/private-gp-explained',
+    title: 'Private GP, explained honestly.',
+    body: 'Why this practice bills the way it does, what private GP care actually buys, and why bulk-billing economics are collapsing.',
+    eyebrow: 'On the practice',
+    date: '5 June 2026',
+  },
+  {
+    href: '/insights/what-a-skin-check-involves',
+    title: 'What an annual skin check actually involves.',
+    body: 'A plain-spoken account of what happens at a skin check — how long it takes, what dermoscopy is, when biopsy is recommended, and how often to come back.',
+    eyebrow: 'On skin cancer',
+    date: '6 June 2026',
+  },
+  {
+    href: '/insights/cosmetic-consultation-questions-to-ask',
+    title: 'Cosmetic consultation: questions to ask any practitioner.',
+    body: "A patient-empowering list of the questions worth asking at any cosmetic consultation in Australia. Includes the red flags that mean it's time to walk away.",
+    eyebrow: 'On cosmetic medicine',
+    date: '6 June 2026',
+  },
+  {
+    href: '/insights/when-telehealth-is-appropriate',
+    title: "When telehealth is, and isn't, appropriate.",
+    body: 'A practical guide to when telehealth is genuinely useful in Australian general practice — and when an in-person consultation is the better choice.',
+    eyebrow: 'On the model of care',
+    date: '6 June 2026',
+  },
+  {
+    href: '/insights/what-consultant-general-practice-means',
+    title: "What 'consultant general practice' means in Australian medicine.",
+    body: 'A plain-English explanation of medical specialty titles in Australia, what \'Specialist GP\' formally means, and how to read a doctor\'s qualifications honestly.',
+    eyebrow: 'On medical titles',
+    date: '6 June 2026',
+  },
+];
+---
+<BaseLayout
+  title={`Insights — Dr Amir Waly`}
+  description={`Long-form, plain-spoken essays by ${site.doctorName} on private general practice, skin cancer medicine, cosmetic medicine, telehealth, and the language of Australian medicine.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Insights', href: '/insights' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Insights</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          On the practice, plain-spoken.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Long-form essays by {site.doctorName} on the things patients
+          actually want to know &mdash; what private GP care buys, what
+          a skin check involves, how to read a cosmetic consultation,
+          when telehealth helps, and what the medical-title alphabet soup
+          actually means.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container>
+      <ul class="grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
+        {articles.map((a, i) => (
+          <li class="bg-white">
+            <a href={a.href} class="group block p-8 sm:p-10 transition-colors hover:bg-paper-soft h-full">
+              <div class="flex items-baseline justify-between gap-4">
+                <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-400">{a.eyebrow}</p>
+                <p class="text-[11px] tabular-nums text-ink-400">{a.date}</p>
+              </div>
+              <h2 class="mt-5 font-serif text-2xl text-ink-900 leading-snug">
+                {a.title}
+              </h2>
+              <p class="mt-4 text-[15.5px] leading-relaxed text-ink-600">{a.body}</p>
+              <span class="mt-6 inline-flex items-center gap-2 text-[0.92rem] font-medium text-clinic-700">
+                <span class="border-b border-clinic-300 group-hover:border-clinic-700 transition-colors">
+                  Read
+                </span>
+                <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+</BaseLayout>

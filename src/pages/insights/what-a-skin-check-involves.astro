@@ -1,0 +1,222 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '6 June 2026';
+---
+<BaseLayout
+  title={`What an annual skin check actually involves — Dr Amir Waly`}
+  description={`A plain-spoken account of what happens at a skin check — how long it takes, what dermoscopy is, when biopsy is recommended, and how to decide how often to come. ${site.doctorName}, ${site.address.suburb}, Perth.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Insights', href: '/insights' },
+    { name: 'What an annual skin check involves', href: '/insights/what-a-skin-check-involves' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Insights</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          What an annual skin check actually involves.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          The phrase &ldquo;skin check&rdquo; is doing a lot of work in
+          Australian general practice. People come in expecting wildly
+          different things. This is the honest version of what happens in my
+          consulting room, and how to think about whether you need one.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Written by {site.doctorName}. Last updated: <span class="tabular-nums">{lastUpdated}</span>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">Why bother</h2>
+        <p>
+          Skin cancer is the most commonly diagnosed cancer in Australia.
+          Two thirds of Australians will be diagnosed with a skin cancer
+          before they reach 70. The reason for an annual skin check is not
+          paranoia; it is the simple statistical fact that early detection
+          changes outcomes for most types of skin cancer, and that the
+          examination is cheap, quick, and almost entirely without downside.
+        </p>
+        <p>
+          The pitch here is not &ldquo;come in so I can find a melanoma you
+          didn&rsquo;t know about&rdquo;. The pitch is &ldquo;most of the
+          time there is nothing serious to find, and a structured look
+          gives you certainty about that for another twelve months&rdquo;.
+        </p>
+
+        <h2 class="text-2xl pt-6">Who should consider regular skin checks</h2>
+        <p>
+          Risk in Australian skin medicine is broadly stratified. The
+          factors that should make you think about regular checks include:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Personal history of skin cancer (any type).</li>
+          <li>Family history of melanoma in a first-degree relative.</li>
+          <li>Multiple moles, or any moles that have changed.</li>
+          <li>Fair skin that burns easily, light eye colour, light hair colour.</li>
+          <li>Significant cumulative sun exposure &mdash; outdoor work, frequent beach time, time spent overseas in high-UV regions.</li>
+          <li>Childhood sunburns (especially blistering ones).</li>
+          <li>History of solarium use.</li>
+          <li>Immunosuppression &mdash; transplant medications, certain blood disorders, biological therapies.</li>
+        </ul>
+        <p>
+          If two or more of those apply to you, an annual structured
+          examination is reasonable. If none apply and you have already had
+          a baseline check with no concerning findings, every two to three
+          years is often enough. If you have already had a skin cancer, the
+          interval is short and individualised.
+        </p>
+
+        <h2 class="text-2xl pt-6">How long it takes</h2>
+        <p>
+          A first skin check appointment in this practice usually runs
+          twenty to thirty minutes. Subsequent annual checks, with
+          familiar skin, are often shorter. People are sometimes surprised
+          that a thorough examination doesn&rsquo;t take longer; the
+          structured approach is efficient, but it is not rushed.
+        </p>
+
+        <h2 class="text-2xl pt-6">What happens in the room</h2>
+        <p>
+          The check has a predictable shape. Briefly:
+        </p>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li>
+            <strong>Discussion.</strong> Personal and family history. Any
+            spots you have already noticed and want me to look at. Any
+            recent changes &mdash; new lesions, itchy spots, anything that
+            has been bleeding.
+          </li>
+          <li>
+            <strong>Examination.</strong> A head-to-toe look at the skin,
+            with you in your underwear. Scalp, behind the ears, between
+            the toes &mdash; everywhere skin cancer can appear, including
+            the places that don&rsquo;t get sun. A chaperone is offered as
+            a matter of course.
+          </li>
+          <li>
+            <strong>Dermoscopy on anything that catches the eye.</strong>
+            See the next section.
+          </li>
+          <li>
+            <strong>The decisions.</strong> If something needs further
+            assessment, the options are explained &mdash; monitor, biopsy,
+            excise, or refer.
+          </li>
+          <li>
+            <strong>A plan, written down.</strong> What I am doing, what you
+            are doing, when we are seeing each other next.
+          </li>
+        </ol>
+
+        <h2 class="text-2xl pt-6">What dermoscopy is, and why I use it</h2>
+        <p>
+          A dermatoscope is a small magnifying device with cross-polarised
+          light that lets the examiner see through the surface reflection
+          of the skin and into the structure of a lesion. It is the single
+          most important tool in modern skin cancer medicine. Studies show
+          that dermoscopy used by a trained clinician improves diagnostic
+          accuracy substantially compared with naked-eye assessment alone
+          &mdash; both in finding melanomas you might otherwise miss, and
+          in confidently <em>not</em> biopsying things that look ugly but
+          are benign.
+        </p>
+        <p>
+          In practice this means a lot of lesions that look concerning to
+          the naked eye turn out to be reassuring under dermoscopy, which
+          spares you a biopsy. It also means lesions that look fine to the
+          naked eye but have a worrying pattern under dermoscopy will be
+          biopsied early.
+        </p>
+
+        <h2 class="text-2xl pt-6">The decision to biopsy</h2>
+        <p>
+          A biopsy is not the default. The default is &ldquo;reassure and
+          watch&rdquo;. A biopsy is recommended only when there is a real
+          clinical question that the answer to changes management. The
+          options I will discuss with you, where they apply, are:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Photographic monitoring</strong> &mdash; for a borderline lesion where a short-interval re-check (typically three months) will likely settle the question.</li>
+          <li><strong>Excision</strong> &mdash; for lesions where the suspicion is high enough that going straight to definitive treatment makes sense.</li>
+          <li><strong>Shave or punch biopsy</strong> &mdash; for diagnosis when the histology will guide further treatment.</li>
+          <li><strong>Referral</strong> &mdash; for lesions on cosmetically sensitive sites, lesions requiring wider margins, or complex cases.</li>
+        </ul>
+        <p>
+          Whichever path applies, the procedure is explained, the cost is
+          agreed, and informed consent is obtained in writing before
+          anything is done.
+        </p>
+
+        <h2 class="text-2xl pt-6">After the check</h2>
+        <p>
+          You will receive a clear written summary of what was found and
+          what the plan is. If a biopsy was taken, you will be contacted
+          with the result &mdash; regardless of what the result is &mdash;
+          typically within one to two weeks. Significant or unexpected
+          findings are communicated by phone on the day they are reviewed.
+        </p>
+        <p>
+          The thing I most want patients to take away is the date of their
+          next examination. The check is only useful if it happens regularly.
+        </p>
+
+        <h2 class="text-2xl pt-6">What it costs</h2>
+        <p>
+          A skin examination attracts a standard consultation fee. Where
+          eligible, a Medicare rebate applies under the relevant MBS items.
+          Procedures &mdash; biopsy, excision, cryotherapy &mdash; are
+          quoted before they are performed. Specific dollar amounts are
+          not published on this website; reception can give you a current
+          estimate at the time of booking. The reasoning is set out at
+          length in <a href="/private-gp-explained">Private GP, explained
+          honestly</a>.
+        </p>
+
+        <h2 class="text-2xl pt-6">A small note on photographs</h2>
+        <p>
+          Where a lesion needs photographic monitoring, dermoscopic and
+          clinical photographs are taken with your consent and stored
+          within your medical record. They are used for clinical purposes
+          only &mdash; this practice does not use patient photographs for
+          marketing, social media, or before-and-after galleries, and never
+          will. The full position is on the
+          <a href="/clinical-photography">Clinical Photography Policy</a>
+          page.
+        </p>
+
+        <h2 class="text-2xl pt-6">How to book a skin check</h2>
+        <p>
+          Through HotDoc &mdash; the booking link is on the
+          <a href="/skin-cancer-surgery">Skin cancer medicine and surgery</a>
+          page &mdash; or by calling reception on
+          <a class="link-quiet text-ink-900 tabular-nums" href={site.phoneHref}>{site.phone}</a>.
+          Mention you are coming for a skin check so the appropriate length
+          of appointment is allocated.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-ink-100 bg-paper py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href="/insights"
+        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
+      >
+        <span aria-hidden="true">&larr;</span>
+        <span>More insights</span>
+      </a>
+    </Container>
+  </section>
+</BaseLayout>

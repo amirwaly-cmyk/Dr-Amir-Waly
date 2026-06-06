@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
+import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -24,17 +24,19 @@ export default defineConfig({
           item.priority = 0.9;
         else if (/^\/(about|services|contact|faqs)\/?$/.test(path))
           item.priority = 0.8;
+        else if (/^\/(insights|private-gp-explained|insights\/[a-z-]+)\/?$/.test(path))
+          item.priority = 0.7;
         else if (/^\/policies\/?$/.test(path))
           item.priority = 0.5;
         else if (/^\/(privacy|fees-and-billing|disclaimer|complaints|patient-rights|open-disclosure|communication-and-results|clinical-photography)\/?$/.test(path))
           item.priority = 0.3;
         else item.priority = 0.5;
-        item.changefreq = 'monthly';
+        item.changefreq = ChangeFreqEnum.MONTHLY;
         return item;
       },
     }),
   ],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [/** @type {any} */ (tailwindcss())],
   },
 });

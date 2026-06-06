@@ -59,10 +59,15 @@ export const site = {
     { day: 'Wednesday – Sunday', time: 'Not consulting' },
   ],
 
-  // Booking / referrals
+  // Booking
   bookingUrl: 'https://www.hotdoc.com.au/medical-centres/morley-WA-6062/rudloc-road-medical-dental-centre-morley/doctors/dr-amir-waly-10',
-  referralEmail: '[referrals@dramirwaly.com.au]',
-  referralEmailHref: 'mailto:referrals@dramirwaly.com.au',
+
+  // Analytics — Plausible (privacy-respecting, no cookies, no personal data).
+  // The exact script tags are emitted in BaseLayout. Set plausibleEnabled to
+  // false to disable temporarily without removing the wiring.
+  analytics: {
+    plausibleEnabled: true,
+  },
 
   // Branding
   shortBrand: 'dramirwaly.com.au',

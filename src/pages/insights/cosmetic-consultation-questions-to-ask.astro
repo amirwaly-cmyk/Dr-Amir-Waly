@@ -1,0 +1,167 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '6 June 2026';
+---
+<BaseLayout
+  title={`Cosmetic consultation: questions to ask any practitioner — Dr Amir Waly`}
+  description={`A patient-empowering guide to the questions worth asking at any cosmetic consultation in Australia — about the practitioner, the procedure, costs, risks, cooling-off, and red flags. ${site.doctorName}, ${site.address.suburb}.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Insights', href: '/insights' },
+    { name: 'Cosmetic consultation: questions to ask', href: '/insights/cosmetic-consultation-questions-to-ask' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Insights</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          Cosmetic consultation: questions to ask any practitioner.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Cosmetic medicine in Australia has changed sharply in the last few
+          years. The Medical Board has tightened the rules. The industry has
+          improved in places and gotten worse in others. This is a short list
+          of the questions worth asking in any cosmetic consultation &mdash;
+          including this one.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Written by {site.doctorName}. Last updated: <span class="tabular-nums">{lastUpdated}</span>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">Why this list matters</h2>
+        <p>
+          Cosmetic procedures are medical procedures. They carry risks. They
+          are subject to specific Medical Board guidelines that exist because
+          the industry historically had not regulated itself well. A patient
+          who arrives at a cosmetic consultation with the same questions
+          they would ask any surgeon is far more likely to end up with a
+          good outcome &mdash; and far less likely to end up in front of
+          AHPRA writing a complaint.
+        </p>
+        <p>
+          I would rather you came to me having asked these questions, and
+          I would rather you asked them of any other practitioner you ever
+          see. If a practitioner is uncomfortable answering any of them,
+          that is itself an answer.
+        </p>
+
+        <h2 class="text-2xl pt-6">About the practitioner</h2>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>What is your AHPRA registration, and in what specialty?</strong> Anyone administering cosmetic procedures should be a registered health practitioner. The registration record is public on the AHPRA website.</li>
+          <li><strong>Who is performing the procedure?</strong> Sometimes the practitioner you consult with is not the one who picks up the needle or operates the laser. You are entitled to know who, and what their training is.</li>
+          <li><strong>If a nurse will perform the procedure, who is supervising?</strong> Cosmetic injectables in Australia must be prescribed by a doctor and administered under appropriate supervision. The detail of that arrangement is fair to ask.</li>
+          <li><strong>How long have you been doing this specific procedure?</strong> Not all cosmetic procedures are equally familiar to every practitioner.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">About the procedure</h2>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>What is the goal here, in plain language?</strong> The practitioner should be able to describe what change you are trying to achieve in terms that match your understanding of your own face.</li>
+          <li><strong>How long will the result last, on average?</strong> All cosmetic injectables are temporary. Lasers vary. Get an honest range, not a marketing number.</li>
+          <li><strong>What does the recovery look like, day by day?</strong> Bruising, swelling, redness, downtime &mdash; on which day are you presentable, on which are you fully recovered.</li>
+          <li><strong>How many sessions is this likely to take?</strong> Particularly relevant for laser work. Two or three sessions is normal for many treatments. If you are quoted one session for a result that usually requires several, ask why.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">About cooling-off and consent</h2>
+        <p>
+          The Medical Board of Australia&rsquo;s 2023 cosmetic procedures
+          guidelines require a separate consultation before any cosmetic
+          procedure, and a minimum seven-day cooling-off period before any
+          non-surgical cosmetic treatment can be performed. There is no
+          exception. If a practitioner offers to treat you on the same day
+          as your consultation &mdash; for any reason, including a
+          &ldquo;cancellation&rdquo; in their schedule &mdash; they are
+          breaking the rule.
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Is the consultation today, with treatment another day?</strong> The expected answer is yes, with at least seven days between.</li>
+          <li><strong>Will I receive written information before I decide?</strong> Required.</li>
+          <li><strong>Will I be asked to sign written informed consent before any procedure?</strong> Required.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">About risks and what could go wrong</h2>
+        <p>
+          A practitioner who tells you a procedure carries no risk is wrong,
+          and the answer should make you pause.
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>What are the common side effects, and how often do they happen here?</strong></li>
+          <li><strong>What are the serious complications?</strong> For dermal fillers, the rare-but-real ones include vascular occlusion &mdash; an emergency. Ask whether the practitioner has the antidote (hyaluronidase) on hand and a plan for managing it.</li>
+          <li><strong>How will you contact me if something goes wrong, and how do I contact you out of hours?</strong></li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">About costs &mdash; the full picture</h2>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>What is the total fee, in writing?</strong> Before the procedure.</li>
+          <li><strong>Are top-ups or touch-ups included or extra?</strong></li>
+          <li><strong>What does the cost of correction look like, if I am unhappy with the result?</strong></li>
+          <li><strong>What does the cost of managing a complication look like?</strong> This is the question very few patients ask. The honest practitioner will discuss it.</li>
+          <li><strong>Is any of this Medicare-rebatable?</strong> For purely cosmetic indications, no. For some medical indications, sometimes.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">About aftercare and follow-up</h2>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>What does post-procedure care look like?</strong> Sun protection, skin care, things to avoid.</li>
+          <li><strong>When will I see you for review, and is that included?</strong></li>
+          <li><strong>What is the plan if I am unhappy with the result?</strong></li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">Red flags to walk away from</h2>
+        <p>
+          Some patterns are reliable warning signs in cosmetic medicine. If
+          you encounter any of these, the right thing to do is leave and
+          find a different practitioner:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Pressure to commit on the day, or treatment offered in the same visit as the consultation.</li>
+          <li>Time-limited offers, discounts for booking now, bundled packages. These are explicitly prohibited under the Medical Board&rsquo;s cosmetic procedure guidelines.</li>
+          <li>Refusal or evasion when asked about risks, complications, or cost of correction.</li>
+          <li>Use of testimonials or before-and-after imagery in advertising. The advertising rules around these are strict, and breaching them is itself a sign that other corners are also being cut.</li>
+          <li>Promises of specific results, or claims that a procedure is &ldquo;risk-free&rdquo; or &ldquo;guaranteed&rdquo;.</li>
+          <li>Anyone offering to treat a patient under 18 for a purely cosmetic indication without the independent psychological assessment the guidelines require.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">A note about this practice</h2>
+        <p>
+          The questions on this page are the ones I expect to be asked, and
+          the answers are documented in detail on the
+          <a href="/cosmetic-medicine">cosmetic medicine</a> and
+          <a href="/laser-medicine">laser medicine</a> pages, in the
+          <a href="/fees-and-billing">Fees &amp; Billing Policy</a>, and in
+          the <a href="/clinical-photography">Clinical Photography Policy</a>.
+          The seven-day cooling-off period is non-negotiable here. No
+          financial inducements are used. No testimonials are published.
+          You will be told what could go wrong before you are asked to
+          sign anything.
+        </p>
+        <p>
+          Asking those questions does not offend any reasonable practitioner.
+          A practitioner who is offended by them is telling you something
+          worth listening to.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-ink-100 bg-paper py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href="/insights"
+        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
+      >
+        <span aria-hidden="true">&larr;</span>
+        <span>More insights</span>
+      </a>
+    </Container>
+  </section>
+</BaseLayout>

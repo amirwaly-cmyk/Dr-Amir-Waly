@@ -1,0 +1,185 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '6 June 2026';
+---
+<BaseLayout
+  title={`What 'consultant general practice' means in Australian medicine — Dr Amir Waly`}
+  description={`A plain-English explanation of medical specialty titles in Australia, what 'specialist GP' formally means, and how to read a doctor's qualifications honestly. ${site.doctorName}, ${site.address.suburb}, Perth.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Insights', href: '/insights' },
+    { name: "What 'consultant general practice' means", href: '/insights/what-consultant-general-practice-means' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Insights</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          What &lsquo;consultant general practice&rsquo; means in Australian medicine.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Medical titles in Australia are confusing partly by accident and
+          partly by inheritance from the United Kingdom. This is the
+          straightforward explanation of what the different labels mean,
+          what is legally protected, and how to read a doctor&rsquo;s
+          credentials honestly.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Written by {site.doctorName}. Last updated: <span class="tabular-nums">{lastUpdated}</span>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">The terminology problem</h2>
+        <p>
+          You will encounter, on Australian medical websites, an array of
+          titles that overlap in confusing ways: GP, general practitioner,
+          specialist GP, specialist general practitioner, consultant,
+          consultant physician, consultant GP, FRACGP, fellow. Some of
+          these are legally protected. Some are descriptions. Some are
+          inherited from the British system and don&rsquo;t translate
+          cleanly. It is worth knowing which is which.
+        </p>
+
+        <h2 class="text-2xl pt-6">A little history</h2>
+        <p>
+          In the United Kingdom&rsquo;s National Health Service, a
+          &ldquo;consultant&rdquo; is a specific hospital role &mdash;
+          the most senior position a hospital doctor reaches, with the
+          authority to take ultimate clinical responsibility for a patient
+          and to lead a team. UK general practitioners are not consultants
+          in that sense; the word is reserved for hospital specialists.
+        </p>
+        <p>
+          Australian medicine doesn&rsquo;t use &ldquo;consultant&rdquo; as
+          a formal grade. The official Australian Health Practitioner
+          Regulation Agency (AHPRA) registers practitioners as either
+          general (the default) or as specialists in one of the recognised
+          medical specialties. The word &ldquo;consultant&rdquo; can be
+          used informally but it has no protected legal meaning here.
+        </p>
+
+        <h2 class="text-2xl pt-6">What &lsquo;Specialist GP&rsquo; formally means in Australia</h2>
+        <p>
+          The Medical Board of Australia recognises general practice as a
+          medical specialty in its own right. A doctor who has completed
+          vocational training and earned a Fellowship of the Royal
+          Australian College of General Practitioners (FRACGP) or a
+          Fellowship of the Australian College of Rural and Remote
+          Medicine (FACRRM) is registered on the Specialist Register in
+          the specialty of general practice.
+        </p>
+        <p>
+          This is what makes the title &ldquo;Specialist General
+          Practitioner&rdquo; legally accurate. It is not a marketing
+          phrase; it is a description of the formal registration status.
+          The title is restricted &mdash; a doctor who is not on the
+          Specialist Register cannot use it.
+        </p>
+        <p>
+          You can verify any doctor&rsquo;s registration at
+          <a href="https://www.ahpra.gov.au" rel="noopener noreferrer" target="_blank">ahpra.gov.au</a>,
+          including which specialty they are registered in.
+        </p>
+
+        <h2 class="text-2xl pt-6">What &lsquo;Consultant&rsquo; adds (or doesn&rsquo;t)</h2>
+        <p>
+          Adding &ldquo;Consultant&rdquo; to a title in Australia is not a
+          claim to a specific extra qualification. It is in widespread use,
+          loosely, to signal seniority and the type of work being done
+          &mdash; consultation-based, time-rich, complex-problem-focused
+          rather than high-volume bulk-billed throughput. It is closer to
+          a description of style than a description of training.
+        </p>
+        <p>
+          The risk with the word is that it can be read by patients as
+          implying a higher tier of specialist registration than actually
+          exists in Australian medicine. AHPRA&rsquo;s view is essentially
+          that titles must not mislead, and the line is sometimes a
+          matter of judgement.
+        </p>
+
+        <h2 class="text-2xl pt-6">What &lsquo;Independent&rsquo; adds</h2>
+        <p>
+          The word &ldquo;independent&rdquo; in a doctor&rsquo;s title is a
+          description of business structure rather than qualification.
+          Specifically, it indicates that the doctor operates their own
+          professional practice &mdash; they are responsible for their
+          patient relationships, their clinical decisions, their
+          correspondence, and their professional obligations &mdash; and
+          they are not an employee of the clinic or other location at
+          which they consult.
+        </p>
+        <p>
+          This is the standard arrangement in Australian general practice.
+          Most GPs you see in private practice are independent practitioners
+          consulting at one or more medical centres under a services
+          arrangement. The clinic provides reception, nursing, billing, and
+          facility support; the doctor provides the medical practice. It is
+          one of the structures the Australian Taxation Office recognises
+          as a Personal Services Business.
+        </p>
+
+        <h2 class="text-2xl pt-6">How to read a doctor&rsquo;s qualifications honestly</h2>
+        <p>
+          The qualifications that mean something specific are the ones a
+          regulator has formally awarded:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>MBBS, BMed/BMedSc, MD</strong> &mdash; the primary medical degree. Every registered doctor has one.</li>
+          <li><strong>FRACGP, FACRRM</strong> &mdash; Fellowship of the Royal Australian College of General Practitioners, or the Australian College of Rural and Remote Medicine. These are the qualifications that put a GP on the Specialist Register.</li>
+          <li><strong>FRACP, FRACS, FACEM, FRANZCP, FRACDS, FRANZCO, FRACOG</strong> &mdash; Fellowships in other recognised specialties (physician, surgeon, emergency, psychiatry, dental surgery, ophthalmology, obstetrics &amp; gynaecology). Each indicates training in a specific field.</li>
+          <li><strong>Diplomas</strong> &mdash; DCH (Diploma of Child Health), DRANZCOG (Diploma of Obstetrics), Diploma in Skin Cancer, etc. These indicate additional structured training in a particular area but are not specialty fellowships.</li>
+          <li><strong>Memberships</strong> (e.g. MRCGP, MRACGP) &mdash; usually a precursor to the corresponding fellowship.</li>
+        </ul>
+        <p>
+          What does <em>not</em> mean something specific:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>The word &ldquo;consultant&rdquo; on its own.</li>
+          <li>Phrases like &ldquo;leading&rdquo;, &ldquo;expert&rdquo;, &ldquo;Australia&rsquo;s top&rdquo;. AHPRA&rsquo;s advertising guidelines treat these as misleading by default.</li>
+          <li>Logos of organisations a doctor is simply a member of, used to imply endorsement.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">What it means in this practice</h2>
+        <p>
+          The full description of {site.doctorName} that appears on this
+          site is &ldquo;Independent Specialist Consultant General
+          Practitioner&rdquo;. Read in the framework above:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Independent</strong> &mdash; he operates his own practice through Draw Group Pty Ltd, not as an employee of any medical centre, urgent care clinic, telehealth service, aged-care facility, or technology company.</li>
+          <li><strong>Specialist General Practitioner</strong> &mdash; he holds Fellowship of the Royal Australian College of General Practitioners (FRACGP) and is on the Specialist Register in general practice.</li>
+          <li><strong>Consultant</strong> &mdash; a descriptor of style: longer consultations, complex-problem focus, consultation-based rather than high-throughput.</li>
+        </ul>
+        <p>
+          If you want to verify any of this independently, search
+          <a href="https://www.ahpra.gov.au" rel="noopener noreferrer" target="_blank">the AHPRA register</a>
+          using his name (Amir Waly) or his AHPRA registration number
+          ({site.ahpraNumber}). The record is public.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-ink-100 bg-paper py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href="/insights"
+        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
+      >
+        <span aria-hidden="true">&larr;</span>
+        <span>More insights</span>
+      </a>
+    </Container>
+  </section>
+</BaseLayout>

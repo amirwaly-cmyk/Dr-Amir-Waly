@@ -1,0 +1,164 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '6 June 2026';
+---
+<BaseLayout
+  title={`When telehealth is, and isn't, appropriate — Dr Amir Waly`}
+  description={`A practical, honest guide to when telehealth is genuinely useful in Australian general practice — and when an in-person consultation is the better choice. ${site.doctorName}, ${site.address.suburb}, Perth.`}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Insights', href: '/insights' },
+    { name: "When telehealth is, and isn't, appropriate", href: '/insights/when-telehealth-is-appropriate' },
+  ]}
+>
+  <section class="border-b border-ink-100 bg-paper">
+    <Container class="py-24 sm:py-32 lg:py-36">
+      <div class="reveal">
+        <p class="eyebrow">Insights</p>
+        <h1 class="display-xl mt-7 text-[2.6rem] sm:text-6xl lg:text-[4.5rem] max-w-4xl">
+          When telehealth is, and isn&rsquo;t, appropriate.
+        </h1>
+        <p class="lead mt-8 max-w-2xl">
+          Telehealth in Australian general practice was an emergency adaptation
+          during the pandemic that has since settled into something more
+          permanent. It is genuinely useful for some problems and genuinely
+          unsuitable for others. This is the honest version of the trade-off.
+        </p>
+        <p class="mt-6 text-[14px] text-ink-500">
+          Written by {site.doctorName}. Last updated: <span class="tabular-nums">{lastUpdated}</span>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-20 sm:py-24">
+    <Container size="narrow">
+      <div class="prose-clinic text-ink-700">
+
+        <h2 class="text-2xl">A brief, honest history</h2>
+        <p>
+          Telehealth in Australia existed as a niche service before 2020.
+          The pandemic forced it into wide use almost overnight. The
+          temporary Medicare items that funded it became permanent in
+          stages, with progressively tighter rules: most importantly, that
+          a telehealth consultation with a GP is rebatable under Medicare
+          only where there is an existing relationship between doctor and
+          patient (in most cases, at least one face-to-face consultation
+          in the preceding twelve months).
+        </p>
+        <p>
+          The honest summary: telehealth is a real tool, but it is not a
+          replacement for a clinic. Knowing which problems it serves well
+          is the difference between a useful consultation and a frustrating
+          one.
+        </p>
+
+        <h2 class="text-2xl pt-6">When telehealth works well</h2>
+        <p>
+          The presentations where a telehealth consultation is often the
+          right tool include:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Follow-up of a known issue.</strong> The blood pressure you and I have been managing for three years. The medication review at the six-month mark. The chronic disease care plan check-in.</li>
+          <li><strong>Discussing results.</strong> Reviewing pathology or imaging that has already been done, deciding next steps.</li>
+          <li><strong>Repeat prescriptions for stable conditions</strong> where in-person review is not clinically required and a video conversation is enough to confirm nothing has changed.</li>
+          <li><strong>Referrals.</strong> If the clinical question is already settled and the referral letter is the deliverable.</li>
+          <li><strong>Brief mental-health touch-ins</strong> for patients with an established therapeutic relationship who are between scheduled in-person reviews.</li>
+          <li><strong>Travel medicine pre-departure planning</strong> where examination is not required.</li>
+          <li><strong>Logistical access.</strong> Aged-care residents, people in regional areas, anyone for whom getting to the clinic is a real barrier.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">When telehealth doesn&rsquo;t work</h2>
+        <p>
+          The presentations where telehealth falls short, in my view, include:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Anything that requires examination.</strong> Skin lesions, lumps, abdominal pain, joint pain, chest pain, headache being investigated for the first time. You cannot examine someone over a screen, and the cost of pretending you can is missing things.</li>
+          <li><strong>Initial mental-health assessments</strong> where the first job is to read a room you are not in. There are excellent telehealth mental-health services, but the first conversation often goes better in person.</li>
+          <li><strong>Children under about 12,</strong> for most things. The history is incomplete without the parent and the child together in a room, and the examination is half the diagnosis.</li>
+          <li><strong>Complex multi-problem visits.</strong> When you have five things going on at once, the careful work of unpacking them and prioritising is much harder over video.</li>
+          <li><strong>Diagnostic uncertainty.</strong> Anything you cannot pin down on the phone. Telehealth handles certainty; it does not handle ambiguity well.</li>
+          <li><strong>Procedural work.</strong> Skin checks, biopsies, joint injections, cosmetic consultations &mdash; in person, always.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">Healthdirect vs your own GP&rsquo;s telehealth</h2>
+        <p>
+          There are two distinct things in Australia that both get called
+          &ldquo;telehealth&rdquo; and they are quite different.
+        </p>
+        <p>
+          <strong>Healthdirect</strong> is the federally funded national
+          health-advice service. It runs a 24-hour nurse-led telephone
+          triage line (1800 022 222) and a network of doctors providing
+          telehealth consultations to the public, particularly for
+          after-hours, urgent-but-not-emergency situations. It is free at
+          the point of use. The clinician you see is one of several on
+          shift; they are not your GP and they do not have your medical
+          record. They are excellent for what they do &mdash; safety
+          netting, triage, after-hours advice &mdash; but they are not a
+          substitute for continuity of care.
+        </p>
+        <p>
+          <strong>Your own GP&rsquo;s telehealth</strong> is a different
+          model. The clinician on the other end of the line is the one who
+          has been looking after you. They have your record open. They
+          know your history. The Medicare requirement that you have an
+          existing relationship with them exists for exactly this reason.
+        </p>
+        <p>
+          Both have their place. They are not interchangeable.
+        </p>
+
+        <h2 class="text-2xl pt-6">Rebate and billing considerations</h2>
+        <p>
+          The general rule, with some pandemic-era exceptions that have
+          since unwound: a Medicare rebate for a GP telehealth consultation
+          requires an existing doctor-patient relationship, usually
+          evidenced by an in-person consultation within the previous twelve
+          months. Healthdirect is its own funded service. Cosmetic
+          consultations are never appropriate for telehealth (the Medical
+          Board guidelines effectively require an in-person assessment).
+        </p>
+        <p>
+          The practical implication: if you have never seen me before and
+          we have no record, a Medicare-rebated telehealth consultation
+          is generally not possible. The right first step is an in-person
+          appointment.
+        </p>
+
+        <h2 class="text-2xl pt-6">How to get the most from a telehealth consultation</h2>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Be somewhere private and quiet.</strong> Hard to discuss anything sensitive from a moving car.</li>
+          <li><strong>Have a good connection</strong> &mdash; ideally video where the consultation requires it, phone where audio is fine. A bad video call is often worse than a phone call.</li>
+          <li><strong>Have your medications, recent results, and a list of what you want to discuss within reach.</strong></li>
+          <li><strong>Pick one to three things to address.</strong> A telehealth consultation rarely has time for ten.</li>
+          <li><strong>If you sense the question is too big for the format, say so.</strong> Switching to an in-person appointment is not a failure; it is the right call.</li>
+        </ul>
+
+        <h2 class="text-2xl pt-6">When to insist on coming in</h2>
+        <p>
+          A short rule: if your gut says &ldquo;I think I should be examined
+          for this&rdquo;, you should be. Don&rsquo;t let convenience win
+          that argument. If a doctor cannot or will not examine something
+          they should, the safest assumption is that the consultation has
+          not finished.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-ink-100 bg-paper py-16">
+    <Container size="narrow" class="text-center">
+      <a
+        href="/insights"
+        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
+      >
+        <span aria-hidden="true">&larr;</span>
+        <span>More insights</span>
+      </a>
+    </Container>
+  </section>
+</BaseLayout>

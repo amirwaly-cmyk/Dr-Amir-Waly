@@ -24,8 +24,8 @@ const nav: NavItem[] = [
   {
     label: 'Information',
     children: [
-      { href: '/private-gp-explained', label: 'Private GP, explained honestly', section: 'Insights' },
-      { href: '/faqs', label: 'Frequently asked questions', section: 'Insights' },
+      { href: '/insights', label: 'Insights & essays', section: 'Reading' },
+      { href: '/faqs', label: 'Frequently asked questions', section: 'Reading' },
       { href: '/fees-and-billing', label: 'Fees & billing', section: 'Policies' },
       { href: '/policies', label: 'All practice policies', section: 'Policies' },
     ],
@@ -110,9 +110,6 @@ const groupSections = (children: NavGroup['children']) => {
                     invisible opacity-0 translate-y-1
                     transition duration-150 ease-out
                     peer-aria-expanded:visible peer-aria-expanded:opacity-100 peer-aria-expanded:translate-y-0
-                    group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                    hover:visible hover:opacity-100 hover:translate-y-0
-                    group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
                   "
                 >
                   <div class="bg-white border border-ink-200/70 shadow-xl shadow-clinic-900/[0.06]">
@@ -244,38 +241,134 @@ const groupSections = (children: NavGroup['children']) => {
 </header>
 
 <script>
-  // Mobile menu toggle
-  const mobileBtn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-  const mobileMenu = document.querySelector<HTMLDivElement>('[data-menu]');
-  if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('hidden') === false;
-      mobileBtn.setAttribute('aria-expanded', String(open));
-    });
-  }
+  // Header is `transition:persist`, so this script runs once on first
+  // load and its listeners persist across view-transition navigations.
+  // We guard against duplicate binding (in case Astro re-runs the module).
+  if (!(window as any).__navInit) {
+    (window as any).__navInit = true;
 
-  // Desktop dropdown — click to toggle, outside-click / Escape to close
-  const triggers = document.querySelectorAll<HTMLButtonElement>('[data-menu-trigger]');
-  const closeAll = () => triggers.forEach(t => t.setAttribute('aria-expanded', 'false'));
+    const mobileBtn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const mobileMenu = document.querySelector<HTMLDivElement>('[data-menu]');
 
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const expanded = trigger.getAttribute('aria-expanded') === 'true';
-      closeAll();
-      trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-    });
-  });
+    const closeMobile = () => {
+      if (!mobileBtn || !mobileMenu) return;
+      mobileMenu.classList.add('hidden');
+      mobileBtn.setAttribute('aria-expanded', 'false');
+    };
 
-  document.addEventListener('click', (e) => {
-    const target = e.target as Element | null;
-    if (!target?.closest('[data-dropdown]')) closeAll();
-  });
+    const closeDropdowns = () => {
+      document
+        .querySelectorAll<HTMLButtonElement>('[data-menu-trigger]')
+        .forEach(t => t.setAttribute('aria-expanded', 'false'));
+    };
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeAll();
-      (document.activeElement as HTMLElement | null)?.blur();
+    const closeAll = () => {
+      closeDropdowns();
+      closeMobile();
+    };
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        const wasHidden = mobileMenu.classList.contains('hidden');
+        if (wasHidden) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          closeMobile();
+        }
+      });
     }
-  });
+
+    // Desktop dropdown — click toggle (delegated to document so this still
+    // works for buttons rendered after first paint).
+    document.addEventListener('click', (e) => {
+      const target = e.target as Element | null;
+      if (!target) return;
+
+      const trigger = target.closest<HTMLButtonElement>('[data-menu-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        closeDropdowns();
+        trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        return;
+      }
+
+      // Click on any link — including links inside a dropdown or mobile menu
+      // — should close everything before navigation happens.
+      if (target.closest('a')) {
+        closeAll();
+        return;
+      }
+
+      // Click outside any dropdown closes them.
+      if (!target.closest('[data-dropdown]')) {
+        closeDropdowns();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAll();
+        (document.activeElement as HTMLElement | null)?.blur();
+      }
+    });
+
+    // Hover-based open/close — JS-driven so aria-expanded is the single
+    // source of truth and only one dropdown can be open at a time.
+    // (The dropdown CSS only watches peer-aria-expanded; no group-hover.)
+    const groups = document.querySelectorAll<HTMLElement>('[data-dropdown]');
+    const closeTimers = new WeakMap<Element, number>();
+
+    const openGroup = (group: HTMLElement) => {
+      const ownTrigger = group.querySelector<HTMLButtonElement>('[data-menu-trigger]');
+      if (!ownTrigger) return;
+      // Close every OTHER trigger (whether opened by hover or click)
+      groups.forEach(other => {
+        if (other === group) return;
+        const t = other.querySelector<HTMLButtonElement>('[data-menu-trigger]');
+        t?.setAttribute('aria-expanded', 'false');
+      });
+      ownTrigger.setAttribute('aria-expanded', 'true');
+    };
+
+    groups.forEach(group => {
+      group.addEventListener('mouseenter', () => {
+        const existing = closeTimers.get(group);
+        if (existing) {
+          window.clearTimeout(existing);
+          closeTimers.delete(group);
+        }
+        openGroup(group);
+      });
+
+      // Small delay on leave so the cursor can travel from trigger to
+      // panel without the dropdown vanishing mid-transit.
+      group.addEventListener('mouseleave', () => {
+        const trigger = group.querySelector<HTMLButtonElement>('[data-menu-trigger]');
+        if (!trigger) return;
+        const id = window.setTimeout(() => {
+          trigger.setAttribute('aria-expanded', 'false');
+          closeTimers.delete(group);
+        }, 120);
+        closeTimers.set(group, id);
+      });
+
+      // Keyboard accessibility — focus inside group opens it.
+      group.addEventListener('focusin', () => openGroup(group));
+      group.addEventListener('focusout', (e) => {
+        // Only close if focus moved fully outside the group
+        const next = (e as FocusEvent).relatedTarget as Node | null;
+        if (!next || !group.contains(next)) {
+          const trigger = group.querySelector<HTMLButtonElement>('[data-menu-trigger]');
+          trigger?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Belt-and-braces: close everything just before view-transition swap.
+    // Since the header is `transition:persist`, an open dropdown would
+    // otherwise carry into the next page.
+    document.addEventListener('astro:before-swap', closeAll);
+  }
 </script>
