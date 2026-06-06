@@ -49,8 +49,8 @@ export const site = {
   phoneHref: 'tel:+61861885555',
   fax: '(08) 6188 5556',
   faxHref: 'tel:+61861885556',
-  email: '[reception@dramirwaly.com.au]', // clinic does not publish a public email — confirm before launch
-  emailHref: 'mailto:reception@dramirwaly.com.au',
+  email: 'contact@drawgroup.com.au',
+  emailHref: 'mailto:contact@drawgroup.com.au',
 
   // Dr Waly's personal consulting sessions at the centre
   hours: [

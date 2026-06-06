@@ -72,6 +72,7 @@ const graph: Record<string, unknown>[] = [
     url: site.url,
     image: new URL(site.ogImage, site.url).toString(),
     telephone: site.phone,
+    email: site.email,
     worksFor: { '@id': `${site.url}#business` },
     description:
       `${site.doctorName} (${site.qualifications}) — independent specialist general ` +
