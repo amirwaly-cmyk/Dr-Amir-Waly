@@ -3,15 +3,30 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Container from '@/components/Container.astro';
 import { site } from '@/config/site';
 
-const services = [
+// Services are grouped into two sections that render under separate
+// h2 headings on the page. Each item keeps a numbered id derived from
+// its title, so the header dropdown can deep-link via /services#slug.
+
+const medicalServices = [
   {
     title: 'General Medicine',
     body: 'Consultations for new and ongoing health concerns, chronic disease management, preventive health, men&rsquo;s health, mental health, immunisations, and standard short-term medical certificates where clinically appropriate. <strong class="text-ink-800">Workers&rsquo; compensation, third-party insurance, and medico-legal reports are not provided by this practice</strong> &mdash; please ask reception for a referral to an appropriately qualified colleague.',
   },
   {
+    title: 'Endometriosis Management',
+    body: 'Long-term assessment and management of endometriosis &mdash; including discussion of symptom patterns and triggers, hormonal and non-hormonal medication options, pain-management strategies, and coordination of multidisciplinary care. Specialist gynaecology referral is arranged where surgical assessment or advanced management is indicated.',
+  },
+  {
+    title: 'Fertility &amp; Infertility Consultations',
+    body: 'Pre-conception and infertility consultations for individuals and couples &mdash; including history-taking, relevant baseline investigations, lifestyle and timing advice, and ongoing support. Referral to specialist gynaecology, reproductive endocrinology, or fertility services is arranged where assisted reproductive technology (ART) is being considered.',
+  },
+  {
     title: 'Skin Cancer Checks',
     body: 'Full skin examinations supported by dermoscopy &mdash; a magnified, polarised examination of skin lesions. Recommended periodically based on individual risk factors including personal and family history of skin cancer, multiple atypical naevi, and cumulative sun exposure. See the <a class="link-quiet text-ink-900" href="/skin-cancer-surgery">skin cancer medicine and surgery</a> page for full information.',
   },
+];
+
+const proceduralServices = [
   {
     title: 'Skin Cancer Surgery',
     body: 'Biopsy and surgical excision of skin lesions, including basal cell carcinoma, squamous cell carcinoma, and selected melanomas, performed in the clinic under local anaesthetic with closure appropriate to the site. Complex lesions, or lesions on cosmetically sensitive sites, are referred to a dermatologist or plastic surgeon where appropriate.',
@@ -33,10 +48,14 @@ const services = [
     body: 'Insertion and removal of the <strong class="text-ink-800">subdermal contraceptive implant (etonogestrel)</strong> &mdash; a small, flexible rod placed under the skin of the inner upper arm that provides up to three years of contraception. Both insertion and removal are performed in the clinic under local anaesthetic. Suitability is discussed in consultation, including expected effects, possible side effects, contraindications, and reasonable alternative contraceptive options. Replacement and earlier removal are both available.',
   },
 ];
+
+// Compute the auto-id used by deep-links (matches the previous slug logic).
+const slug = (title: string) =>
+  title.replace(/&[^;]+;/g, '-').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 ---
 <BaseLayout
   title={`Clinical Services — Dr Amir Waly, Specialist GP ${site.address.suburb}`}
-  description={`General medicine, skin cancer checks and surgery, non-surgical cosmetic medicine, knee injections (cortisone, hyaluronic acid, PRP), and soft-tissue injections for tennis elbow and similar conditions — provided by ${site.doctorName}, independent specialist GP, in ${site.address.suburb}, Perth.`}
+  description={`Medical services (general medicine, endometriosis management, fertility and infertility consultations, skin cancer checks) and procedural services (skin cancer surgery, cosmetic and laser medicine, joint and soft-tissue injections, contraceptive implants) — provided by ${site.doctorName}, independent specialist GP, in ${site.address.suburb}, Perth.`}
   image="/og/services.png"
   breadcrumbs={[
     { name: 'Home', href: '/' },
@@ -51,41 +70,66 @@ const services = [
         Considered consultations for the breadth of general practice.
       </h1>
       <p class="lead mt-7 max-w-2xl">
-        A summary of the consultations and services available. If your concern
-        isn&rsquo;t listed, please call the clinic &mdash; we&rsquo;re happy to advise
-        whether an appointment is appropriate.
+        Services are grouped into two sections &mdash; consultation-based
+        <a class="link-quiet text-ink-900" href="#medical-services">medical services</a>
+        and in-clinic
+        <a class="link-quiet text-ink-900" href="#procedural-services">procedural services</a>.
+        If your concern isn&rsquo;t listed, please call the clinic &mdash;
+        we&rsquo;re happy to advise whether an appointment is appropriate.
       </p>
-      <div class="mt-9 flex flex-wrap items-center gap-3 text-[13px]">
-        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">Areas of interest:</span>
-        <a href="/skin-cancer-surgery" class="link-quiet text-ink-800">Skin cancer surgery</a>
-        <span class="text-accent" aria-hidden="true">&middot;</span>
-        <a href="/cosmetic-medicine" class="link-quiet text-ink-800">Cosmetic medicine</a>
-        <span class="text-accent" aria-hidden="true">&middot;</span>
-        <a href="/laser-medicine" class="link-quiet text-ink-800">Laser medicine</a>
-      </div>
       </div>
     </Container>
   </section>
 
-  <section class="py-20 sm:py-24">
+  <!-- Medical services -->
+  <section id="medical-services" class="py-20 sm:py-24 scroll-mt-32">
     <Container>
-      <ul class="grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
-        {services.map((s, i) => {
-          // Slug from title — used as the anchor id so the header dropdown
-          // can deep-link to specific services (e.g. /services#joint-injections).
-          const id = s.title
-            .replace(/&[^;]+;/g, '-')
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/^-|-$/g, '');
-          return (
-            <li id={id} class="relative bg-white p-8 sm:p-10 transition-colors hover:bg-paper-soft scroll-mt-32">
-              <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-              <h2 class="mt-4 font-serif text-xl text-ink-900 leading-snug" set:html={s.title} />
-              <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600" set:html={s.body} />
-            </li>
-          );
-        })}
+      <div class="max-w-3xl">
+        <p class="eyebrow">Medical services</p>
+        <h2 class="display mt-5 text-3xl sm:text-4xl">
+          Consultation-based care.
+        </h2>
+        <p class="mt-6 text-ink-600 leading-relaxed">
+          Assessment, ongoing management, and considered second opinions for
+          a defined set of conditions and clinical areas.
+        </p>
+      </div>
+
+      <ul class="mt-14 grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
+        {medicalServices.map((s, i) => (
+          <li id={slug(s.title)} class="relative bg-white p-8 sm:p-10 transition-colors hover:bg-paper-soft scroll-mt-32">
+            <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-4 font-serif text-xl text-ink-900 leading-snug" set:html={s.title} />
+            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600" set:html={s.body} />
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Procedural services -->
+  <section id="procedural-services" class="border-t border-ink-100 bg-paper-soft py-20 sm:py-24 scroll-mt-32">
+    <Container>
+      <div class="max-w-3xl">
+        <p class="eyebrow">Procedural services</p>
+        <h2 class="display mt-5 text-3xl sm:text-4xl">
+          In-clinic interventions.
+        </h2>
+        <p class="mt-6 text-ink-600 leading-relaxed">
+          Procedures performed in the consulting room under local anaesthetic
+          where appropriate, after assessment of clinical suitability and
+          discussion of the relevant risks and reasonable alternatives.
+        </p>
+      </div>
+
+      <ul class="mt-14 grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
+        {proceduralServices.map((s, i) => (
+          <li id={slug(s.title)} class="relative bg-white p-8 sm:p-10 transition-colors hover:bg-paper scroll-mt-32">
+            <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-4 font-serif text-xl text-ink-900 leading-snug" set:html={s.title} />
+            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600" set:html={s.body} />
+          </li>
+        ))}
       </ul>
     </Container>
   </section>
