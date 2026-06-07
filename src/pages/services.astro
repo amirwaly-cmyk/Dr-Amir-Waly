@@ -13,8 +13,20 @@ const medicalServices = [
     body: 'Consultations for new and ongoing health concerns, chronic disease management, preventive health, men&rsquo;s health, mental health, immunisations, and standard short-term medical certificates where clinically appropriate. <strong class="text-ink-800">Workers&rsquo; compensation, third-party insurance, and medico-legal reports are not provided by this practice</strong> &mdash; please ask reception for a referral to an appropriately qualified colleague.',
   },
   {
+    title: 'Sports Medicine',
+    body: 'Consultation, diagnosis, and management of musculoskeletal injuries; return-to-sport planning; and preventive sports-health advice. Conservative management is discussed alongside imaging where appropriate, with onward referral to sports physicians (FACSEP), physiotherapy, or orthopaedics arranged where specialist input is indicated. Joint and soft-tissue injection options are described under Procedural Services.',
+  },
+  {
     title: 'Endometriosis Management',
     body: 'Long-term assessment and management of endometriosis &mdash; including discussion of symptom patterns and triggers, hormonal and non-hormonal medication options, pain-management strategies, and coordination of multidisciplinary care. Specialist gynaecology referral is arranged where surgical assessment or advanced management is indicated.',
+  },
+  {
+    title: 'Polycystic Ovary Syndrome (PCOS)',
+    body: 'Diagnosis and long-term management of polycystic ovary syndrome &mdash; including assessment of menstrual irregularity, hyperandrogenism, and metabolic features, relevant baseline investigations, discussion of hormonal and non-hormonal treatment options, lifestyle support, and ongoing review. Specialist endocrinology or gynaecology referral is arranged where indicated.',
+  },
+  {
+    title: 'Pelvic Pain',
+    body: 'Assessment and management of chronic and acute pelvic pain &mdash; including history-taking, examination, relevant investigations, and discussion of medical and non-medical management options. Specialist gynaecology, urology, or pain medicine referral is arranged where indicated, and care is coordinated with allied health (including pelvic-floor physiotherapy) where appropriate.',
   },
   {
     title: 'Fertility &amp; Infertility Consultations',
@@ -55,7 +67,7 @@ const slug = (title: string) =>
 ---
 <BaseLayout
   title={`Clinical Services — Dr Amir Waly, Specialist GP ${site.address.suburb}`}
-  description={`Medical services (general medicine, endometriosis management, fertility and infertility consultations, skin cancer checks) and procedural services (skin cancer surgery, cosmetic and laser medicine, joint and soft-tissue injections, contraceptive implants) — provided by ${site.doctorName}, independent specialist GP, in ${site.address.suburb}, Perth.`}
+  description={`Medical services (general medicine, sports medicine, endometriosis, PCOS, pelvic pain, fertility and infertility consultations, skin cancer checks) and procedural services (skin cancer surgery, cosmetic and laser medicine, joint and soft-tissue injections, contraceptive implants) — provided by ${site.doctorName}, independent specialist GP, in ${site.address.suburb}, Perth.`}
   image="/og/services.png"
   breadcrumbs={[
     { name: 'Home', href: '/' },
