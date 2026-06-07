@@ -1,18 +1,28 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Container from '@/components/Container.astro';
+import AuthorByline from '@/components/AuthorByline.astro';
+import RelatedInsights from '@/components/RelatedInsights.astro';
 import { site } from '@/config/site';
 
+const datePublished = '2026-06-06';
 const lastUpdated = '6 June 2026';
 ---
 <BaseLayout
   title={`What an annual skin check actually involves — Dr Amir Waly`}
   description={`A plain-spoken account of what happens at a skin check — how long it takes, what dermoscopy is, when biopsy is recommended, and how to decide how often to come. ${site.doctorName}, ${site.address.suburb}, Perth.`}
+  image="/og/insights/what-a-skin-check-involves.png"
   breadcrumbs={[
     { name: 'Home', href: '/' },
     { name: 'Insights', href: '/insights' },
     { name: 'What an annual skin check involves', href: '/insights/what-a-skin-check-involves' },
   ]}
+  article={{
+    headline: 'What an annual skin check actually involves.',
+    datePublished,
+    wordCount: 1300,
+    section: 'Insights',
+  }}
 >
   <section class="border-b border-ink-100 bg-paper">
     <Container class="py-24 sm:py-32 lg:py-36">
@@ -208,18 +218,10 @@ const lastUpdated = '6 June 2026';
           of appointment is allocated.
         </p>
       </div>
+
+      <AuthorByline datePublished={datePublished} readingMinutes={7} />
     </Container>
   </section>
 
-  <section class="border-t border-ink-100 bg-paper py-16">
-    <Container size="narrow" class="text-center">
-      <a
-        href="/insights"
-        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
-      >
-        <span aria-hidden="true">&larr;</span>
-        <span>More insights</span>
-      </a>
-    </Container>
-  </section>
+  <RelatedInsights currentHref="/insights/what-a-skin-check-involves" />
 </BaseLayout>

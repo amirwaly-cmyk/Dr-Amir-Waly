@@ -1,18 +1,28 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Container from '@/components/Container.astro';
+import AuthorByline from '@/components/AuthorByline.astro';
+import RelatedInsights from '@/components/RelatedInsights.astro';
 import { site } from '@/config/site';
 
+const datePublished = '2026-06-05';
 const lastUpdated = '5 June 2026';
 ---
 <BaseLayout
   title={`Private GP, Explained Honestly — Dr Amir Waly`}
   description={`A plain-spoken explanation of private general practice in Australia — why bulk-billing economics are collapsing, what a longer consultation actually enables clinically, and what private billing buys you. Dr Amir Waly, ${site.address.suburb}, Perth.`}
+  image="/og/private-gp-explained.png"
   breadcrumbs={[
     { name: 'Home', href: '/' },
-    { name: 'Practice policies', href: '/policies' },
+    { name: 'Insights', href: '/insights' },
     { name: 'Private GP, explained honestly', href: '/private-gp-explained' },
   ]}
+  article={{
+    headline: 'Private GP, explained honestly.',
+    datePublished,
+    wordCount: 1500,
+    section: 'Insights',
+  }}
 >
   <section class="border-b border-ink-100 bg-paper">
     <Container class="py-24 sm:py-32 lg:py-36">
@@ -221,23 +231,10 @@ const lastUpdated = '5 June 2026';
           appointment would run.
         </p>
       </div>
+
+      <AuthorByline datePublished={datePublished} readingMinutes={8} />
     </Container>
   </section>
 
-  <section class="border-t border-ink-100 bg-paper py-16">
-    <Container size="narrow" class="text-center">
-      <a
-        href="/fees-and-billing"
-        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
-      >
-        <span>Read the Fees &amp; Billing Policy</span>
-        <span aria-hidden="true">&rarr;</span>
-      </a>
-      <p class="mt-5 text-[14px] text-ink-500">
-        Or call reception on
-        <a class="link-quiet text-ink-700 tabular-nums" href={site.phoneHref}>{site.phone}</a>
-        for a fee estimate.
-      </p>
-    </Container>
-  </section>
+  <RelatedInsights currentHref="/private-gp-explained" />
 </BaseLayout>

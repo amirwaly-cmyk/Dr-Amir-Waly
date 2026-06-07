@@ -11,9 +11,17 @@ interface Props {
   description: string;
   noindex?: boolean;
   breadcrumbs?: Array<{ name: string; href: string }>;
+  article?: {
+    headline: string;
+    datePublished: string;
+    dateModified?: string;
+    wordCount?: number;
+    section?: string;
+  };
+  image?: string;
 }
 
-const { title, description, noindex, breadcrumbs } = Astro.props;
+const { title, description, noindex, breadcrumbs, article, image } = Astro.props;
 const plausibleEnabled = site.analytics.plausibleEnabled;
 ---
 <!doctype html>
@@ -36,7 +44,14 @@ const plausibleEnabled = site.analytics.plausibleEnabled;
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@400;500;600;700&display=swap"
     />
-    <SEO title={title} description={description} noindex={noindex} breadcrumbs={breadcrumbs} />
+    <SEO
+      title={title}
+      description={description}
+      noindex={noindex}
+      breadcrumbs={breadcrumbs}
+      article={article}
+      image={image}
+    />
     <ClientRouter />
     {plausibleEnabled && (
       <>
@@ -87,6 +102,43 @@ const plausibleEnabled = site.analytics.plausibleEnabled;
     </main>
 
     <Footer />
+
+    <!-- =====================================================================
+         Site search — Pagefind static-site search.
+         Indexed at build time (npm run build runs pagefind after astro build).
+         The overlay is hidden by default; opened by the search button in the
+         Header or by Ctrl+K / Cmd+K from anywhere.
+         ===================================================================== -->
+    <div
+      id="search-overlay"
+      class="fixed inset-0 z-50 hidden bg-ink-900/40 backdrop-blur-sm"
+      data-search-overlay
+      transition:persist
+      aria-hidden="true"
+    >
+      <div class="mx-auto mt-[10vh] w-full max-w-2xl px-4">
+        <div class="bg-white border border-ink-200/70 shadow-2xl shadow-clinic-900/20">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-ink-100">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+              Search this site
+            </p>
+            <button
+              type="button"
+              class="inline-flex items-center gap-1.5 text-[12px] text-ink-500 hover:text-ink-800 transition-colors"
+              data-search-close
+              aria-label="Close search"
+            >
+              <span>Esc</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M3 3l6 6M9 3l-6 6" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <div id="search-ui" class="p-4"></div>
+        </div>
+      </div>
+    </div>
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
 
     <script>
       // Re-runs on initial load AND on every Astro view-transition navigation.
@@ -158,12 +210,81 @@ const plausibleEnabled = site.analytics.plausibleEnabled;
         window.addEventListener('resize', update, { passive: true });
       }
 
+      function initSearch() {
+        if ((window as any).__searchInit) return;
+        const overlay = document.querySelector<HTMLDivElement>('[data-search-overlay]');
+        if (!overlay) return;
+
+        const open = () => {
+          overlay.classList.remove('hidden');
+          overlay.setAttribute('aria-hidden', 'false');
+          const input = overlay.querySelector<HTMLInputElement>('input.pagefind-ui__search-input');
+          input?.focus();
+        };
+        const close = () => {
+          overlay.classList.add('hidden');
+          overlay.setAttribute('aria-hidden', 'true');
+        };
+
+        // Bind delegated triggers (search button is inside the persisted header)
+        document.addEventListener('click', (e) => {
+          const t = e.target as Element | null;
+          if (!t) return;
+          if (t.closest('[data-search-open]')) {
+            e.preventDefault();
+            open();
+            return;
+          }
+          if (t.closest('[data-search-close]')) {
+            close();
+            return;
+          }
+          if (overlay && t === overlay) close(); // click on backdrop
+        });
+
+        document.addEventListener('keydown', (e) => {
+          // Cmd+K / Ctrl+K opens search
+          if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            open();
+          } else if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+            close();
+          }
+        });
+
+        // Load PagefindUI script + initialise once
+        const PagefindUIClass = (window as any).PagefindUI;
+        const mount = () => {
+          new (window as any).PagefindUI({
+            element: '#search-ui',
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            translations: {
+              placeholder: 'Search the practice site…',
+            },
+          });
+        };
+        if (PagefindUIClass) {
+          mount();
+        } else {
+          const script = document.createElement('script');
+          script.src = '/pagefind/pagefind-ui.js';
+          script.onload = () => { try { mount(); } catch {} };
+          document.head.appendChild(script);
+        }
+
+        (window as any).__searchInit = true;
+      }
+
       initReveals();
       initScrollProgress();
       initHeaderShrink();
+      initSearch();
       document.addEventListener('astro:page-load', () => {
         initReveals();
-        // Scroll progress + header shrink are single global listeners — no re-init needed.
+        // Scroll progress, header shrink, and search are single global
+        // listeners — no re-init needed.
       });
     </script>
   </body>

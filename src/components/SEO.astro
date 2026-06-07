@@ -6,6 +6,14 @@ interface BreadcrumbItem {
   href: string;
 }
 
+interface ArticleMeta {
+  headline: string;
+  datePublished: string;  // ISO 8601 date
+  dateModified?: string;  // ISO 8601 date
+  wordCount?: number;
+  section?: string;       // editorial section (e.g. "Insights")
+}
+
 interface Props {
   title: string;
   description: string;
@@ -14,6 +22,7 @@ interface Props {
   noindex?: boolean;
   type?: 'website' | 'article' | 'profile';
   breadcrumbs?: BreadcrumbItem[];
+  article?: ArticleMeta;
 }
 
 const {
@@ -24,6 +33,7 @@ const {
   noindex = false,
   type = 'website',
   breadcrumbs = [],
+  article,
 } = Astro.props;
 
 const canonical = new URL(path, site.url).toString();
@@ -181,6 +191,25 @@ if (breadcrumbs.length > 0) {
       item: new URL(b.href, site.url).toString(),
     })),
   });
+}
+
+if (article) {
+  const articleEntity: Record<string, unknown> = {
+    '@type': 'Article',
+    '@id': `${canonical}#article`,
+    headline: article.headline,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified ?? article.datePublished,
+    url: canonical,
+    image: ogImage,
+    inLanguage: 'en-AU',
+    author: { '@id': `${site.url}#practitioner` },
+    publisher: { '@id': `${site.url}#business` },
+    mainEntityOfPage: { '@id': canonical },
+  };
+  if (article.wordCount) articleEntity.wordCount = article.wordCount;
+  if (article.section) articleEntity.articleSection = article.section;
+  graph.push(articleEntity);
 }
 
 const jsonLd = {

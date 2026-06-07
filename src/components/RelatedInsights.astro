@@ -1,0 +1,66 @@
+---
+// Up to 3 "related" cards from the Insights collection. Excludes the
+// current page. The articles array mirrors /insights/index.astro so
+// it stays in sync when new pieces are added.
+interface Props {
+  currentHref: string;
+}
+const { currentHref } = Astro.props;
+
+const articles = [
+  {
+    href: '/private-gp-explained',
+    title: 'Private GP, explained honestly.',
+    eyebrow: 'On the practice',
+  },
+  {
+    href: '/insights/what-a-skin-check-involves',
+    title: 'What an annual skin check actually involves.',
+    eyebrow: 'On skin cancer',
+  },
+  {
+    href: '/insights/cosmetic-consultation-questions-to-ask',
+    title: 'Cosmetic consultation: questions to ask any practitioner.',
+    eyebrow: 'On cosmetic medicine',
+  },
+  {
+    href: '/insights/when-telehealth-is-appropriate',
+    title: "When telehealth is, and isn't, appropriate.",
+    eyebrow: 'On the model of care',
+  },
+  {
+    href: '/insights/what-consultant-general-practice-means',
+    title: "What 'consultant general practice' means in Australian medicine.",
+    eyebrow: 'On medical titles',
+  },
+];
+
+const related = articles.filter(a => a.href !== currentHref).slice(0, 3);
+---
+<section class="border-t border-ink-100 bg-paper-soft py-16 sm:py-20">
+  <div class="mx-auto w-full max-w-3xl px-5 sm:px-8">
+    <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-500">
+      Continue reading
+    </p>
+    <ul class="mt-8 grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-3">
+      {related.map((a) => (
+        <li class="bg-white">
+          <a href={a.href} class="group block p-5 sm:p-6 h-full transition-colors hover:bg-paper">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+              {a.eyebrow}
+            </p>
+            <p class="mt-3 font-serif text-[16px] text-ink-900 leading-snug">
+              {a.title}
+            </p>
+            <span class="mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-clinic-700">
+              <span class="border-b border-clinic-300 group-hover:border-clinic-700 transition-colors">
+                Read
+              </span>
+              <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

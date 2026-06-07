@@ -1,18 +1,28 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Container from '@/components/Container.astro';
+import AuthorByline from '@/components/AuthorByline.astro';
+import RelatedInsights from '@/components/RelatedInsights.astro';
 import { site } from '@/config/site';
 
+const datePublished = '2026-06-06';
 const lastUpdated = '6 June 2026';
 ---
 <BaseLayout
   title={`When telehealth is, and isn't, appropriate — Dr Amir Waly`}
   description={`A practical, honest guide to when telehealth is genuinely useful in Australian general practice — and when an in-person consultation is the better choice. ${site.doctorName}, ${site.address.suburb}, Perth.`}
+  image="/og/insights/when-telehealth-is-appropriate.png"
   breadcrumbs={[
     { name: 'Home', href: '/' },
     { name: 'Insights', href: '/insights' },
     { name: "When telehealth is, and isn't, appropriate", href: '/insights/when-telehealth-is-appropriate' },
   ]}
+  article={{
+    headline: "When telehealth is, and isn't, appropriate.",
+    datePublished,
+    wordCount: 1200,
+    section: 'Insights',
+  }}
 >
   <section class="border-b border-ink-100 bg-paper">
     <Container class="py-24 sm:py-32 lg:py-36">
@@ -151,18 +161,10 @@ const lastUpdated = '6 June 2026';
           not finished.
         </p>
       </div>
+
+      <AuthorByline datePublished={datePublished} readingMinutes={6} />
     </Container>
   </section>
 
-  <section class="border-t border-ink-100 bg-paper py-16">
-    <Container size="narrow" class="text-center">
-      <a
-        href="/insights"
-        class="inline-flex items-center gap-2 rounded-sm border border-ink-300 bg-white px-5 py-3 text-[0.88rem] font-medium tracking-wide text-ink-800 transition-colors hover:border-clinic-700 hover:text-clinic-800"
-      >
-        <span aria-hidden="true">&larr;</span>
-        <span>More insights</span>
-      </a>
-    </Container>
-  </section>
+  <RelatedInsights currentHref="/insights/when-telehealth-is-appropriate" />
 </BaseLayout>

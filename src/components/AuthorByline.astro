@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import { site } from '@/config/site';
+import portrait from '@/assets/dr-amir-waly-cutout.png';
+
+interface Props {
+  datePublished?: string;
+  readingMinutes?: number;
+}
+const { datePublished, readingMinutes } = Astro.props;
+---
+<aside class="not-prose mt-16 mb-2 flex items-start gap-5 border-t border-ink-200/70 pt-8">
+  <figure class="shrink-0">
+    <Image
+      src={portrait}
+      alt={`Portrait of ${site.doctorName}`}
+      widths={[80, 160]}
+      sizes="80px"
+      quality={88}
+      format="webp"
+      loading="lazy"
+      class="block h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-blue-tint object-cover"
+    />
+  </figure>
+  <div class="flex-1 min-w-0">
+    <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-400">
+      Written by
+    </p>
+    <p class="mt-1 font-serif text-lg text-ink-900 leading-snug">
+      {site.doctorName}
+    </p>
+    <p class="mt-0.5 text-[12.5px] font-semibold uppercase tracking-[0.18em] text-ink-500">
+      {site.qualifications}
+    </p>
+    <p class="mt-2 text-[14px] leading-relaxed text-ink-600 max-w-md">
+      Independent Specialist GP &middot; {site.address.suburb}, Perth.
+      {site.doctorShortName} runs his own practice and consults at
+      {site.clinicName} and other venues across Perth&rsquo;s
+      north-eastern suburbs.
+    </p>
+    {(datePublished || readingMinutes) && (
+      <p class="mt-3 text-[12px] text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+        {datePublished && (
+          <time datetime={datePublished} class="tabular-nums">
+            {new Date(datePublished).toLocaleDateString('en-AU', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </time>
+        )}
+        {datePublished && readingMinutes && <span class="text-ink-300">&middot;</span>}
+        {readingMinutes && (
+          <span class="tabular-nums">{readingMinutes} min read</span>
+        )}
+      </p>
+    )}
+  </div>
+</aside>
