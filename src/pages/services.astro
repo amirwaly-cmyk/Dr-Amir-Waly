@@ -52,7 +52,7 @@ const services = [
         whether an appointment is appropriate.
       </p>
       <div class="mt-9 flex flex-wrap items-center gap-3 text-[13px]">
-        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">Areas of practice:</span>
+        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">Areas of interest:</span>
         <a href="/skin-cancer-surgery" class="link-quiet text-ink-800">Skin cancer surgery</a>
         <span class="text-accent" aria-hidden="true">&middot;</span>
         <a href="/cosmetic-medicine" class="link-quiet text-ink-800">Cosmetic medicine</a>
@@ -66,13 +66,22 @@ const services = [
   <section class="py-20 sm:py-24">
     <Container>
       <ul class="grid gap-px bg-ink-100 border border-ink-100 sm:grid-cols-2">
-        {services.map((s, i) => (
-          <li class="relative bg-white p-8 sm:p-10 transition-colors hover:bg-paper-soft">
-            <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-            <h2 class="mt-4 font-serif text-xl text-ink-900 leading-snug" set:html={s.title} />
-            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600" set:html={s.body} />
-          </li>
-        ))}
+        {services.map((s, i) => {
+          // Slug from title — used as the anchor id so the header dropdown
+          // can deep-link to specific services (e.g. /services#joint-injections).
+          const id = s.title
+            .replace(/&[^;]+;/g, '-')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '');
+          return (
+            <li id={id} class="relative bg-white p-8 sm:p-10 transition-colors hover:bg-paper-soft scroll-mt-32">
+              <span class="numeral text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <h2 class="mt-4 font-serif text-xl text-ink-900 leading-snug" set:html={s.title} />
+              <p class="mt-3 text-[15.5px] leading-relaxed text-ink-600" set:html={s.body} />
+            </li>
+          );
+        })}
       </ul>
     </Container>
   </section>
