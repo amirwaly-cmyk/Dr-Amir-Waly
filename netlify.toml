@@ -6,6 +6,24 @@
   NODE_VERSION = "20"
 
 # =============================================================================
+# MAINTENANCE MODE — comment out this block to bring the site back online.
+# Serves /maintenance.html for every path with a 503 status so search engines
+# treat the outage as temporary and don't deindex pages. The Retry-After
+# header tells crawlers to come back in an hour.
+# =============================================================================
+[[redirects]]
+  from = "/*"
+  to = "/maintenance.html"
+  status = 503
+  force = true
+
+[[headers]]
+  for = "/maintenance.html"
+  [headers.values]
+    Cache-Control = "no-store"
+    Retry-After = "3600"
+
+# =============================================================================
 # Security headers — applied to every response
 # =============================================================================
 [[headers]]

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Briefly offline — Dr Amir Waly</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="The site is briefly offline for maintenance. For appointments, please call Rudloc Road Medical and Dental on (08) 6188 5555." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@400;500&display=swap" />
+
+  <style>
+    :root {
+      --paper:       #F6F3EC;
+      --ink-900:     #14181f;
+      --ink-700:     #353d4a;
+      --ink-500:     #6b7280;
+      --ink-200:     #d8d4c8;
+      --clinic-800:  #4D72A6;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      background: var(--paper);
+      color: var(--ink-700);
+      font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+      font-feature-settings: 'kern' 1, 'liga' 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      hanging-punctuation: first last;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+    }
+    .wrap {
+      max-width: 36rem;
+      width: 100%;
+    }
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-500);
+      margin: 0 0 1.75rem;
+    }
+    h1 {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 3.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.012em;
+      color: var(--ink-900);
+      margin: 0 0 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--clinic-800); }
+    p.lead {
+      font-size: 1.075rem;
+      line-height: 1.65;
+      color: var(--ink-700);
+      margin: 0 0 2.25rem;
+      max-width: 32rem;
+    }
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--ink-200);
+      margin: 2rem 0 1.5rem;
+    }
+    .contact dt {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-500);
+      margin-bottom: 0.35rem;
+    }
+    .contact dd {
+      margin: 0 0 1.25rem;
+      color: var(--ink-900);
+      font-variant-numeric: oldstyle-nums proportional-nums;
+    }
+    .contact a {
+      color: var(--ink-900);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink-200);
+      transition: border-color .15s ease;
+    }
+    .contact a:hover { border-bottom-color: var(--clinic-800); }
+    footer {
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--ink-500);
+      border-top: 1px solid var(--ink-200);
+    }
+    footer .name {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      color: var(--ink-700);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="wrap">
+      <p class="eyebrow">Currently being updated</p>
+      <h1>Briefly <em>offline.</em></h1>
+      <p class="lead">
+        The site is being updated and will be back shortly. Existing patients
+        and referrers can reach the practice using the details below.
+      </p>
+
+      <hr class="rule" />
+
+      <dl class="contact">
+        <dt>To book an appointment</dt>
+        <dd>
+          Rudloc Road Medical &amp; Dental &mdash;
+          <a href="tel:+61861885555">(08)&nbsp;6188&nbsp;5555</a>
+        </dd>
+
+        <dt>Practice office</dt>
+        <dd>
+          Draw Group Pty Ltd &mdash;
+          <a href="tel:+61862565633">(08)&nbsp;6256&nbsp;5633</a>
+          &nbsp;&middot;&nbsp;
+          <a href="mailto:contact@drawgroup.com.au">contact@drawgroup.com.au</a>
+        </dd>
+      </dl>
+    </div>
+  </main>
+
+  <footer>
+    <span class="name">Dr Amir Waly</span> &middot; BPharm, MBBS, FRACGP &middot; AHPRA MED0002079575
+  </footer>
+</body>
+</html>
